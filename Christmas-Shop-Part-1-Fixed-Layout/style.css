@@ -48,16 +48,21 @@ html {
 }
 
 body {
-    max-width: 1440px;
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* header */
+
 header {
-    padding: 0px 8px;
+    padding: 0 3%;
     width: 100%;
     min-height: 64px;
     background: var(--static-white);
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-right: 3%;
 }
 
 .logo, nav, header, .nav-list {
@@ -89,4 +94,73 @@ ul {
     text-decoration: none;
     color: var(--dark);
     padding: 12px 20px;
+}
+
+/* hero */
+
+.hero {
+    border-radius: 20px 20px 0 0;
+    padding: 11% 1%;
+    width: 100%;
+    min-height: 524px;
+    background: url(./assets/img/bg-snow.png) repeat, url(./assets/img/bg-ball.png) no-repeat;
+    background-color: var(--primary);
+    background-blend-mode: normal;
+    background-size: contain;
+    background-position: center;
+}
+
+.hero-text {
+    width: 30.4%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    height: 20vw;
+    row-gap: 3%;
+}
+
+.main-wish{
+    -webkit-text-stroke: .8px var(--dark);
+}
+
+.hero-text-congrat {
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: var(--static-white);
+}
+
+.hero-text-gift{
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 150%;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--static-white);
+}
+
+.hero-block {
+    border-radius: 20px;
+    padding: 20px 32px;
+    width: 60%;
+    background: var(--dark);
+    margin: auto;
+    text-align: center;
+}
+
+.hero-block span {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--static-white);
 }
