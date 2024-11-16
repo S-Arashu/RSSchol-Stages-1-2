@@ -1,0 +1,92 @@
+
+:root {
+    --primary: #ff4646;
+    --dark: #181c29;
+    --static-white: #fff;
+    --content-background: #ecf3f8;
+    --tag-purple: #4361ff;
+    --tag-pink: #ff43f7;
+    --tag-green: #06a44f;
+    --primary-10: rgba(255, 70, 70, 0.1);
+    --static-white-20: rgba(255, 255, 255, 0.2);
+    --static-white-40: rgba(255, 255, 255, 0.4);
+    --overlay: rgba(24, 28, 41, 0.8);
+}
+
+:root {
+    --font-family: "Montserrat", sans-serif;
+    --second-family: "Allura", sans-serif;
+    --third-family: "San Francisco Pro", sans-serif;
+}
+
+@font-face {
+    font-family: 'San Francisco Pro';
+    src: local('San Francisco Pro Display Bold'), local('San-Francisco-Pro-Display-Bold'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Bold.woff2') format('woff2'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Bold.woff') format('woff'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'San Francisco Pro';
+    src: local('San Francisco Pro Display Regular'), local('San-Francisco-Pro-Display-Regular'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Regular.woff2') format('woff2'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Regular.woff') format('woff'),
+        url('/assets/fonts/SFProDisplay-Bold/SFProDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    max-width: 1440px;
+}
+
+header {
+    padding: 0px 8px;
+    width: 100%;
+    min-height: 64px;
+    background: var(--static-white);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo, nav, header, .nav-list {
+    display: flex;
+}
+
+.logo {
+    align-items: center;
+    justify-content: space-evenly;
+    width: 15%;
+    text-decoration: none;
+}
+
+.logo-name, li {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--dark);
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+    padding: 12px 20px;
+}
