@@ -60,6 +60,10 @@ body {
 
 /* header */
 
+.disable {
+    pointer-events: none;
+}
+
 header {
     padding: 0 3%;
     width: 100%;
@@ -118,7 +122,8 @@ ul {
     transition: all .3s ease-in-out;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
     border-radius: 12px;
     padding: 12px 20px;
     width: 88px;
@@ -654,8 +659,8 @@ footer {
 } */
 
 /* .footer-contacts-card:hover > .footer-contacts-img, */
-.footer-contacts-card:hover > .footer-contacts-info,
-.footer-contacts-card:hover > .footer-contacts-desc {
+.footer-contacts-card:hover > .footer-contacts-desc, 
+.footer-contacts-card:hover > .footer-contacts-info {
     color: var(--primary);
 }
 
@@ -680,6 +685,7 @@ footer {
     text-transform: uppercase;
     text-align: center;
     color: var(--dark);
+    transition: all .3s ease-in-out;
 }
 
 .footer-socials {
@@ -730,4 +736,79 @@ footer {
 
 .footer-rs:hover {
     color: var(--primary);
+}
+
+/* gifts page */
+
+.gifts {
+    border-radius: 20px;
+    padding: 60px 8px;
+    min-height: 1394px;
+    background: url(./assets/img/bg-garland.png) no-repeat;
+    background-color: var(--primary);
+    background-blend-mode: normal;
+    background-size: contain;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.gifts-items {
+    display: flex;
+}
+
+.gifts-text {
+    width: 30%;
+    text-align: center;
+}
+
+.gifts-desc-text {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 150%;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--static-white);
+}
+
+.gifts-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gift-filter-item {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--static-white);
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 12px 20px;
+    transition: all .3s ease-in-out;
+}
+
+.gift-filter-item:hover {
+    background: var(--static-white-20);
+}
+
+.gifts-active {
+    /* width: 65px;
+    height: 40px; */
+    background: var(--static-white-20);
+    cursor: default;
+}
+
+.gifts-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
