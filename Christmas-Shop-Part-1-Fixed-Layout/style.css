@@ -79,6 +79,22 @@ header {
     justify-content: space-evenly;
     width: 15%;
     text-decoration: none;
+    transition: all .5s ease-in-out;
+}
+
+/* .logo:hover {
+    filter: drop-shadow(2px 4px 6px var(--primary));
+    transform: scale(1.1);
+} */
+
+/* .logo-img,
+.logo-name {
+    transition: all .5 ease-in-out;
+} */
+
+.logo-img {
+    width: 24px;
+    height: 24px;
 }
 
 .logo-name, li {
@@ -99,6 +115,17 @@ ul {
     text-decoration: none;
     color: var(--dark);
     padding: 12px 20px;
+    transition: all .3s ease-in-out;
+}
+
+.nav-link:hover {
+    border-radius: 12px;
+    padding: 12px 20px;
+    width: 88px;
+    height: 40px;
+    background: var(--primary-10);
+    font-family: var(--font-family);
+    color: var(--primary);
 }
 
 /* hero */
@@ -151,16 +178,20 @@ ul {
     color: var(--static-white);
 }
 
-.hero-block {
+.hero-block,
+.santa-magical-gifts {
     border-radius: 20px;
     padding: 20px 32px;
     width: 60%;
     background: var(--dark);
     margin: auto;
     text-align: center;
+    text-decoration: none;
+    transition: all .5s ease-in-out;
 }
 
-.hero-block span {
+.hero-block-btn,
+.santa-magical-gifts-btn {
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 12px;
@@ -169,6 +200,17 @@ ul {
     text-transform: uppercase;
     text-align: center;
     color: var(--static-white);
+    transition: all .5s ease-in-out;
+}
+
+.hero-block:hover>.hero-block-btn,
+.santa-magical-gifts:hover>.santa-magical-gifts-btn {
+    color: var(--dark);
+}
+
+.hero-block:hover,
+.santa-magical-gifts:hover {
+    background-color: var(--static-white);
 }
 
 /* about */
@@ -280,6 +322,8 @@ ul {
 
 .slider-pic {
     border-radius: 20px;
+    width: 200px;
+    height: 200px;
 }
 
 .btn {
@@ -290,6 +334,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all .3s ease-in-out;
 }
 
 .slider-imgs {
@@ -307,18 +352,39 @@ ul {
     margin-right: 6%;
 }
 
-.slider-left-btn {
+.disabled {
     filter: opacity(.5);
-    cursor: default;
+    /* cursor: default; */
+    pointer-events: none;
 }
 
-.slider-right-btn {
+/* .slider-right-btn {
     cursor: pointer;
+} */
+
+/* .arrow {
+    stroke-width: 1px;
+    stroke: var(--static-white);
+} */
+
+.arrow > path {
+    transition: all .3s ease-in-out;
 }
 
-.slider-left-btn img {
-    transform: rotate(180deg);
+.btn:hover {
+    cursor: pointer;
+    background-color: var(--static-white);
+    fill: var(--primary);
 }
+
+.btn:hover > .arrow path {
+    /* stroke-width: 1px; */
+    stroke: var(--primary);
+}
+
+/* .slider-left-btn img {
+    transform: rotate(180deg);
+} */
 
 /* Best gifts */
 
@@ -375,6 +441,22 @@ ul {
     width: 310px;
     min-height: 342px;
     background: var(--content-background);
+    transition: all .3s ease-in-out;
+}
+
+.best-gifts-cards > img {
+    width: 310px;
+    height: 230px;
+}
+
+.best-gifts-cards:hover {
+    /* transform: scale(1.1);
+    filter: drop-shadow(0 0 0.75rem var(--static-white)); */
+    cursor: pointer;
+}
+
+.best-gifts-cards:hover > .best-gifts-desc > .best-gifts-name {
+    color: var(--primary);
 }
 
 .best-gifts-desc {
@@ -403,6 +485,7 @@ ul {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--dark);
+    transition: all .3s ease-in-out;
     /* width: 90%; */
 }
 
@@ -452,14 +535,14 @@ ul {
     color: var(--static-white);
 }
 
-.santa-magical-gifts {
+/* .santa-magical-gifts {
     border-radius: 20px;
     padding: 20px 32px;
     min-width: 235px;
     background: var(--dark);
-}
+} */
 
-.santa-magical-gifts > span {
+/* .santa-magical-gifts > span {
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 12px;
@@ -468,7 +551,7 @@ ul {
     text-transform: uppercase;
     text-align: center;
     color: var(--static-white);
-}
+} */
 
 .santa-new-year {
     font-family: var(--second-family);
@@ -565,6 +648,17 @@ footer {
     gap: 12px;
 }
 
+/* .footer-contacts-card:hover {
+    filter: drop-shadow(0 0 0.75rem var(--primary));
+    transform: scale(1.1);
+} */
+
+/* .footer-contacts-card:hover > .footer-contacts-img, */
+.footer-contacts-card:hover > .footer-contacts-info,
+.footer-contacts-card:hover > .footer-contacts-desc {
+    color: var(--primary);
+}
+
 .footer-contacts-info {
     font-family: var(--font-family);
     font-weight: 600;
@@ -574,6 +668,7 @@ footer {
     text-transform: uppercase;
     text-align: center;
     color: var(--dark);
+    transition: all .3s ease-in-out;
 }
 
 .footer-contacts-desc {
@@ -590,6 +685,26 @@ footer {
 .footer-socials {
     display: flex;
     margin-top: 60px;
+}
+
+.footer-socials-img {
+    width: 40px;
+    height: 40px;
+    transition: all .3s ease-in-out;
+}
+
+.footer-socials-img:hover > .icon path {
+    stroke: var(--primary);
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    transition: all .3s ease-in-out;
+}
+
+.icon > path {
+    transition: all .3s ease-in-out;
 }
 
 .footer-copy {
@@ -610,4 +725,9 @@ footer {
     letter-spacing: 0.05em;
     text-align: center;
     color: var(--dark);
+    transition: all .3s ease-in-out;
+}
+
+.footer-rs:hover {
+    color: var(--primary);
 }
