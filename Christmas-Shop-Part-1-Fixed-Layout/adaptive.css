@@ -1,0 +1,160 @@
+@media((min-width: 769px) and (max-width: 1300px)){
+
+    /* header */
+
+    header {
+        padding: 0 1%;
+        /* width: 40%; */
+    }
+
+    .logo {
+        width: 19%;
+    }
+
+    nav {
+        width: 50%;
+        justify-content: center;
+        gap: 2%;
+    }
+
+    .nav-link {
+        padding: 12px 15px;
+    }
+
+    /* hero */
+
+    .hero-text {
+        width: 57%;
+        padding-top: 8%;
+    }
+
+    /* about */
+
+    .about {
+        padding: 61px 8px;
+    }
+
+    .about-desc {
+        width: 42%;
+        max-width: 256px;
+        margin: 47px 0px 47px 60px;
+    }
+
+    /* slider */
+
+    .slider-imgs {
+        margin-left: 1%;
+    }
+
+    .slider-ctrls {
+        margin-right: 1%;
+    }
+
+    /* best gifts */
+
+    .best-gifts {
+        padding-top: 7.7%;
+        padding-bottom: 7.7%;
+    }
+
+    /* santa */
+
+    .santa-desc {
+        width: 53%;
+        padding-top: 23%;
+    }
+
+    /* footer */
+
+    .footer-contacts-link {
+        width: 100%;
+    }
+
+    .footer-socials {
+        width: 26%;
+        margin-top: 67px;
+    }
+
+    .footer-copy {
+        padding-bottom: 2%;
+    }
+}
+
+@media((min-width: 381px) and (max-width: 768px)){
+
+    /* header */
+    
+    header {
+        padding: 0 1%;
+    }
+    
+    .logo {
+        width: 19%;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    .burger {
+        display: flex;
+    }
+
+    /* hero */
+        
+    .hero-text {
+        width: 57%;
+        padding-top: 8%;
+    }
+        
+    /* about */
+        
+    .about {
+        padding: 61px 8px;
+    }
+        
+    .about-desc {
+        width: 42%;
+        max-width: 256px;
+        margin: 47px 0px 47px 60px;
+    }
+        
+    /* slider */
+        
+    .slider-imgs {
+        margin-left: 1%;
+    }
+        
+    .slider-ctrls {
+        margin-right: 1%;
+    }
+        
+    /* best gifts */
+        
+    .best-gifts {
+        padding-top: 7.7%;
+        padding-bottom: 7.7%;
+    }
+        
+    /* santa */
+        
+    .santa-desc {
+        width: 53%;
+        padding-top: 23%;
+    }
+        
+    /* footer */
+        
+    .footer-contacts-link {
+        width: 100%;
+    }
+        
+    .footer-socials {
+        width: 26%;
+        margin-top: 67px;
+    }
+        
+    .footer-copy {
+        padding-bottom: 2%;
+    }
+}
