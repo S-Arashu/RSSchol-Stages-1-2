@@ -304,6 +304,7 @@ ul {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--dark);
+    margin: 0;
 }
 
 .about-section-desc {
@@ -347,6 +348,7 @@ ul {
     letter-spacing: 0.05em;
     text-align: center;
     color: var(--static-white);
+    margin: 0;
 }
 
 .slider-year {
@@ -479,6 +481,7 @@ ul {
     text-transform: uppercase;
     text-align: center;
     color: var(--static-white);
+    margin: 0;
 }
 
 .best-gifts-items {
@@ -588,6 +591,7 @@ ul {
     text-align: center;
     color: var(--static-white);
     padding-bottom: 1.7%;
+    margin: 0;
 }
 
 /* .santa-magical-gifts {
@@ -674,7 +678,7 @@ ul {
 
 footer {
     padding: 60px 8px;
-    min-height: 496px;
+    min-height: 504px;
     background: var(--static-white);
     display: flex;
     justify-content: space-evenly;
