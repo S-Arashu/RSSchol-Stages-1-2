@@ -224,6 +224,10 @@
     }
         
     /* hero */
+
+    .hero {
+        padding: 7% 1% 21% 1%;
+    }
         
     .hero-text {
         width: 100%;
