@@ -39,6 +39,69 @@
     font-style: normal;
 }
 
+@media (hover: hover) {
+
+    .nav-link:hover,
+    .nav-link:focus {
+        border-radius: 12px;
+        padding: 12px 20px;
+        width: 88px;
+        height: 40px;
+        background: var(--primary-10);
+        font-family: var(--font-family);
+        color: var(--primary);
+    }
+
+    .burger:hover {
+        cursor: pointer;
+    }
+
+    .hero-block:hover>.hero-block-btn,
+    .santa-magical-gifts:hover>.santa-magical-gifts-btn {
+        color: var(--dark);
+    }
+    
+    .hero-block:hover,
+    .santa-magical-gifts:hover {
+        background-color: var(--static-white);
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background-color: var(--static-white);
+        fill: var(--primary);
+    }
+    
+    .btn:hover>.arrow path {
+        stroke: var(--primary);
+    }
+
+    .best-gifts-cards:hover {
+        cursor: pointer;
+    }
+    
+    .best-gifts-cards:hover>.best-gifts-desc>.best-gifts-name {
+        color: var(--primary);
+    }
+
+    .footer-contacts-card:hover>.footer-contacts-desc,
+    .footer-contacts-card:hover>.footer-contacts-info {
+        color: var(--primary);
+    }
+
+    .footer-socials-img:hover>.icon path {
+        stroke: var(--primary);
+    }
+
+    .footer-rs:hover {
+        color: var(--primary);
+    }
+
+    .gift-filter-item:hover {
+        background: var(--static-white-20);
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -134,7 +197,7 @@ ul {
     transition: all .3s ease-in-out;
 }
 
-.nav-link:hover,
+/* .nav-link:hover,
 .nav-link:focus {
     border-radius: 12px;
     padding: 12px 20px;
@@ -143,7 +206,7 @@ ul {
     background: var(--primary-10);
     font-family: var(--font-family);
     color: var(--primary);
-}
+} */
 
 .burger {
     width: 40px;
@@ -155,9 +218,9 @@ ul {
     gap: 17%;
 }
 
-.burger:hover {
+/* .burger:hover {
     cursor: pointer;
-}
+} */
 
 .burger > span {
     display: block;
@@ -170,7 +233,7 @@ ul {
 
 .hero {
     border-radius: 20px 20px 0 0;
-    padding: 7% 1% 9% 1%;
+    padding: 7% 1% 11% 1%;
     width: 100%;
     min-height: 524px;
     background: url(./assets/img/bg-snow.png) repeat, url(./assets/img/bg-ball.png) no-repeat;
@@ -244,7 +307,7 @@ ul {
     transition: all .5s ease-in-out;
 }
 
-.hero-block:hover>.hero-block-btn,
+/* .hero-block:hover>.hero-block-btn,
 .santa-magical-gifts:hover>.santa-magical-gifts-btn {
     color: var(--dark);
 }
@@ -252,7 +315,7 @@ ul {
 .hero-block:hover,
 .santa-magical-gifts:hover {
     background-color: var(--static-white);
-}
+} */
 
 /* about */
 
@@ -425,16 +488,15 @@ ul {
     transition: all .3s ease-in-out;
 }
 
-.btn:hover {
+/* .btn:hover {
     cursor: pointer;
     background-color: var(--static-white);
     fill: var(--primary);
 }
 
 .btn:hover > .arrow path {
-    /* stroke-width: 1px; */
     stroke: var(--primary);
-}
+} */
 
 /* .slider-left-btn img {
     transform: rotate(180deg);
@@ -506,15 +568,13 @@ ul {
     height: 230px;
 }
 
-.best-gifts-cards:hover {
-    /* transform: scale(1.1);
-    filter: drop-shadow(0 0 0.75rem var(--static-white)); */
+/* .best-gifts-cards:hover {
     cursor: pointer;
 }
 
 .best-gifts-cards:hover > .best-gifts-desc > .best-gifts-name {
     color: var(--primary);
-}
+} */
 
 .best-gifts-desc {
     border-radius: 20px;
@@ -716,10 +776,10 @@ footer {
 } */
 
 /* .footer-contacts-card:hover > .footer-contacts-img, */
-.footer-contacts-card:hover > .footer-contacts-desc, 
+/* .footer-contacts-card:hover > .footer-contacts-desc, 
 .footer-contacts-card:hover > .footer-contacts-info {
     color: var(--primary);
-}
+} */
 
 .footer-contacts-info {
     font-family: var(--font-family);
@@ -761,9 +821,9 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-.footer-socials-img:hover > .icon path {
+/* .footer-socials-img:hover > .icon path {
     stroke: var(--primary);
-}
+} */
 
 .icon {
     width: 24px;
@@ -796,9 +856,9 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-.footer-rs:hover {
+/* .footer-rs:hover {
     color: var(--primary);
-}
+} */
 
 /* gifts page */
 
@@ -858,9 +918,9 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-.gift-filter-item:hover {
+/* .gift-filter-item:hover {
     background: var(--static-white-20);
-}
+} */
 
 .gifts-active {
     /* width: 65px;
