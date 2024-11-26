@@ -140,6 +140,10 @@
     }
 
     /* hero */
+
+    .hero {
+        padding: 7% 1% 16% 1%;
+    }
         
     .hero-text {
         width: 57%;
@@ -227,6 +231,7 @@
 
     .hero {
         padding: 7% 1% 21% 1%;
+        max-height: 573px;
     }
         
     .hero-text {
