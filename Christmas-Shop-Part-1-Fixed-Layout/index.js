@@ -35,11 +35,17 @@ burger.addEventListener('click', () => {
 
 burgerMenu.addEventListener('click', (event) => {
     let target = event.target;
+    console.dir(target)
+    console.log(target.attributes[0].nodeValue.startsWith("#"))
     if(target.tagName == 'A' && document.querySelector('.open')){
         closeMenu();
         body.style.overflow = '';
     }
-    console.log(target.tagName)
+    if(target.attributes[0].nodeValue.startsWith("#")){
+        closeMenu();
+        body.style.overflow = '';
+        burgerMenu.classList.add('burger-menu-animation');
+    }
 })
 
 // window.addEventListener('resize', (event) => {

@@ -65,7 +65,7 @@
 
 @media (hover: hover) {
 
-    .nav-link:hover,
+    .nav-link:not([disabled]):hover,
     .nav-link:focus {
         border-radius: 12px;
         padding: 12px 20px;
@@ -148,7 +148,8 @@ body {
 /* header */
 
 .disable {
-    pointer-events: none;
+    /* pointer-events: none; */
+    cursor: default;
 }
 
 header {
@@ -210,7 +211,7 @@ nav {
 }
 
 #active-nav,
-.active-nav-burger {
+#active-nav-burger {
     border-radius: 12px;
     padding: 12px 20px;
     /* width: 88px;
@@ -259,14 +260,14 @@ ul {
 
 /* .burger:hover > span:first-child, */
 .top-line-burger {
-    transform: rotate(-50deg);
+    transform: rotate(315deg);
     position: relative;
     top: 6%;
 }
 
 /* .burger:hover > span:last-child, */
 .bottom-line-burger {
-    transform: rotate(50deg);
+    transform: rotate(226deg);
     position: relative;
     bottom: 13%;
 }
@@ -306,7 +307,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 25px;
     position: absolute;
     /* left: calc(100% - 50%/2); */
 }
