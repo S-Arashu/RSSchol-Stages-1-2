@@ -38,9 +38,34 @@
     font-style: normal;
 }
 
+@keyframes open {
+
+    from {
+        width: 0%;;
+    }
+
+    to {
+        width: 100%;
+    }
+
+}
+
+@keyframes close {
+
+    from {
+        width: 100%;
+        ;
+    }
+
+    to {
+        width: 0%;
+    }
+
+}
+
 @media (hover: hover) {
 
-    .nav-link:hover,
+    .nav-link:not([disabled]):hover,
     .nav-link:focus {
         border-radius: 12px;
         padding: 12px 20px;
@@ -123,7 +148,8 @@ body {
 /* header */
 
 .disable {
-    pointer-events: none;
+    /* pointer-events: none; */
+    cursor: default;
 }
 
 header {
@@ -184,7 +210,8 @@ nav {
     width: 29.8%;
 }
 
-#active-nav {
+#active-nav,
+#active-nav-burger {
     border-radius: 12px;
     padding: 12px 20px;
     /* width: 88px;
@@ -231,16 +258,16 @@ ul {
     gap: 17%;
 }
 
-.burger:hover > span:first-child,
+/* .burger:hover > span:first-child, */
 .top-line-burger {
-    transform: rotate(-50deg);
+    transform: rotate(315deg);
     position: relative;
     top: 6%;
 }
 
-.burger:hover > span:last-child,
+/* .burger:hover > span:last-child, */
 .bottom-line-burger {
-    transform: rotate(50deg);
+    transform: rotate(226deg);
     position: relative;
     bottom: 13%;
 }
@@ -255,6 +282,48 @@ ul {
     background-color: var(--dark);
     width: 50%;
     transition: all .3s ease-in-out;
+}
+
+.burger-menu {
+    display: none;
+    width: 0;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    background-color: var(--static-white);
+    display: flex;
+    flex-direction: column;
+    margin-top: -3px;
+    /* animation: close .5s ease-in forwards; */
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.burger-menu-animation {
+    animation: close .5s ease-in forwards;
+}
+
+.nav-list-burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    position: absolute;
+    /* left: calc(100% - 50%/2); */
+}
+
+.nav-link-burger {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 152%;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dark);
+}
+
+.open {
+    animation: open .5s ease-in forwards;
 }
 
 /* hero */
@@ -413,7 +482,7 @@ ul {
 .about-bg-img {
     width: 50%;
     border-radius: 20px;
-} */
+} 
 
 .about-bg-img {
     width: 50%;
