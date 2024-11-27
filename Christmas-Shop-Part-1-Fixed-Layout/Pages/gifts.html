@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="/assets/img/favicon-16x16.png" type="image/x-icon">
+    <link rel="stylesheet" href="../adaptive.css">
+    <link rel="shortcut icon" href="../assets/img/favicon-16x16.png" type="image/x-icon">
     <script defer src="../index.js"></script>
     <title>Gifts</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Allura:regular" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allura:regular" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -18,16 +19,20 @@
             </a>
             <nav>
                 <ul class="nav-list">
-                    <li><a href="#" class="nav-link disable">gifts</a></li>
+                    <li><a href="#" class="nav-link disable" id="active-nav">gifts</a></li>
                     <li><a href="../index.html#about" class="nav-link">about</a></li>
                     <li><a href="../index.html#gifts" class="nav-link">best</a></li>
                     <li><a href="#contacts" class="nav-link">contacts</a></li>
                 </ul>
             </nav>
+            <div class="burger">
+                <span></span>
+                <span></span>
+            </div>
         </header>
         <section class="gifts">
             <div class="gifts-text">
-                <span class="gifts-desc-text">Achieve health, harmony, and inner strength</span>
+                <h1 class="gifts-desc-text">Achieve health, harmony, and inner strength</h1>
             </div>
             <div class="gifts-filter">
                 <div class="gift-filter-item gifts-active">All</div>
@@ -131,14 +136,14 @@
                     <span class="footer-contacts-desc">Call Us</span>
                 </div>
             </a>
-            <a class="footer-contacts-link" href="mailto:some.adress@gmail.com">
+            <a class="footer-contacts-link" href="https://maps.app.goo.gl/bBtYH4rZWadPpugFA">
                 <div class="footer-contacts-card">
                     <img src="../assets/img/christmas-tree.svg" alt="Address" class="footer-contacts-img">
                     <span class="footer-contacts-info">Magic forest</span>
                     <span class="footer-contacts-desc">meet us</span>
                 </div>
             </a>
-            <a class="footer-contacts-link" target="_blank" href="https://maps.app.goo.gl/bBtYH4rZWadPpugFA">
+            <a class="footer-contacts-link" target="_blank" href="mailto:some.adress@gmail.com">
                 <div class="footer-contacts-card">
                     <img src="../assets/img/snake.svg" alt="Email" class="footer-contacts-img">
                     <span class="footer-contacts-info">gifts@magic.com</span>

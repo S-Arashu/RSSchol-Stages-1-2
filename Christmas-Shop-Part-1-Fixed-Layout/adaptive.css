@@ -231,20 +231,6 @@ ul {
     gap: 17%;
 }
 
-.burger:hover > span:first-child,
-.top-line-burger {
-    transform: rotate(-50deg);
-    position: relative;
-    top: 6%;
-}
-
-.burger:hover > span:last-child,
-.bottom-line-burger {
-    transform: rotate(50deg);
-    position: relative;
-    bottom: 13%;
-}
-
 /* .burger:hover {
     cursor: pointer;
 } */
@@ -254,7 +240,6 @@ ul {
     height: 1px;
     background-color: var(--dark);
     width: 50%;
-    transition: all .3s ease-in-out;
 }
 
 /* hero */
