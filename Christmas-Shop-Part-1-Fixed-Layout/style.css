@@ -249,7 +249,7 @@ ul {
     cursor: pointer;
 } */
 
-.burger>span {
+.burger > span {
     display: block;
     height: 1px;
     background-color: var(--dark);
@@ -407,6 +407,11 @@ ul {
 }
 
 /* .about-img {
+    border-radius: 20px;
+} */
+
+.about-bg-img {
+    width: 50%;
     border-radius: 20px;
 } */
 

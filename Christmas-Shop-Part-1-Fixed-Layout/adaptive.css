@@ -38,913 +38,311 @@
     font-style: normal;
 }
 
-@media (hover: hover) {
+@media((min-width: 769px) and (max-width: 1300px)){
 
-    .nav-link:hover,
-    .nav-link:focus {
-        border-radius: 12px;
-        padding: 12px 20px;
-        width: 88px;
-        height: 40px;
-        background: var(--primary-10);
-        font-family: var(--font-family);
-        color: var(--primary);
+    /* header */
+
+    header {
+        padding: 0 1%;
     }
 
-    .burger:hover {
-        cursor: pointer;
+    .logo {
+        width: 19%;
     }
 
-    .hero-block:hover>.hero-block-btn,
-    .santa-magical-gifts:hover>.santa-magical-gifts-btn {
-        color: var(--dark);
+    nav {
+        width: 50%;
+        justify-content: center;
+        gap: 2%;
     }
 
-    .hero-block:hover,
-    .santa-magical-gifts:hover {
-        background-color: var(--static-white);
+    .nav-link {
+        padding: 12px 15px;
     }
 
-    .btn:hover {
-        cursor: pointer;
-        background-color: var(--static-white);
-        fill: var(--primary);
+    /* hero */
+
+    .hero-text {
+        width: 57%;
+        padding-top: 8%;
     }
 
-    .btn:hover>.arrow path {
-        stroke: var(--primary);
+    /* about */
+
+    .about {
+        padding: 61px 8px;
     }
 
-    .best-gifts-cards:hover {
-        cursor: pointer;
+    .about-desc {
+        width: 42%;
+        max-width: 256px;
+        margin: 47px 0px 47px 60px;
     }
 
-    .best-gifts-cards:hover>.best-gifts-desc>.best-gifts-name {
-        color: var(--primary);
+    /* slider */
+
+    .slider-imgs {
+        margin-left: 1%;
     }
 
-    .footer-contacts-card:hover>.footer-contacts-desc,
-    .footer-contacts-card:hover>.footer-contacts-info {
-        color: var(--primary);
+    .slider-ctrls {
+        margin-right: 1%;
     }
 
-    .footer-socials-img:hover>.icon path {
-        stroke: var(--primary);
+    /* best gifts */
+
+    .best-gifts {
+        padding-top: 7.7%;
+        padding-bottom: 7.7%;
     }
 
-    .footer-rs:hover {
-        color: var(--primary);
+    /* santa */
+
+    .santa-desc {
+        width: 53%;
+        padding-top: 23%;
     }
 
-    .gift-filter-item:hover {
-        background: var(--static-white-20);
+    /* footer */
+
+    .footer-contacts-link {
+        width: 100%;
+    }
+
+    .footer-socials {
+        width: 26%;
+        margin-top: 67px;
+    }
+
+    .footer-copy {
+        padding-bottom: 2%;
     }
 }
 
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-/* .container {
-    width: 1276px;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
-/* header */
-
-.disable {
-    pointer-events: none;
-}
-
-header {
-    padding: 0 5%;
-    width: 100%;
-    min-height: 64px;
-    background: var(--static-white);
-    align-items: center;
-    justify-content: space-between;
-    /* margin-right: 3%; */
-}
-
-.logo,
-nav,
-header,
-.nav-list {
-    display: flex;
-}
-
-.logo {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    gap: 6%;
-    width: 12%;
-    padding-left: .5%;
-    text-decoration: none;
-    transition: all .5s ease-in-out;
-}
-
-/* .logo:hover {
-    filter: drop-shadow(2px 4px 6px var(--primary));
-    transform: scale(1.1);
-} */
-
-/* .logo-img,
-.logo-name {
-    transition: all .5 ease-in-out;
-} */
-
-.logo-img {
-    width: 24px;
-    height: 24px;
-}
-
-.logo-name,
-li {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--dark);
-}
-
-nav {
-    width: 29.8%;
-}
-
-#active-nav {
-    border-radius: 12px;
-    padding: 12px 20px;
-    /* width: 88px;
-    height: 40px; */
-    background: var(--primary-10);
-    font-family: var(--font-family);
-    color: var(--primary);
-}
-
-.nav-list {
-    padding: 0;
-    gap: 2.5%;
-}
-
-ul {
-    list-style: none;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--dark);
-    padding: 12px 20px;
-    transition: all .3s ease-in-out;
-}
-
-/* .nav-link:hover,
-.nav-link:focus {
-    border-radius: 12px;
-    padding: 12px 20px;
-    width: 88px;
-    height: 40px;
-    background: var(--primary-10);
-    font-family: var(--font-family);
-    color: var(--primary);
-} */
-
-.burger {
-    width: 40px;
-    height: 40px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 17%;
-}
-
-/* .burger:hover {
-    cursor: pointer;
-} */
-
-.burger>span {
-    display: block;
-    height: 1px;
-    background-color: var(--dark);
-    width: 50%;
-}
-
-/* hero */
-
-.hero {
-    border-radius: 20px 20px 0 0;
-    padding: 7% 1% 9% 1%;
-    width: 100%;
-    max-height: 524px;
-    background: url(./assets/img/bg-snow.png) repeat, url(./assets/img/bg-ball.png) no-repeat;
-    background-color: var(--primary);
-    background-blend-mode: normal;
-    background-size: cover;
-    background-position: center;
-    margin-top: -1px;
-}
-
-.hero-text {
-    width: 30.4%;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    /* height: 36vh; */
-    padding-top: .9%;
-}
-
-.main-wish {
-    -webkit-text-stroke: .8px var(--dark);
-    padding-bottom: .2%;
-}
-
-.hero-text-congrat {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: var(--static-white);
-    padding-top: 3%;
-}
-
-.hero-text-gift {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 150%;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    margin: 2% 0;
-}
-
-.hero-block,
-.santa-magical-gifts {
-    border-radius: 20px;
-    padding: 18px 32px;
-    /* width: 60%; */
-    background: var(--dark);
-    margin: auto;
-    text-align: center;
-    text-decoration: none;
-    transition: all .5s ease-in-out;
-}
-
-.hero-block-btn,
-.santa-magical-gifts-btn {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    transition: all .5s ease-in-out;
-}
-
-/* .hero-block:hover>.hero-block-btn,
-.santa-magical-gifts:hover>.santa-magical-gifts-btn {
-    color: var(--dark);
-}
-
-.hero-block:hover,
-.santa-magical-gifts:hover {
-    background-color: var(--static-white);
-} */
-
-/* about */
-
-.about {
-    background: url(./assets/img/bg-snow.png) repeat;
-    background-color: var(--primary);
-    padding: 61px 0;
-    margin-top: -1px;
-}
-
-.about-text,
-.about-desc {
-    display: flex;
-}
-
-.about-text {
-    border-radius: 20px;
-    min-height: 528px;
-    max-width: 1276px;
-    background: var(--static-white);
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: space-between;
-}
-
-.about-desc {
-    flex-direction: column;
-    padding: 60px 0px;
-    min-height: 328px;
-    max-width: 426px;
-    gap: 20px;
-    margin: 100px 0 100px 60px;
-}
-
-.about-name-section {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    color: var(--primary);
-}
-
-.about-title {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--dark);
-    margin: 0;
-}
-
-.about-section-desc {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 148%;
-    color: var(--dark);
-}
-
-/* .about-img {
-    border-radius: 20px;
-} */
-
-.about-bg-img {
-    width: 50%;
-    border-radius: 20px;
-    background-image: url(./assets/img/santa.png);
-    background-size: cover;
-    background-position: center;
-}
-
-/* slider*/
-
-.slider {
-    background: url(./assets/img/bg-snow.png) repeat;
-    background-color: var(--primary);
-    min-height: 488px;
-    display: flex;
-    flex-direction: column;
-    padding-top: 60px;
-    gap: 16px;
-    margin-top: -1px;
-}
-
-.slider-wish {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: var(--static-white);
-    margin: 0;
-}
-
-.slider-year {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-}
-
-.slider-words {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 80px;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    display: block;
-}
-
-.slider-pic {
-    border-radius: 20px;
-    width: 200px;
-    height: 200px;
-}
-
-.btn {
-    border: 1px solid var(--static-white);
-    border-radius: 20px;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .3s ease-in-out;
-}
-
-.slider-imgs {
-    display: flex;
-    margin-left: 5.8%;
-    align-items: center;
-    gap: 20px;
-    overflow: hidden;
-    max-width: 1440px;
-}
-
-.slider-ctrls {
-    align-self: end;
-    display: flex;
-    gap: 20px;
-    margin-right: 5.8%;
-    margin-top: .3%;
-}
-
-.disabled {
-    filter: opacity(.5);
-    /* cursor: default; */
-    pointer-events: none;
-}
-
-/* .slider-right-btn {
-    cursor: pointer;
-} */
-
-/* .arrow {
-    stroke-width: 1px;
-    stroke: var(--static-white);
-} */
-
-.arrow>path {
-    transition: all .3s ease-in-out;
-}
-
-/* .btn:hover {
-    cursor: pointer;
-    background-color: var(--static-white);
-    fill: var(--primary);
-}
-
-.btn:hover > .arrow path {
-    stroke: var(--primary);
-} */
-
-/* .slider-left-btn img {
-    transform: rotate(180deg);
-} */
-
-/* Best gifts */
-
-.best-gifts,
-.best-gifts-items,
-.best-gifts-desc {
-    display: flex;
-}
-
-.best-gifts,
-.best-gifts-desc {
-    flex-direction: column;
-}
-
-.best-gifts {
-    background: url(./assets/img/bg-snow.png) repeat;
-    background-color: var(--primary);
-    min-height: 554px;
-    justify-content: center;
-    gap: 16px;
-    margin-top: -1px;
-}
-
-.best-gifts-title {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: var(--static-white);
-}
-
-.best-gifts-phrase {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    margin: 0;
-}
-
-.best-gifts-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    gap: 12px;
-}
-
-.best-gifts-cards {
-    border-radius: 20px;
-    width: 310px;
-    min-height: 342px;
-    background: var(--content-background);
-    transition: all .3s ease-in-out;
-}
-
-.best-gifts-cards>img {
-    width: 310px;
-    height: 230px;
-}
-
-/* .best-gifts-cards:hover {
-    cursor: pointer;
-}
-
-.best-gifts-cards:hover > .best-gifts-desc > .best-gifts-name {
-    color: var(--primary);
-} */
-
-.best-gifts-desc {
-    border-radius: 20px;
-    padding: 20px;
-    background: var(--static-white);
-    width: 100%;
-    height: 32%;
-    gap: 8px;
-}
-
-.best-gifts-rubric {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.best-gifts-name {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 152%;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--dark);
-    transition: all .3s ease-in-out;
-    /* width: 90%; */
-}
-
-.work {
-    color: var(--tag-purple);
-}
-
-.health {
-    color: var(--tag-green);
-}
-
-.harmony {
-    color: var(--tag-pink);
-}
-
-/* santa */
-
-.santa {
-    background: url(./assets/img/bg-snow.png) repeat, url(./assets/img/bg-forest.png) no-repeat;
-    background-color: var(--primary);
-    background-blend-mode: normal;
-    background-size: cover;
-    background-position: center;
-    min-height: 668px;
-    margin-top: -1px;
-}
-
-.santa-desc {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    gap: 12px;
-    padding-top: 12.7%;
-}
-
-.santa-question {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    padding-bottom: 1.7%;
-    margin: 0;
-}
-
-/* .santa-magical-gifts {
-    border-radius: 20px;
-    padding: 20px 32px;
-    min-width: 235px;
-    background: var(--dark);
-} */
-
-/* .santa-magical-gifts > span {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-} */
-
-.santa-new-year {
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: var(--static-white);
-    padding-top: 1.6%;
-}
-
-.santa-countdown {
-    border-radius: 20px;
-    padding: 8px 12px 12px 12px;
-    min-width: 344px;
-    min-height: 72px;
-    background: var(--static-white-40);
-    display: flex;
-    justify-content: space-around;
-}
-
-.santa-time {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 80px;
-}
-
-.santa-time:not(:last-child):before {
-    content: "";
-    position: absolute;
-    border: 1px solid var(--static-white-40);
-    width: 20px;
-    height: 0px;
-    display: block;
-    transform: rotate(90deg);
-    left: 85%;
-    top: 50%;
-}
-
-.santa-time-num {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-}
-
-.santa-time-word {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-}
-
-/* footer */
-
-footer {
-    padding: 60px 8px;
-    min-height: 504px;
-    background: var(--static-white);
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -1px;
-}
-
-.footer-contacts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.footer-contacts-link {
-    border-radius: 20px;
-    padding: 20px;
-    min-width: 417px;
-    min-height: 204px;
-    background: var(--content-background);
-    text-decoration: none;
-}
-
-.footer-contacts-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-/* .footer-contacts-card:hover {
-    filter: drop-shadow(0 0 0.75rem var(--primary));
-    transform: scale(1.1);
-} */
-
-/* .footer-contacts-card:hover > .footer-contacts-img, */
-/* .footer-contacts-card:hover > .footer-contacts-desc, 
-.footer-contacts-card:hover > .footer-contacts-info {
-    color: var(--primary);
-} */
-
-.footer-contacts-info {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 152%;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--dark);
-    transition: all .3s ease-in-out;
-}
-
-.footer-contacts-desc {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 152%;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--dark);
-    transition: all .3s ease-in-out;
-}
-
-.footer-socials {
-    display: flex;
-    margin-top: 60px;
-    width: 14%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    justify-content: space-between;
-}
-
-.footer-socials-img {
-    width: 40px;
-    height: 40px;
-    transition: all .3s ease-in-out;
-}
-
-/* .footer-socials-img:hover > .icon path {
-    stroke: var(--primary);
-} */
-
-.icon {
-    width: 24px;
-    height: 24px;
-    transition: all .3s ease-in-out;
-}
-
-.icon>path {
-    transition: all .3s ease-in-out;
-}
-
-.footer-copy {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 148%;
-    text-align: center;
-    color: var(--dark);
-}
-
-.footer-rs {
-    text-decoration: none;
-    font-family: var(--second-family);
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0.05em;
-    text-align: center;
-    color: var(--dark);
-    transition: all .3s ease-in-out;
-}
-
-/* .footer-rs:hover {
-    color: var(--primary);
-} */
-
-/* gifts page */
-
-.gifts {
-    border-radius: 20px;
-    padding: 58px 8px;
-    min-height: 1394px;
-    background: url(./assets/img/bg-garland.png) no-repeat;
-    background-color: var(--primary);
-    background-blend-mode: normal;
-    background-size: contain;
-    background-position: top;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.gifts-items {
-    display: flex;
-}
-
-.gifts-text {
-    width: 30%;
-    text-align: center;
-}
-
-.gifts-desc-text {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 150%;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-    margin: 0;
-}
-
-.gifts-filter {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.gift-filter-item {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--static-white);
-    cursor: pointer;
-    border-radius: 12px;
-    padding: 12px 20px;
-    transition: all .3s ease-in-out;
-}
-
-/* .gift-filter-item:hover {
-    background: var(--static-white-20);
-} */
-
-.gifts-active {
-    /* width: 65px;
-    height: 40px; */
-    background: var(--static-white-20);
-    cursor: default;
-}
-
-.gifts-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
+@media((min-width: 697px) and (max-width: 768px)){
+
+    /* header */
+    
+    header {
+        padding: 0 1%;
+    }
+    
+    .logo {
+        width: 19%;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    .burger {
+        display: flex;
+    }
+
+    /* hero */
+
+    .hero {
+        padding: 7% 1% 16% 1%;
+    }
+        
+    .hero-text {
+        width: 57%;
+        padding-top: 8%;
+    }
+        
+    /* about */
+        
+    .about {
+        padding: 61px 8px;
+    }
+        
+    .about-desc {
+        width: 42%;
+        max-width: 256px;
+        margin: 47px 0px 47px 60px;
+    }
+        
+    /* slider */
+        
+    .slider-imgs {
+        margin-left: 1%;
+    }
+        
+    .slider-ctrls {
+        margin-right: 1%;
+    }
+        
+    /* best gifts */
+        
+    .best-gifts {
+        padding-top: 7.7%;
+        padding-bottom: 7.7%;
+    }
+        
+    /* santa */
+        
+    .santa-desc {
+        width: 53%;
+        padding-top: 23%;
+    }
+
+    /* gifts */
+
+    .gifts-text {
+        width: 55%;
+    }
+        
+    /* footer */
+        
+    .footer-contacts-link {
+        width: 100%;
+    }
+        
+    .footer-socials {
+        width: 26%;
+        margin-top: 67px;
+    }
+        
+    .footer-copy {
+        padding-bottom: 2%;
+    }
+}
+
+@media((min-width: 380px) and (max-width: 696px)){
+    /* header */
+        
+    header {
+        padding: 0 2%;
+    }
+        
+    .logo {
+        width: 39%;
+    }
+        
+    nav {
+        display: none;
+    }
+        
+    .burger {
+        display: flex;
+    }
+        
+    /* hero */
+
+    .hero {
+        padding: 7% 1% 21% 1%;
+        max-height: 573px;
+    }
+        
+    .hero-text {
+        width: 100%;
+        padding-top: 23%;
+        height: 64vh;
+    }
+
+    .hero-block {
+        margin-top: 1.5%;
+        margin-bottom: 1.5%;
+    }
+        
+    /* about */
+        
+    .about {
+        padding: 61px 8px;
+    }
+
+    .about-text {
+        flex-direction: column;
+    }
+        
+    .about-desc {
+        width: 100%;
+        max-width: 324px;
+        margin: 0% 0% 0% 5%;
+    }
+
+    .about-bg-img {
+        width: 100%;
+        min-height: 528px;
+    }
+        
+    /* slider */
+
+    .slider {
+        padding-top: 58px;
+    }
+        
+    .slider-imgs {
+        margin-left: 2%;
+    }
+        
+    .slider-ctrls {
+        margin-right: 2%;
+        margin-top: 1%;
+    }
+        
+    /* best gifts */
+
+    .best-gifts {
+        background: none;
+        background-color: var(--primary);
+    }
+        
+    .best-gifts {
+        padding-top: 15%;
+        padding-bottom: 15%;
+    }
+        
+    /* santa */
+
+    .santa {
+        min-height: 704px;
+    }
+        
+    .santa-desc {
+        width: 100%;
+        padding-top: 48%;
+    }
+
+    /* gifts */
+
+    .gifts {
+        padding: 59px 8px;
+    }
+
+    .gifts-text {
+        width: 100%;
+    }
+
+    .gifts-filter {
+        gap: 4px;
+    }
+
+    .gift-filter-item {
+        padding: 13px 6px;
+    }
+
+    .best-gifts-desc {
+        padding-top: 17px;
+    }
+        
+    /* footer */
+
+    footer {
+        padding: 66px 8px;
+    }
+        
+    .footer-contacts-link {
+        width: 100%;
+        min-width: 364px;
+    }
+        
+    .footer-socials {
+        width: 55%;
+        margin-top: 67px;
+    }
+        
+    .footer-copy {
+        padding-bottom: 4%;
+    }
 }
