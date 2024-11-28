@@ -74,9 +74,18 @@ let marginLeft = sliderImgs.offsetLeft;
 let scroll = sliderImgs.scrollWidth;
 
 window.onresize = function(event) {
+
+    // navListBurger.style.left = 0 + 'px';
+
     if(body.offsetWidth < 767){
         navListBurger.style.left = ((body.clientWidth - navListBurger.clientWidth) / 2) + 'px';
     } 
+
+    sliderWrapper.style.right = 0 + 'px';
+    rightMove = 0;
+    sliderLeftBtn.classList.add('disabled');
+    sliderRightBtn.classList.remove('disabled');
+    // right = 0;
 
     if(body.offsetWidth > 767){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 3;
