@@ -35,8 +35,6 @@ burger.addEventListener('click', () => {
 
 burgerMenu.addEventListener('click', (event) => {
     let target = event.target;
-    console.dir(target)
-    console.log(target.attributes[0].nodeValue.startsWith("#"))
     if(target.tagName == 'A' && document.querySelector('.open')){
         closeMenu();
         body.style.overflow = '';
@@ -56,12 +54,61 @@ burgerMenu.addEventListener('click', (event) => {
 //     } 
 // })
 
+// slider
+
+let slider = document.querySelector('.slider');
+let sliderWrapper = document.querySelector('.slider-wrapper');
+let sliderImgs = document.querySelector('.slider-imgs');
+let sliderLeftBtn = document.querySelector('.slider-left-btn');
+let sliderRightBtn = document.querySelector('.slider-right-btn');
+let right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 4;
+let rightMove = 0;
+let marginLeft = sliderImgs.offsetLeft;
+let scroll = sliderImgs.scrollWidth;
+
 window.onresize = function(event) {
     if(body.offsetWidth < 767){
         navListBurger.style.left = ((body.clientWidth - navListBurger.clientWidth) / 2) + 'px';
     } 
 
-    if(body.offsetWidth > 767 && document.querySelector('.open')){
-        closeMenu();
+    if(body.offsetWidth > 767){
+        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 4;
     } 
+
+    
 }
+
+sliderRightBtn.addEventListener('click', () => {
+    rightMove += right;
+    sliderWrapper.style.right = rightMove + 'px';
+    sliderLeftBtn.classList.remove('disabled');
+
+    if(rightMove + slider.clientWidth > scroll){
+        sliderWrapper.style.right = Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth) + marginLeft + 'px';
+        sliderRightBtn.classList.add('disabled');
+        // sliderImgs.style.marginRight = 1 + '%';
+        
+    }
+
+    console.dir(marginLeft)
+    console.log(scroll)
+})
+
+sliderLeftBtn.addEventListener('click', () => {
+    rightMove -= right;
+    sliderWrapper.style.right = rightMove + 'px';
+    sliderRightBtn.classList.remove('disabled');
+
+    if(rightMove <= 0){
+        // sliderWrapper.style.right = sliderWrapper.clientWidth + 'px';
+        sliderLeftBtn.classList.add('disabled');
+        
+    }
+
+    console.dir(slider.clientWidth)
+    console.log(scroll)
+})
+
+console.log(marginLeft)
+
+// scrollWidth

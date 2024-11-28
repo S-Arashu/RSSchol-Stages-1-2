@@ -555,12 +555,18 @@ ul {
 }
 
 .slider-imgs {
-    display: flex;
     margin-left: 5.8%;
+    /* margin-right: 5.8%; */
+    overflow: hidden;
+    /* max-width: 1440px; */
+}
+
+.slider-wrapper {
+    display: flex;
+    position: relative;
+    right: 0;
     align-items: center;
     gap: 20px;
-    overflow: hidden;
-    max-width: 1440px;
 }
 
 .slider-ctrls {
