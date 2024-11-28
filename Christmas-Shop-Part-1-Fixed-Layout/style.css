@@ -567,6 +567,7 @@ ul {
     right: 0;
     align-items: center;
     gap: 20px;
+    transition: all .3s ease-in;
 }
 
 .slider-ctrls {
