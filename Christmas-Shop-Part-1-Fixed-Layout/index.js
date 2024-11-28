@@ -61,7 +61,14 @@ let sliderWrapper = document.querySelector('.slider-wrapper');
 let sliderImgs = document.querySelector('.slider-imgs');
 let sliderLeftBtn = document.querySelector('.slider-left-btn');
 let sliderRightBtn = document.querySelector('.slider-right-btn');
-let right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 4;
+let right;
+if(body.offsetWidth > 767){
+        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 3;
+    } 
+
+if(body.offsetWidth <= 767){
+        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 6;
+}
 let rightMove = 0;
 let marginLeft = sliderImgs.offsetLeft;
 let scroll = sliderImgs.scrollWidth;
@@ -72,10 +79,12 @@ window.onresize = function(event) {
     } 
 
     if(body.offsetWidth > 767){
-        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 4;
+        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 3;
     } 
 
-    
+    if(body.offsetWidth <= 767){
+        right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 6;
+    }
 }
 
 sliderRightBtn.addEventListener('click', () => {
