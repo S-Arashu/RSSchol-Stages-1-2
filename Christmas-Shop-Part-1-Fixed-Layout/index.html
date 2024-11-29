@@ -30,7 +30,16 @@
                 <span></span>
                 <span></span>
             </div>
+            
         </header>
+        <div class="burger-menu">
+            <ul class="nav-list nav-list-burger">
+                <li><a href="./Pages/gifts.html" class="nav-link nav-link-burger">gifts</a></li>
+                <li><a href="#about" class="nav-link nav-link-burger">about</a></li>
+                <li><a href="#gifts" class="nav-link nav-link-burger">best</a></li>
+                <li><a href="#contacts" class="nav-link nav-link-burger">contacts</a></li>
+            </ul>
+        </div>
     <!-- </div> -->
     <!-- <div class="container"> -->
         <section class="hero">
@@ -60,17 +69,21 @@
             <h2 class="slider-wish">Become Happier!</h2>
             <span class="slider-year">in the new 2025</span>
             <div class="slider-imgs">
+                <div class="slider-wrapper">
                 <span class="slider-words">Live</span>
                 <img class="slider-pic" src="./assets/img/snowman.png" alt="Snowman">
                 <span class="slider-words">create</span>
                 <img class="slider-pic" src="./assets/img/christmas-trees.png" alt="Christmas trees">
                 <span class="slider-words">Love</span>
                 <img class="slider-pic" src="./assets/img/christmas-tree-ball.png" alt="Christmas tree ball">
+                <span class="slider-words">dream</span>
+                <img class="slider-pic" src="./assets/img/fairytale-house.png" alt="Fairytale house">
+            </div>
             </div>
             <div class="slider-ctrls">
                 <div class="slider-left-btn btn disabled">
                     <svg class="slider-left-btn-arrow arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="white" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div class="slider-right-btn btn">
@@ -122,19 +135,19 @@
             <span class="santa-new-year">The New Year is Coming Soon...</span>
             <div class="santa-countdown">
                 <div class="santa-time">
-                    <span class="santa-time-num">47</span>
+                    <span id="days" class="santa-time-num">47</span>
                     <span class="santa-time-word">days</span>
                 </div>
                 <div class="santa-time">
-                    <span class="santa-time-num">5</span>
+                    <span id="hours" class="santa-time-num">5</span>
                     <span class="santa-time-word">hours</span>
                 </div>
                 <div class="santa-time">
-                    <span class="santa-time-num">34</span>
+                    <span id="min" class="santa-time-num">34</span>
                     <span class="santa-time-word">minutes</span>
                 </div>
                 <div class="santa-time">
-                    <span class="santa-time-num">12</span>
+                    <span id="sec" class="santa-time-num">12</span>
                     <span class="santa-time-word">seconds</span>
                 </div>
             </div>
