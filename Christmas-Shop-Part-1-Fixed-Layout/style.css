@@ -1043,3 +1043,27 @@ footer {
     justify-content: center;
     gap: 12px;
 }
+
+.btn-up {
+    border: 1px solid var(--primary);
+    border-radius: 100px;
+    width: 56px;
+    height: 56px;
+    background-color: var(--static-white);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+}
+
+.btn-up:hover {
+    cursor: pointer;
+    background-color: var(--primary);
+}
+
+.btn-up:hover>.arrow path {
+    stroke: var(--static-white);
+}
