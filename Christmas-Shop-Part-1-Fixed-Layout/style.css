@@ -714,15 +714,15 @@ ul {
     /* width: 90%; */
 }
 
-.work {
+.Work {
     color: var(--tag-purple);
 }
 
-.health {
+.Health {
     color: var(--tag-green);
 }
 
-.harmony {
+.Harmony {
     color: var(--tag-pink);
 }
 
