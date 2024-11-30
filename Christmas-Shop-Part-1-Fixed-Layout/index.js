@@ -165,3 +165,59 @@ function countTime(timeLeft, exp){
         diff: diff,
     }
 }
+
+// random gifts on home page
+
+let path = './gifts.json';
+let bestGiftsItems = document.querySelector('.best-gifts-items');
+let imgPath;
+
+
+
+fetch(path)
+.then(response => response.json())
+.then(gifts => {
+
+    let checkRepeats = [];
+
+    function random(arr) {
+    arr.sort(() => Math.random() - 0.5);
+    for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        return arr;
+    }
+    }
+
+    let giftsInfo = random(gifts);
+    
+
+    repeat: for(let i=0; i<4; i++){
+        if(giftsInfo[i].category = 'For Work'){
+            imgPath = 'ball-1';
+        }
+        if(giftsInfo[i].category = 'For Health'){
+            imgPath = 'ball-2';
+        }
+        if(giftsInfo[i].category = 'For Harmony'){
+            imgPath = 'ball-3';
+        }
+
+        console.log(giftsInfo[i].category.split(' '));
+        
+
+        let num = Math.floor(Math.random() * 36);
+        let categoryItem = giftsInfo[num].category.split(' ');
+
+        let giftCard = document.createElement('div');
+        giftCard.classList.add('best-gifts-cards');
+        giftCard.innerHTML = `
+            <img src="./assets/img/${imgPath}.png" alt="Gift">
+            <div class="best-gifts-desc">
+                <span class="best-gifts-rubric ${categoryItem[1]}">${giftsInfo[num].category}</span>
+                <span class="best-gifts-name">${giftsInfo[num].name}</span>
+            </div>
+        `
+        bestGiftsItems.append(giftCard);
+    }
+})
