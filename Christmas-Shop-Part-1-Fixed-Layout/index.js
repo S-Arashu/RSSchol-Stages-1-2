@@ -95,6 +95,11 @@ window.onresize = function(event) {
     if(body.offsetWidth <= 767){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 6;
     }
+
+    // if(body.offsetWidth <= 767 && window.scrollY > 300){
+    //     let btnUp = document.querySelector('.btn-up');
+    //     btnUp.style.display = 'flex';
+    // }
 }
 
 sliderRightBtn.addEventListener('click', () => {
@@ -218,4 +223,22 @@ fetch(path)
         `
         bestGiftsItems.append(giftCard);
     }
+})
+
+// btn-up
+
+let btnUp = document.querySelector('.btn-up');
+
+window.addEventListener('scroll', () => {
+    if(body.offsetWidth <= 767 && window.scrollY > 300){
+        btnUp.style.display = 'flex';
+    }
+
+    if(body.offsetWidth > 767 || window.scrollY <= 300){
+        btnUp.style.display = 'none';
+    }
+});
+
+btnUp.addEventListener('click', () => {
+    window.scrollTo(0,0);
 })

@@ -1,5 +1,61 @@
 'use strict';
 
+// burger
+
+let burger = document.querySelector('.burger');
+let lineBurger = document.querySelectorAll('.burger > span');
+let burgerMenu = document.querySelector('.burger-menu');
+let body = document.querySelector('body');
+let navListBurger = document.querySelector('.nav-list-burger');
+
+function openMenu(){
+    lineBurger[0].classList.toggle('top-line-burger');
+    lineBurger[1].classList.toggle('bottom-line-burger');
+    burgerMenu.classList.toggle('open');
+    burgerMenu.classList.add('burger-menu-animation');
+    body.style.overflow = 'hidden';
+    navListBurger.style.left = ((body.clientWidth - navListBurger.clientWidth) / 2) + 'px';
+}
+
+function closeMenu(){
+    lineBurger[0].classList.remove('top-line-burger');
+    lineBurger[1].classList.remove('bottom-line-burger');
+    burgerMenu.classList.remove('open');
+    burgerMenu.classList.toggle('burger-menu-animation');
+}
+
+burger.addEventListener('click', () => {
+
+    openMenu();
+
+    if(!document.querySelector('.open')){
+        body.style.overflow = '';
+    }
+});
+
+burgerMenu.addEventListener('click', (event) => {
+    let target = event.target;
+    if(target.tagName == 'A' && document.querySelector('.open')){
+        closeMenu();
+        body.style.overflow = '';
+    }
+    if(target.attributes[0].nodeValue.startsWith("#")){
+        closeMenu();
+        body.style.overflow = '';
+        burgerMenu.classList.add('burger-menu-animation');
+    }
+})
+
+// window.addEventListener('resize', (event) => {
+//     if(body.offsetWidth > 767 && document.querySelector('.open')){
+//         lineBurger[0].classList.remove('top-line-burger');
+//         lineBurger[1].classList.remove('bottom-line-burger');
+//         burgerMenu.classList.remove('open');
+//     } 
+// })
+
+// gifts
+
 let path = '../gifts.json';
 let bestGiftsCards = document.querySelector('.gifts-items');
 let giftsFilter = document.querySelector('.gifts-filter');
@@ -106,4 +162,22 @@ fetch(path)
             createGifts(filteredArrHarmony);
         };
     })
+})
+
+// btn-up
+
+let btnUp = document.querySelector('.btn-up');
+
+window.addEventListener('scroll', () => {
+    if(body.offsetWidth <= 767 && window.scrollY > 300){
+        btnUp.style.display = 'flex';
+    }
+
+    if(body.offsetWidth > 767 || window.scrollY <= 300){
+        btnUp.style.display = 'none';
+    }
+});
+
+btnUp.addEventListener('click', () => {
+    window.scrollTo(0,0);
 })
