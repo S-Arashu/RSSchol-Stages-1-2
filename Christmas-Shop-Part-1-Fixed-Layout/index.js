@@ -166,19 +166,16 @@ function countTime(timeLeft, exp){
     }
 }
 
-// random gifts on home page
+// random gifts
 
 let path = './gifts.json';
 let bestGiftsItems = document.querySelector('.best-gifts-items');
 let imgPath;
 
 
-
 fetch(path)
 .then(response => response.json())
 .then(gifts => {
-
-    let checkRepeats = [];
 
     function random(arr) {
     arr.sort(() => Math.random() - 0.5);
@@ -193,21 +190,22 @@ fetch(path)
     
 
     repeat: for(let i=0; i<4; i++){
-        if(giftsInfo[i].category = 'For Work'){
-            imgPath = 'ball-1';
-        }
-        if(giftsInfo[i].category = 'For Health'){
-            imgPath = 'ball-2';
-        }
-        if(giftsInfo[i].category = 'For Harmony'){
-            imgPath = 'ball-3';
-        }
-
-        console.log(giftsInfo[i].category.split(' '));
-        
 
         let num = Math.floor(Math.random() * 36);
         let categoryItem = giftsInfo[num].category.split(' ');
+
+        
+        if(giftsInfo[num].category == 'For Work'){
+            imgPath = 'ball-1';
+        };
+
+        if(giftsInfo[num].category == 'For Health'){
+            imgPath = 'ball-2';
+        };
+
+        if(giftsInfo[num].category == 'For Harmony'){
+            imgPath = 'ball-3';
+        };
 
         let giftCard = document.createElement('div');
         giftCard.classList.add('best-gifts-cards');
