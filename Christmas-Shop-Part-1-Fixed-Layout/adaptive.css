@@ -348,4 +348,10 @@
     .footer-copy {
         padding-bottom: 4%;
     }
+
+    .modal {
+        width: 364px;
+        height: 514px;
+        max-width: 400px;
+    }
 }
