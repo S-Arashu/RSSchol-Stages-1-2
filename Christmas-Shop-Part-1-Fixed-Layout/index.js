@@ -254,6 +254,7 @@ fetch(path)
         let modal = document.createElement('div');
         modal.classList.add('best-gifts-cards');
         modal.classList.add('modal');
+        modal.setAttribute('disabled', 'true')
         modal.innerHTML = `
             <img src="./assets/img/${imgPath}.png" alt="Gift">
             <div class="close">

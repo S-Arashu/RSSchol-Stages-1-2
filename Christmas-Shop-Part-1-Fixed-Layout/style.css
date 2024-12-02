@@ -99,11 +99,11 @@
         stroke: var(--primary);
     }
 
-    .best-gifts-cards:hover {
+    .best-gifts-cards:not([disabled]):hover {
         cursor: pointer;
     }
 
-    .best-gifts-cards:hover>.best-gifts-desc>.best-gifts-name {
+    .best-gifts-cards:not([disabled]):hover>.best-gifts-desc>.best-gifts-name {
         color: var(--primary);
     }
 
@@ -122,6 +122,10 @@
 
     .gift-filter-item:hover {
         background: var(--static-white-20);
+    }
+
+    .close {
+        cursor: pointer;
     }
 }
 
@@ -1141,6 +1145,11 @@ footer {
     color: var(--dark);
 }
 
+.snows {
+    display: flex;
+    justify-content: center;
+}
+
 .rating-names {
     flex-grow: 2;
 }
@@ -1148,10 +1157,21 @@ footer {
 .rating-snow {
     flex-grow: .5;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .close {
     position: absolute;
     right: 3%;
     top: 1%;
+}
+
+.snowLine {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 5%;
+    height: 20px;
+    align-items: center;
 }
