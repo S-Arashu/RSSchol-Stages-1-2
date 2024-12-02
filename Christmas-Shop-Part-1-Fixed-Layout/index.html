@@ -7,70 +7,60 @@
     <link rel="stylesheet" href="adaptive.css">
     <link rel="shortcut icon" href="./assets/img/favicon-16x16.png" type="image/x-icon">
     <script defer src="./index.js"></script>
-    <!-- <script defer src="./indexGifts.js"></script> -->
     <title>Christmas Shop</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Allura:regular" rel="stylesheet">
 </head>
 <body>
-    <!-- <div class="container"> -->
-        <header>
-            <a href="#" class="logo">
-                <div class="logo-img"><img src="./assets/img/Vector.png" alt="Snowflake"></div>
-                <div class="logo-name">the gifts</div>
-            </a>
-            <nav>
-                <ul class="nav-list">
-                    <li><a href="./Pages/gifts.html" class="nav-link">gifts</a></li>
-                    <li><a href="#about" class="nav-link">about</a></li>
-                    <li><a href="#gifts" class="nav-link">best</a></li>
-                    <li><a href="#contacts" class="nav-link">contacts</a></li>
-                </ul>
-            </nav>
-            <div class="burger">
-                <span></span>
-                <span></span>
-            </div>
-            
-        </header>
-        <div class="burger-menu">
-            <ul class="nav-list nav-list-burger">
-                <li><a href="./Pages/gifts.html" class="nav-link nav-link-burger">gifts</a></li>
-                <li><a href="#about" class="nav-link nav-link-burger">about</a></li>
-                <li><a href="#gifts" class="nav-link nav-link-burger">best</a></li>
-                <li><a href="#contacts" class="nav-link nav-link-burger">contacts</a></li>
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-img"><img src="./assets/img/Vector.png" alt="Snowflake"></div>
+            <div class="logo-name">the gifts</div>
+        </a>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="./Pages/gifts.html" class="nav-link">gifts</a></li>
+                <li><a href="#about" class="nav-link">about</a></li>
+                <li><a href="#gifts" class="nav-link">best</a></li>
+                <li><a href="#contacts" class="nav-link">contacts</a></li>
             </ul>
+        </nav>
+        <div class="burger">
+            <span></span>
+            <span></span>
         </div>
-    <!-- </div> -->
-    <!-- <div class="container"> -->
-        <section class="hero">
-            <div class="hero-text">
-                <span class="hero-text-congrat main-wish">Merry Christmas</span>
-                <h1 class="hero-text-gift">Gift yourself the magic of new possibilities</h1>
-                <a href="./Pages/gifts.html" class="hero-block"><span class="hero-block-btn">Explore Magical Gifts</span></a>
-                <span class="hero-text-congrat">and Happy New Year</span>
+    </header>
+    <div class="burger-menu">
+        <ul class="nav-list nav-list-burger">
+            <li><a href="./Pages/gifts.html" class="nav-link nav-link-burger">gifts</a></li>
+            <li><a href="#about" class="nav-link nav-link-burger">about</a></li>
+            <li><a href="#gifts" class="nav-link nav-link-burger">best</a></li>
+            <li><a href="#contacts" class="nav-link nav-link-burger">contacts</a></li>
+        </ul>
+    </div>
+    <section class="hero">
+        <div class="hero-text">
+            <span class="hero-text-congrat main-wish">Merry Christmas</span>
+            <h1 class="hero-text-gift">Gift yourself the magic of new possibilities</h1>
+            <a href="./Pages/gifts.html" class="hero-block"><span class="hero-block-btn">Explore Magical Gifts</span></a>
+            <span class="hero-text-congrat">and Happy New Year</span>
+        </div>
+    </section>
+    <section id="about" class="about">
+        <div class="about-text">
+            <div class="about-desc">
+                <span class="about-name-section">About</span>
+                <h2 class="about-title">Unleash your inner superhero!</h2>
+                <span class="about-section-desc">This New Year marks the beginning of your journey to inner harmony and new strengths. We offer unique gifts that will help you improve your life.</span>
             </div>
-        </section>
-    <!-- </div> -->
-    <!-- <div class="container"> -->
-        <section id="about" class="about">
-            <div class="about-text">
-                <div class="about-desc">
-                    <span class="about-name-section">About</span>
-                    <h2 class="about-title">Unleash your inner superhero!</h2>
-                    <span class="about-section-desc">This New Year marks the beginning of your journey to inner harmony and new strengths. We offer unique gifts that will help you improve your life.</span>
-                </div>
-                <!-- <img src="./assets/img/santa.png" class="about-img"> -->
-                <div class="about-bg-img"></div>
-            </div>
-        </section>
-    <!-- </div> -->
-    <!-- <div class="container"> -->
-        <section class="slider">
-            <h2 class="slider-wish">Become Happier!</h2>
-            <span class="slider-year">in the new 2025</span>
-            <div class="slider-imgs">
-                <div class="slider-wrapper">
+            <div class="about-bg-img"></div>
+        </div>
+    </section>
+    <section class="slider">
+        <h2 class="slider-wish">Become Happier!</h2>
+        <span class="slider-year">in the new 2025</span>
+        <div class="slider-imgs">
+            <div class="slider-wrapper">
                 <span class="slider-words">Live</span>
                 <img class="slider-pic" src="./assets/img/snowman.png" alt="Snowman">
                 <span class="slider-words">create</span>
@@ -80,54 +70,24 @@
                 <span class="slider-words">dream</span>
                 <img class="slider-pic" src="./assets/img/fairytale-house.png" alt="Fairytale house">
             </div>
+        </div>
+        <div class="slider-ctrls">
+            <div class="slider-left-btn btn disabled">
+                <svg class="slider-left-btn-arrow arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </div>
-            <div class="slider-ctrls">
-                <div class="slider-left-btn btn disabled">
-                    <svg class="slider-left-btn-arrow arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.5 7H1M1 7L7 1M1 7L7 13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <div class="slider-right-btn btn">
-                    <svg class="slider-right-btn-arrow arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 7H13.5M13.5 7L7.5 1M13.5 7L7.5 13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
+            <div class="slider-right-btn btn">
+                <svg class="slider-right-btn-arrow arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 7H13.5M13.5 7L7.5 1M13.5 7L7.5 13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
             </div>
-        </section>
-    <!-- </div> -->
+        </div>
+    </section>
     <section id="gifts" class="best-gifts">
         <span class="best-gifts-title">Best Gifts</span>
         <h2 class="best-gifts-phrase">especially for you</h2>
-        <div class="best-gifts-items">
-            <!-- <div class="best-gifts-cards">
-                <img src="./assets/img/ball-1.png" alt="Gift">
-                <div class="best-gifts-desc">
-                    <span class="best-gifts-rubric work">For work</span>
-                    <span class="best-gifts-name">Console.log Guru</span>
-                </div>
-            </div>
-            <div class="best-gifts-cards">
-                <img src="./assets/img/ball-2.png" alt="Gift">
-                <div class="best-gifts-desc">
-                    <span class="best-gifts-rubric health">For health</span>
-                    <span class="best-gifts-name">Hydration Bot</span>
-                </div>
-            </div>
-            <div class="best-gifts-cards">
-                <img src="./assets/img/ball-1.png" alt="Gift">
-                <div class="best-gifts-desc">
-                    <span class="best-gifts-rubric work">For work</span>
-                    <span class="best-gifts-name">Merge Master</span>
-                </div>
-            </div>
-            <div class="best-gifts-cards">
-                <img src="./assets/img/ball-3.png" alt="Gift">
-                <div class="best-gifts-desc">
-                    <span class="best-gifts-rubric harmony">For harmony</span>
-                    <span class="best-gifts-name">Spontaneous Coding Philosopher</span>
-                </div>
-            </div> -->
-        </div>
+        <div class="best-gifts-items"></div>
     </section>
     <section class="santa">
         <div class="santa-desc">
@@ -213,6 +173,5 @@
             <path d="M6 11L12 5" stroke="#FF4646" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     </div>
-    <!-- <div class="modal-bg"></div> -->
 </body>
 </html>

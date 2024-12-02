@@ -46,14 +46,6 @@ burgerMenu.addEventListener('click', (event) => {
     };
 });
 
-// window.addEventListener('resize', (event) => {
-//     if(body.offsetWidth > 767 && document.querySelector('.open')){
-//         lineBurger[0].classList.remove('top-line-burger');
-//         lineBurger[1].classList.remove('bottom-line-burger');
-//         burgerMenu.classList.remove('open');
-//     } 
-// })
-
 // slider
 
 let slider = document.querySelector('.slider');
@@ -66,19 +58,17 @@ let rightMove = 0;
 let marginLeft = sliderImgs.offsetLeft;
 let scroll = sliderImgs.scrollWidth;
 
-if(body.offsetWidth > 767){
+if(body.offsetWidth > 768){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 3;
     } 
 
-if(body.offsetWidth <= 767){
+if(body.offsetWidth <= 768){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 6;
 }
 
 window.onresize = function(event) {
 
-    // navListBurger.style.left = 0 + 'px';
-
-    if(body.offsetWidth < 767){
+    if(body.offsetWidth < 768){
         navListBurger.style.left = ((body.clientWidth - navListBurger.clientWidth) / 2) + 'px';
     } 
 
@@ -86,20 +76,20 @@ window.onresize = function(event) {
     rightMove = 0;
     sliderLeftBtn.classList.add('disabled');
     sliderRightBtn.classList.remove('disabled');
-    // right = 0;
 
-    if(body.offsetWidth > 767){
+    if(body.offsetWidth > 768){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 3;
     } 
 
-    if(body.offsetWidth <= 767){
+    if(body.offsetWidth <= 768){
         right = (Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth)) / 6;
     }
 
-    // if(body.offsetWidth <= 767 && window.scrollY > 300){
-    //     let btnUp = document.querySelector('.btn-up');
-    //     btnUp.style.display = 'flex';
-    // }
+    if(body.offsetWidth > 768 && document.querySelector('.open')){
+        closeMenu();
+        body.style.overflow = '';
+        burgerMenu.classList.add('burger-menu-animation');
+    };
 }
 
 sliderRightBtn.addEventListener('click', () => {
@@ -110,8 +100,6 @@ sliderRightBtn.addEventListener('click', () => {
     if(rightMove + slider.clientWidth > scroll){
         sliderWrapper.style.right = Math.round(sliderWrapper.scrollWidth) - Math.round(sliderImgs.clientWidth) + marginLeft + 'px';
         sliderRightBtn.classList.add('disabled');
-        // sliderImgs.style.marginRight = 1 + '%';
-        
     }
 })
 
@@ -121,9 +109,7 @@ sliderLeftBtn.addEventListener('click', () => {
     sliderRightBtn.classList.remove('disabled');
 
     if(rightMove <= 0){
-        // sliderWrapper.style.right = sliderWrapper.clientWidth + 'px';
         sliderLeftBtn.classList.add('disabled');
-        
     }
 })
 
@@ -235,10 +221,6 @@ fetch(path)
         modalBg.classList.add('modal-bg');
         let categoryItem = gifts[id].category.split(' ');
 
-        console.log(target.parentElement.id)
-        console.log(id)
-        console.log(gifts[18])
-
         if(gifts[id].category == 'For Work'){
             imgPath = 'ball-1';
         };
@@ -254,6 +236,7 @@ fetch(path)
         let modal = document.createElement('div');
         modal.classList.add('best-gifts-cards');
         modal.classList.add('modal');
+        modal.setAttribute('disabled', 'true');
         modal.innerHTML = `
             <img src="./assets/img/${imgPath}.png" alt="Gift">
             <div class="close">
@@ -339,26 +322,27 @@ fetch(path)
                             </svg>
                         `
                         snows.append(snowItemOpacity);
+                        }
                     }
-
-                    }
-                    
                 }
 
         let modalWindow = document.querySelector('.modal-bg');
 
-console.log(modalWindow)
+        if(modalWindow){
+            modalWindow.addEventListener('click', (event) => {
+                let target = event.target;
 
-if(modalWindow){
-    modalWindow.addEventListener('click', (event) => {
-    let target = event.target;
-
-    if(target.parentElement.className == 'close' || target.parentElement.parentElement.className == 'close' || target.className == 'modal-bg'){
-        modalWindow.remove();
-        body.style.overflow = '';
-    }
-})
-}
+                if(target.parentElement.className == 'close' || target.parentElement.parentElement.className == 'close' || target.className == 'modal-bg'){
+                    document.querySelector('.modal').style.animation = 'disappear .5s';
+                    modalWindow.style.animation = 'disappear .5s';
+                    setTimeout(() => {
+                        modalWindow.remove();
+                    }, 400)
+        
+                    body.style.overflow = '';
+                }
+            })
+        }
     })
 })
 
