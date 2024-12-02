@@ -62,6 +62,28 @@
 
 }
 
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    from {
+        display: flex;
+        opacity: 1;
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+    }
+}
+
 @media (hover: hover) {
 
     .nav-link:not([disabled]):hover,
@@ -142,12 +164,6 @@ body {
     margin: 0 auto;
 }
 
-/* .container {
-    width: 1276px;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
 /* header */
 
 .disable {
@@ -162,7 +178,6 @@ header {
     background: var(--static-white);
     align-items: center;
     justify-content: space-between;
-    /* margin-right: 3%; */
 }
 
 .logo,
@@ -182,16 +197,6 @@ header,
     text-decoration: none;
     transition: all .5s ease-in-out;
 }
-
-/* .logo:hover {
-    filter: drop-shadow(2px 4px 6px var(--primary));
-    transform: scale(1.1);
-} */
-
-/* .logo-img,
-.logo-name {
-    transition: all .5 ease-in-out;
-} */
 
 .logo-img {
     width: 24px;
@@ -217,8 +222,6 @@ nav {
 #active-nav-burger {
     border-radius: 12px;
     padding: 12px 20px;
-    /* width: 88px;
-    height: 40px; */
     background: var(--primary-10);
     font-family: var(--font-family);
     color: var(--primary);
@@ -240,17 +243,6 @@ ul {
     transition: all .3s ease-in-out;
 }
 
-/* .nav-link:hover,
-.nav-link:focus {
-    border-radius: 12px;
-    padding: 12px 20px;
-    width: 88px;
-    height: 40px;
-    background: var(--primary-10);
-    font-family: var(--font-family);
-    color: var(--primary);
-} */
-
 .burger {
     width: 40px;
     height: 40px;
@@ -261,23 +253,17 @@ ul {
     gap: 17%;
 }
 
-/* .burger:hover > span:first-child, */
 .top-line-burger {
     transform: rotate(315deg);
     position: relative;
     top: 6%;
 }
 
-/* .burger:hover > span:last-child, */
 .bottom-line-burger {
     transform: rotate(226deg);
     position: relative;
     bottom: 13%;
 }
-
-/* .burger:hover {
-    cursor: pointer;
-} */
 
 .burger > span {
     display: block;
@@ -297,9 +283,7 @@ ul {
     display: flex;
     flex-direction: column;
     margin-top: -3px;
-    /* animation: close .5s ease-in forwards; */
     justify-content: center;
-    /* align-items: center; */
 }
 
 .burger-menu-animation {
@@ -312,7 +296,6 @@ ul {
     align-items: center;
     gap: 25px;
     position: absolute;
-    /* left: calc(100% - 50%/2); */
 }
 
 .nav-link-burger {
@@ -350,7 +333,6 @@ ul {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-    /* height: 36vh; */
     padding-top: .9%;
 }
 
@@ -386,7 +368,6 @@ ul {
 .santa-magical-gifts {
     border-radius: 20px;
     padding: 18px 32px;
-    /* width: 60%; */
     background: var(--dark);
     margin: auto;
     text-align: center;
@@ -406,16 +387,6 @@ ul {
     color: var(--static-white);
     transition: all .5s ease-in-out;
 }
-
-/* .hero-block:hover>.hero-block-btn,
-.santa-magical-gifts:hover>.santa-magical-gifts-btn {
-    color: var(--dark);
-}
-
-.hero-block:hover,
-.santa-magical-gifts:hover {
-    background-color: var(--static-white);
-} */
 
 /* about */
 
@@ -477,10 +448,6 @@ ul {
     line-height: 148%;
     color: var(--dark);
 }
-
-/* .about-img {
-    border-radius: 20px;
-} */
 
 .about-bg-img {
     width: 50%;
@@ -559,9 +526,7 @@ ul {
 
 .slider-imgs {
     margin-left: 5.8%;
-    /* margin-right: 5.8%; */
     overflow: hidden;
-    /* max-width: 1440px; */
 }
 
 .slider-wrapper {
@@ -583,36 +548,12 @@ ul {
 
 .disabled {
     filter: opacity(.5);
-    /* cursor: default; */
     pointer-events: none;
 }
-
-/* .slider-right-btn {
-    cursor: pointer;
-} */
-
-/* .arrow {
-    stroke-width: 1px;
-    stroke: var(--static-white);
-} */
 
 .arrow>path {
     transition: all .3s ease-in-out;
 }
-
-/* .btn:hover {
-    cursor: pointer;
-    background-color: var(--static-white);
-    fill: var(--primary);
-}
-
-.btn:hover > .arrow path {
-    stroke: var(--primary);
-} */
-
-/* .slider-left-btn img {
-    transform: rotate(180deg);
-} */
 
 /* Best gifts */
 
@@ -680,14 +621,6 @@ ul {
     height: 230px;
 }
 
-/* .best-gifts-cards:hover {
-    cursor: pointer;
-}
-
-.best-gifts-cards:hover > .best-gifts-desc > .best-gifts-name {
-    color: var(--primary);
-} */
-
 .best-gifts-desc {
     border-radius: 20px;
     padding: 20px;
@@ -715,7 +648,6 @@ ul {
     text-transform: uppercase;
     color: var(--dark);
     transition: all .3s ease-in-out;
-    /* width: 90%; */
 }
 
 .Work {
@@ -765,24 +697,6 @@ ul {
     padding-bottom: 1.7%;
     margin: 0;
 }
-
-/* .santa-magical-gifts {
-    border-radius: 20px;
-    padding: 20px 32px;
-    min-width: 235px;
-    background: var(--dark);
-} */
-
-/* .santa-magical-gifts > span {
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 130%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--static-white);
-} */
 
 .santa-new-year {
     font-family: var(--second-family);
@@ -882,17 +796,6 @@ footer {
     gap: 12px;
 }
 
-/* .footer-contacts-card:hover {
-    filter: drop-shadow(0 0 0.75rem var(--primary));
-    transform: scale(1.1);
-} */
-
-/* .footer-contacts-card:hover > .footer-contacts-img, */
-/* .footer-contacts-card:hover > .footer-contacts-desc, 
-.footer-contacts-card:hover > .footer-contacts-info {
-    color: var(--primary);
-} */
-
 .footer-contacts-info {
     font-family: var(--font-family);
     font-weight: 600;
@@ -933,10 +836,6 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-/* .footer-socials-img:hover > .icon path {
-    stroke: var(--primary);
-} */
-
 .icon {
     width: 24px;
     height: 24px;
@@ -967,10 +866,6 @@ footer {
     color: var(--dark);
     transition: all .3s ease-in-out;
 }
-
-/* .footer-rs:hover {
-    color: var(--primary);
-} */
 
 /* gifts page */
 
@@ -1030,13 +925,7 @@ footer {
     transition: all .3s ease-in-out;
 }
 
-/* .gift-filter-item:hover {
-    background: var(--static-white-20);
-} */
-
 .gifts-active {
-    /* width: 65px;
-    height: 40px; */
     background: var(--static-white-20);
     cursor: default;
 }
@@ -1083,6 +972,8 @@ footer {
     height: 100vh;
     position: fixed;
     z-index: 2;
+    transition: all 1s ease-in-out;
+    animation: appear .5s;
 }
 
 .modal {
@@ -1095,6 +986,7 @@ footer {
     flex-direction: column;
     align-items: center;
     position: relative;
+    animation: appear .5s;
 }
 
 .modal .best-gifts-desc {
@@ -1151,7 +1043,7 @@ footer {
 }
 
 .rating-names {
-    flex-grow: 2;
+    flex-grow: 1.6;
 }
 
 .rating-snow {
@@ -1164,8 +1056,8 @@ footer {
 
 .close {
     position: absolute;
-    right: 3%;
-    top: 1%;
+    right: 3.1%;
+    top: 2%;
 }
 
 .snowLine {

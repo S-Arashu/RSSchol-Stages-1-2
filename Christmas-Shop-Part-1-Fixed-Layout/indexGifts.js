@@ -44,15 +44,20 @@ burgerMenu.addEventListener('click', (event) => {
         body.style.overflow = '';
         burgerMenu.classList.add('burger-menu-animation');
     }
-})
+});
 
-// window.addEventListener('resize', (event) => {
-//     if(body.offsetWidth > 767 && document.querySelector('.open')){
-//         lineBurger[0].classList.remove('top-line-burger');
-//         lineBurger[1].classList.remove('bottom-line-burger');
-//         burgerMenu.classList.remove('open');
-//     } 
-// })
+window.onresize = function(event) {
+
+    if(body.offsetWidth < 768){
+        navListBurger.style.left = ((body.clientWidth - navListBurger.clientWidth) / 2) + 'px';
+    };
+
+    if(body.offsetWidth > 768 && document.querySelector('.open')){
+        closeMenu();
+        body.style.overflow = '';
+        burgerMenu.classList.add('burger-menu-animation');
+    };
+}
 
 // gifts
 
@@ -65,7 +70,6 @@ let filter = 'All';
 let filteredArrWork = [];
 let filteredArrHealth = [];
 let filteredArrHarmony = [];
-
 
 
 fetch(path)
@@ -164,22 +168,17 @@ fetch(path)
         };
     })
 
-        // modal
+    // modal
 
-        let bestGiftsItems = document.querySelector('.gifts-items');
+    let bestGiftsItems = document.querySelector('.gifts-items');
 
     bestGiftsItems.addEventListener('click', (event) => {
         body.style.overflow = 'hidden';
         let target = event.target;
         let id = target.parentElement.id || target.parentElement.parentElement.id;
         let modalBg = document.createElement('div');
-        console.dir(target)
         modalBg.classList.add('modal-bg');
         let categoryItem = gifts[id].category.split(' ');
-
-        console.log(target.parentElement.id)
-        
-        console.log(gifts[18])
 
         if(gifts[id].category == 'For Work'){
             imgPath = 'ball-1';
@@ -282,26 +281,27 @@ fetch(path)
                             </svg>
                         `
                         snows.append(snowItemOpacity);
+                        }
                     }
-
-                    }
-                    
                 }
 
-        let modalWindow = document.querySelector('.modal-bg');
+    let modalWindow = document.querySelector('.modal-bg');
 
-console.log(modalWindow)
+    if(modalWindow){
+        modalWindow.addEventListener('click', (event) => {
+            let target = event.target;
 
-if(modalWindow){
-    modalWindow.addEventListener('click', (event) => {
-    let target = event.target;
+            if(target.parentElement.className == 'close' || target.parentElement.parentElement.className == 'close' || target.className == 'modal-bg'){
+                document.querySelector('.modal').style.animation = 'disappear .5s';
+                modalWindow.style.animation = 'disappear .5s';
+                setTimeout(() => {
+                    modalWindow.remove();
+                }, 400)
 
-    if(target.parentElement.className == 'close' || target.parentElement.parentElement.className == 'close' || target.className == 'modal-bg'){
-        modalWindow.remove();
-        body.style.overflow = '';
+                body.style.overflow = '';
+            }
+        })
     }
-})
-}
     })
 })
 
