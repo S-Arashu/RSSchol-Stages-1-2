@@ -145,7 +145,37 @@ function timer(){
     hours.innerHTML = hoursLeft.value;
     min.innerHTML = minutesLeft.value;
     sec.innerHTML = secondsLeft.value;
+
+    if(days.innerHTML === '0' && hours.innerHTML === '0' && min.innerHTML === '0' && sec.innerHTML === '12'){
+    
+    
+    var c = document.getElementById("myCanvas");
+    c.style.display = 'block';
+    var ctx = c.getContext("2d");
+
+    function animate() {
+        window.requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        ctx.font = "50px Arial";
+        ctx.fillStyle = '#ff4646';
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(sec.innerHTML, c.width/2, c.height/2); 
+    }
+
+    animate();
+    }
+
+    if(days.innerHTML === '0' && hours.innerHTML === '0' && min.innerHTML === '0' && sec.innerHTML === '0'){
+        window.location.href = './Pages/fireworks.html';
+        // setTimeout(() => {
+        //     window.location.href = 'https://notka.net/zimnie-novogodnie-i-rozhdestvenskie-pesni-dlya-vsej-semi/';
+        // }, 5000)
+    }
 }
+
+
 
 function countTime(timeLeft, exp){
     let value = Math.floor(timeLeft / exp);
