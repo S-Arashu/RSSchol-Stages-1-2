@@ -44,7 +44,8 @@ body {
   margin: 5% auto 10% auto;
 }
 
-.level-title {
+.level-title, 
+#selected-level {
   text-align: center;
   font-size: x-large;
   color: bisque;
@@ -65,7 +66,8 @@ body {
   transition: all .3s ease-in-out;
 }
 
-.level-choose:hover {
+.level-choose:hover,
+.selected {
   background-color: #7d2e48;
 }
 
@@ -73,4 +75,61 @@ body {
   padding: 5vh;
   cursor: pointer;
   color: bisque;
+}
+
+.field {
+  height: 20vh;
+  border: 1px inset #7d2e48;
+  width: 80%;
+  margin: 2% auto 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 2em;
+}
+
+.keyboard,
+.navigation {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+
+.digital {
+  padding: 3%;
+  border: 1px solid beige;
+  border-radius: 10px;
+  font-size: 1.3em;
+  cursor: pointer;
+  margin-bottom: 2%;
+  transition: all .3s ease-in-out;
+}
+
+.digital:hover,
+#repeat:hover,
+#new-game:hover {
+  background-color: rgba(245, 245, 220, 0.493);
+}
+
+#repeat,
+#new-game {
+  cursor: pointer;
+}
+
+#currentLevel,
+#round,
+#repeat,
+#new-game {
+  padding: 1%;
+  border: 1px solid beige;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: all .3s ease-in-out;
 }
