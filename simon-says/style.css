@@ -1,0 +1,76 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #db7093;
+  height: 100vh;
+}
+
+@keyframes pulse {
+  from {
+    scale: .7;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+.start-game {
+  width: 15vh;
+  padding: 2%;
+  cursor: pointer;
+  border: 1px inset #7d2e48;
+  border-radius: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  margin: auto;
+  color: bisque;
+  transition: all .3s ease-in-out;
+  animation: pulse .9s linear 1s infinite alternate;
+}
+
+.start-game:hover {
+  box-shadow: 0px 0px 40px 0px rgba(250, 251, 252, 0.549);
+}
+
+.level {
+  height: 30vh;
+  width: 50%;
+  border: 1px inset #7d2e48;
+  border-radius: 10px;
+  margin: 5% auto 10% auto;
+}
+
+.level-title {
+  text-align: center;
+  font-size: x-large;
+  color: bisque;
+}
+
+.container-for-level-choose {
+  display: flex;
+  height: 30%;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+.level-choose {
+  border: 1px inset #7d2e48;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: all .3s ease-in-out;
+}
+
+.level-choose:hover {
+  background-color: #7d2e48;
+}
+
+.level-choose-name {
+  padding: 5vh;
+  cursor: pointer;
+  color: bisque;
+}
