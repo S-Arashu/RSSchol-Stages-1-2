@@ -69,7 +69,6 @@ start.addEventListener('click', () => {
 
   document.body.innerHTML = '';
   startGame(currentArr);
-  console.log(document.querySelector('#repeat'))
 })
 
 // random sequence
@@ -80,9 +79,30 @@ let startVis = 500;
 let endVis = 1000;
 let countVis = 0;
 let randomSymbol;
+let currentString = '';
+let currentLvl = 1;
+
+function newLevel(){
+  roundCount += 2;
+  currentLvl++;
+  currentSeq = [];
+  currentString = '';
+  let nextBtn = document.querySelector('#next');
+  nextBtn.style.display = 'none';
+  startLevel(roundCount, currentArr);
+  let round = document.querySelector('#round');
+  let repeat = document.querySelector('#repeat');
+  repeat.style.display = 'block';
+  repeat.classList.remove('disabled');
+  round.innerHTML = currentLvl;
+  let fieldInput = document.querySelector('.field');
+      fieldInput.innerHTML = '';
+      
+}
 
 function startLevel(count, arr){
   countVis = 0;
+  // currentSeq = [];
   
   let keyboardKeys = document.querySelectorAll('.digital'); 
 
@@ -96,7 +116,7 @@ function startLevel(count, arr){
       // if(currentSeq.includes(randomSymbol)){
       //   randomSymbol = Math.floor(Math.random() * arr.length);
       // }
-      currentSeq.push(randomSymbol);
+      currentSeq.push(arr[randomSymbol]);
     }
     if(isRepeat){
       console.log(currentSeq[i])
@@ -120,7 +140,7 @@ function startLevel(count, arr){
     keyboardKeys.forEach((keys) => {
       keys.classList.remove('disabled');
     })
-  }, countVis + 500)
+  }, countVis + 500);
 
   // keyboardKeys.forEach((keys) => {
   //     keys.classList.remove('disabled');
@@ -132,12 +152,14 @@ function startLevel(count, arr){
     console.log(currentSeq);
     repeat.addEventListener('click', () => {
       isRepeat = true;
-      console.log(currentSeq);
+      let fieldInput = document.querySelector('.field');
+      fieldInput.innerHTML = '';
+      currentString = '';
       startLevel(roundCount, currentSeq);
       repeat.classList.add('disabled');
       isRepeat = false;
-      currentSeq = [];
     });
+
 }
 
 
@@ -156,6 +178,7 @@ function startGame (arr) {
   <div id="currentLevel">${level}</div>
   <div id="round">1</div>
   <div id="repeat">Repeat the sequence</div>
+  <div id="next">Next</div>
   <div id="new-game">New game</div>
   `
   nav.classList.add('navigation');
@@ -182,8 +205,105 @@ function startGame (arr) {
 
   startLevel(roundCount, currentArr);
 
+  // let current;
+  
+
+  // let virtualKeyboard = document.querySelector('.keyboard');
+    virtualKeyboard.addEventListener('click', (event) => {
+    let current = event.target.innerHTML;
+    currentString += current.toUpperCase();
+
+    console.log(currentSeq.join(''));
+    console.log(currentString);
+    console.log(currentSeq.join('') == currentString);
+    let fieldInput = document.querySelector('.field');
+    // fieldInput.innerHTML = '';
+    // let target = event.target;
+    console.dir(currentSeq.indexOf(+current))
+    // currentSeq.forEach((char) => {
+      if(typeof +current == 'number'){
+        current = +current;
+      }
+      console.log(typeof current);
+      // if(currentSeq.indexOf(current) != -1){
+            
+      //   fieldInput.innerHTML += current;
+      // } else 
+      if (event.target.className == 'keyboard') {
+        return;
+      } 
+    //   else {
+    //     fieldInput.innerHTML += current;
+    //       body.style.backgroundColor = '#f013049c';
+    //     setTimeout(() => {
+    //       body.style.backgroundColor = '#db7093';
+    //     }, 500);
+    //     keyboardKeys.forEach((keys) => {
+    //   keys.classList.add('disabled');
+    // })
+    //   }
+
+if(currentSeq.join('') == currentString){
+  fieldInput.innerHTML = currentString;
+            body.style.backgroundColor = 'rgb(138 219 112 / 85%)';
+            if(currentLvl == 5){
+        let win = document.createElement('div');
+        win.classList.add('win');
+        win.innerHTML = 'You win!';
+        body.append(win);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+        setTimeout(() => {
+          body.style.backgroundColor = '#db7093';
+        }, 500);
+        let nextBtn = document.querySelector('#next');
+  nextBtn.style.display = 'block';
+  let repeat = document.querySelector('#repeat');
+  repeat.style.display = 'none';
+  nextBtn.addEventListener('click', newLevel);
+        // fieldInput.innerHTML += current;
+      } else if (currentSeq.join('').startsWith(currentString)){
+        fieldInput.innerHTML = currentString;
+      } else {
+        fieldInput.innerHTML = currentString;
+          body.style.backgroundColor = '#f013049c';
+        setTimeout(() => {
+          body.style.backgroundColor = '#db7093';
+        }, 500);
+        keyboardKeys.forEach((keys) => {
+      keys.classList.add('disabled');
+    })
+      }
+    // })
+  })
+
+  // if(current){
+  // let fieldInput = document.querySelector('.field');
+    // fieldInput.innerHTML = '';
+    // let target = event.target;
+    // console.log(fieldInput)
+    // currentSeq.forEach((char) => {
+    //   if(char == current){
+            
+    //     fieldInput.innerHTML = current;
+    //   } else {
+    //     fieldInput.innerHTML += current;
+    //       body.style.backgroundColor = '#f013049c';
+    //     setTimeout(() => {
+    //       body.style.backgroundColor = '#db7093';
+    //     }, 500);
+    //     keyboardKeys.forEach((keys) => {
+    //   keys.classList.add('disabled');
+    // })
+    //   }
+    // })
+  // }
+
   let newGame = document.querySelector('#new-game');
   newGame.addEventListener('click', () => {
     window.location.reload();
   });
+
 }

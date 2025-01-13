@@ -114,19 +114,22 @@ body {
 
 .digital:hover,
 #repeat:hover,
-#new-game:hover {
+#new-game:hover,
+#next:hover {
   background-color: rgba(245, 245, 220, 0.493);
 }
 
 #repeat,
-#new-game {
+#new-game,
+#next {
   cursor: pointer;
 }
 
 #currentLevel,
 #round,
 #repeat,
-#new-game {
+#new-game,
+#next {
   padding: 1%;
   border: 1px solid beige;
   border-radius: 10px;
@@ -141,4 +144,19 @@ body {
 .disabled {
   pointer-events: none;
   filter: brightness(.5);
+}
+
+#next {
+  display: none;
+}
+
+.win {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: beige;
+  color: chocolate;
+  font-size: 5em;
+  top: 0;
+  margin: 0;
 }
