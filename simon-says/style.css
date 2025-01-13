@@ -137,3 +137,8 @@ body {
 .chooseKey {
   background-color: rgba(245, 245, 220);
 }
+
+.disabled {
+  pointer-events: none;
+  filter: brightness(.5);
+}

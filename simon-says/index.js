@@ -64,10 +64,15 @@ start.addEventListener('click', (event) => {
 
   document.body.innerHTML = '';
   startGame(currentArr);
+  console.log(document.querySelector('#repeat'))
 })
 
 // random sequence
 let roundCount = 2;
+let currentSeq = [];
+let isRepeat = false; 
+
+
 
 
 function startLevel(count, arr){
@@ -75,8 +80,17 @@ function startLevel(count, arr){
   let keyboardKeys = document.querySelectorAll('.digital'); 
   for(let i=0; i<count; i++){
     let randomSymbol = Math.floor(Math.random() * arr.length);
+    check: if(!isRepeat){
+      if(currentSeq.includes(randomSymbol)){
+        randomSymbol = Math.floor(Math.random() * arr.length);
+        break check;
+      }
+      currentSeq.push(randomSymbol);
+    }
+    // if(isRepeat){
+    //   randomSymbol = currentSeq[i];
+    // }
     keyboardKeys.forEach((keys) => {
-      console.log(keys.innerHTML === arr[randomSymbol])
       if(keys.innerHTML == arr[randomSymbol]){
         setTimeout(() => {
           keys.classList.add('chooseKey');
@@ -87,7 +101,25 @@ function startLevel(count, arr){
       }
     })
   }
+
+  // if(document.querySelector('#repeat')){
+    let repeat = document.querySelector('#repeat');
+    console.log(currentSeq);
+    repeat.addEventListener('click', () => {
+      isRepeat = true;
+      console.log(currentSeq);
+      startLevel(roundCount, currentSeq);
+      repeat.classList.add('disabled');
+      isRepeat = false;
+      currentSeq = [];
+    });
+  // }
+
+  
+  
 }
+
+
 
 
 function startGame (arr) {
