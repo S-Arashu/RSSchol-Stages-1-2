@@ -1,4 +1,6 @@
-document.body.innerHTML = `
+function startPage () {
+  document.body.innerHTML = '';
+  document.body.innerHTML = `
   <div class="level">
     <p class="level-title">
       Choose your level!
@@ -19,7 +21,10 @@ document.body.innerHTML = `
   <div class="start-game">
     <span>Start</span>
   </div>
-`
+  `
+}
+
+startPage();
 
 let start = document.querySelector('.start-game');
 let containerLevel = document.querySelector('.container-for-level-choose');
@@ -60,7 +65,7 @@ containerLevel.addEventListener('click', (event) => {
   }
 })
 
-start.addEventListener('click', (event) => {
+start.addEventListener('click', () => {
 
   document.body.innerHTML = '';
   startGame(currentArr);
@@ -71,38 +76,58 @@ start.addEventListener('click', (event) => {
 let roundCount = 2;
 let currentSeq = [];
 let isRepeat = false; 
-
-
-
+let startVis = 500;
+let endVis = 1000;
+let countVis = 0;
+let randomSymbol;
 
 function startLevel(count, arr){
+  countVis = 0;
   
   let keyboardKeys = document.querySelectorAll('.digital'); 
+
+  keyboardKeys.forEach((keys) => {
+      keys.classList.add('disabled');
+    })
   for(let i=0; i<count; i++){
-    let randomSymbol = Math.floor(Math.random() * arr.length);
-    check: if(!isRepeat){
-      if(currentSeq.includes(randomSymbol)){
-        randomSymbol = Math.floor(Math.random() * arr.length);
-        break check;
-      }
+    
+    if(!isRepeat){
+      randomSymbol = Math.floor(Math.random() * arr.length);
+      // if(currentSeq.includes(randomSymbol)){
+      //   randomSymbol = Math.floor(Math.random() * arr.length);
+      // }
       currentSeq.push(randomSymbol);
     }
-    // if(isRepeat){
-    //   randomSymbol = currentSeq[i];
-    // }
+    if(isRepeat){
+      console.log(currentSeq[i])
+      randomSymbol = i;
+    }
     keyboardKeys.forEach((keys) => {
       if(keys.innerHTML == arr[randomSymbol]){
         setTimeout(() => {
           keys.classList.add('chooseKey');
-        }, 500);
+        }, startVis + countVis);
         setTimeout(() => {
           keys.classList.remove('chooseKey');
-        }, 3000);
+        }, endVis + countVis);
       }
+
     })
+    countVis += 1500;
   }
 
-  // if(document.querySelector('#repeat')){
+  setTimeout(() => {
+    keyboardKeys.forEach((keys) => {
+      keys.classList.remove('disabled');
+    })
+  }, countVis + 500)
+
+  // keyboardKeys.forEach((keys) => {
+  //     keys.classList.remove('disabled');
+  //   })
+
+  
+
     let repeat = document.querySelector('#repeat');
     console.log(currentSeq);
     repeat.addEventListener('click', () => {
@@ -113,10 +138,6 @@ function startLevel(count, arr){
       isRepeat = false;
       currentSeq = [];
     });
-  // }
-
-  
-  
 }
 
 
@@ -154,6 +175,15 @@ function startGame (arr) {
     virtualKeyboard.append(dig);
   }
 
-  startLevel(roundCount, currentArr);
-}
+  let keyboardKeys = document.querySelectorAll('.digital'); 
+  keyboardKeys.forEach((keys) => {
+      keys.classList.add('disabled');
+    })
 
+  startLevel(roundCount, currentArr);
+
+  let newGame = document.querySelector('#new-game');
+  newGame.addEventListener('click', () => {
+    window.location.reload();
+  });
+}
