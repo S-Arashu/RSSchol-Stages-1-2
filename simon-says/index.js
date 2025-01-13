@@ -67,7 +67,28 @@ start.addEventListener('click', (event) => {
 })
 
 // random sequence
-// Math.floor(Math.random() * arr.length)
+let roundCount = 2;
+
+
+function startLevel(count, arr){
+  
+  let keyboardKeys = document.querySelectorAll('.digital'); 
+  for(let i=0; i<count; i++){
+    let randomSymbol = Math.floor(Math.random() * arr.length);
+    keyboardKeys.forEach((keys) => {
+      console.log(keys.innerHTML === arr[randomSymbol])
+      if(keys.innerHTML == arr[randomSymbol]){
+        setTimeout(() => {
+          keys.classList.add('chooseKey');
+        }, 500);
+        setTimeout(() => {
+          keys.classList.remove('chooseKey');
+        }, 3000);
+      }
+    })
+  }
+}
+
 
 function startGame (arr) {
   // keyboard
@@ -92,6 +113,7 @@ function startGame (arr) {
   field.classList.add('field');
   keyboard.before(field);
 
+  // keyboard
   for(let i=0; i<arr.length; i++){
     
     let dig = document.createElement('div');
@@ -99,5 +121,7 @@ function startGame (arr) {
     dig.innerHTML = arr[i];
     virtualKeyboard.append(dig);
   }
+
+  startLevel(roundCount, currentArr);
 }
 
