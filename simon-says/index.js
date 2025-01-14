@@ -33,6 +33,8 @@ let body = document.querySelector('body');
 let levelItems = document.querySelectorAll('.level-choose');
 let selectedLevel = document.querySelector('#selected-level');
 
+
+
 // chars for levels
 let levelEasy = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let levelMedium = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -206,7 +208,7 @@ function startGame (arr) {
   startLevel(roundCount, currentArr);
 
   // let current;
-  
+  let countOfMistakes = 0;
 
   // let virtualKeyboard = document.querySelector('.keyboard');
     virtualKeyboard.addEventListener('click', (event) => {
@@ -267,6 +269,7 @@ if(currentSeq.join('') == currentString){
       } else if (currentSeq.join('').startsWith(currentString)){
         fieldInput.innerHTML = currentString;
       } else {
+        countOfMistakes++;
         fieldInput.innerHTML = currentString;
           body.style.backgroundColor = '#f013049c';
         setTimeout(() => {
@@ -275,6 +278,16 @@ if(currentSeq.join('') == currentString){
         keyboardKeys.forEach((keys) => {
       keys.classList.add('disabled');
     })
+    if(countOfMistakes > 1){
+      let lose = document.createElement('div');
+      lose.classList.add('lose');
+      lose.innerHTML = 'You lose!';
+      body.append(lose);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+
+    }
       }
     // })
   })
