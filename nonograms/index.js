@@ -1,14 +1,32 @@
+'use strict'
+
+const body = document.querySelector('body');
+
+const canvasElem = document.createElement('canvas');
+canvasElem.setAttribute('width', '300');
+canvasElem.setAttribute('height', '300');
+canvasElem.setAttribute('id', 'nonogramsField');
+body.append(canvasElem);
+
 const canvas = document.getElementById('nonogramsField');
 const ctx = canvas.getContext('2d');
+
+
 
 const verticalCeil = 7;
 const horizontalCeil = 6;
 
-const body = document.querySelector('body');
+// const body = document.querySelector('body');
 const ceilSizeWidth = canvas.width / horizontalCeil;
 const ceilSizeHeight = canvas.height / verticalCeil;
+
+// const ceilSizeWidth = 30;
+// const ceilSizeHeight = 30 / 2;
 const cluesFieldHorizontal = 2;
 const cluesFieldVertical = 1;
+
+// canvas.style.width = ceilSizeWidth * horizontalCeil + 'px';
+// canvas.style.height = ceilSizeHeight * verticalCeil + 'px';
 
 const cluesVertical = [
   [0, 0, 2, 0, 2, 0],
@@ -113,43 +131,219 @@ function drawLines () {
 //   console.log(col, row);
 // })
 let elemLeft = canvas.offsetLeft + canvas.clientLeft;
-    let elemTop = canvas.offsetTop + canvas.clientTop;
+    let elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
+
+
     // context = canvas.getContext('2d'),
-    let elements = [];
+    let elements = new Set();
 let a = 0;
+
+
+window.addEventListener('resize', () => {
+  // canvas.addEventListener('click', () => {
+elemLeft = canvas.offsetLeft + canvas.clientLeft;
+        elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
+  // })
+      
+  })
 // Add event listener for `click` events.
 canvas.addEventListener('click', function(event) {
-    var x = event.pageX - elemLeft,
+    let x = event.pageX - elemLeft,
         y = event.pageY - elemTop;
+
+        
 
     // Collision detection between clicked offset and element.
     // elements.forEach(function(element) {
-        if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop +  ceilSizeHeight * cluesFieldHorizontal && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
+        if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
+
+          // && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight
           
-          console.log(a++);
-//             elements.push({
-//     color: '#05EFFF',
+          const col = Math.floor(x / (ceilSizeWidth));
+    const row = Math.floor(y / (ceilSizeHeight));
+    let item;
+    let index;
+    ctx.fillStyle = 'black';
+
+//     elements.add({
+//     // color: '#05EFFF',
 //     width: ceilSizeWidth,
 //     height: ceilSizeHeight,
-//     top: y,
-//     left: x
+//     top: ceilSizeHeight * row,
+//     left: ceilSizeWidth * col,
+//     col: col,
+//     row: row,
+//     count: 0
 // });
+    // if(elements.length != 0){
+      // elements.forEach((element) => {
+        elements.forEach((elem) => {
+          if(elem.col === col && elem.row === row){
+            item = elem;
+          }});
+        // index = elements.indexOf(item);
+        console.log(item);
+        if(!elements.has(item)){
+  ctx.fillStyle = 'black';
+  elements.add({
+    // color: '#05EFFF',
+    width: ceilSizeWidth,
+    height: ceilSizeHeight,
+    top: ceilSizeHeight * row,
+    left: ceilSizeWidth * col,
+    col: col,
+    row: row,
+    count: 0
+});
+squares()
+  // item.count++;
+} else {
+  
+  ctx.fillStyle = '#d3d3d3';
+  squares()
+      elements.delete(item);
+console.log(elements);
+}
+      // })
+      
+    // }
+    
+
+          console.log(x, y);
+          console.log(col, row);
+            
+function squares(){
+  elements.forEach(function(element) {
+  console.log(elements);
+
+//   let color = ctx.getImageData(event.pageX, event.pageY, ceilSizeWidth, ceilSizeHeight);
+// console.log(color);
+
+// for (let i = 0; i < color.data.length; i += 4) {
+//   color.data[i] = 255-color.data[i];
+//   color.data[i+1] = 255-color.data[i+1];
+//   color.data[i+2] = 255-color.data[i+2];
+//   color.data[i+3] = 255;
+// }
+// ctx.putImageData(color, element.left, element.top);
+  // console.log(item);
+  // if(item) {
+  //   ctx.fillStyle = 'lightgrey';
+  //   item.count++
+  // } else {
+  //   ctx.fillStyle = 'black';
+  // }
+// if(item.count == 2){
+  // ctx.fillStyle = 'lightgrey';
+  //     elements.splice(index, 1);
+// }
+
+    if(element.col === col && element.row === row){
+      ctx.fillRect(element.left, element.top, element.width, element.height);
+    ctx.strokeStyle = '#353535';
+    ctx.strokeRect(element.left, element.top, element.width, element.height);
+    drawLines ();
+    }
+    
+// if(item.count == 2){
+//   elements.splice(index, 1);
+// }
+});
+}
+
+
+
         }
+
+        
     // });
 
     
 
-console.log(elements);
+console.log(moveRightCoord);
+let readyPicture = new Set();
+elements.forEach((elem) => {
+  readyPicture.add({col: elem.col,
+    row: elem.row,
+  });
+  console.log(readyPicture);
+})
+const picture = new Set([
+  {col: 3, row: 2},
+  {col: 3, row: 3},
+  {col: 3, row: 4},
+  {col: 3, row: 5},
+  {col: 3, row: 6},
+  {col: 1, row: 3},
+  {col: 2, row: 3},
+  {col: 4, row: 3},
+  {col: 5, row: 3},
+  {col: 5, row: 4},
+  {col: 4, row: 4},
+  {col: 2, row: 4},
+  {col: 1, row: 4},
+  {col: 2, row: 6},
+  {col: 4, row: 6}
+]);
 
-elements.forEach(function(element) {
-    ctx.fillStyle = element.color;
-    ctx.fillRect(element.left, element.top, element.width, element.height);
+// const isSubset = (a, b) => a.size === b.size && a.isSubsetOf(b);
+function isSubset (a, b) {
+  
+  // a.forEach((v) => {
+  //   console.log(!b.has(v));
+  //   if (!b.has(v)) {
+  //           return false;
+  //       } else {
+  //         return true;
+  //       }
+  // })
+    // for (const v of a) {
+    //   console.log(b.has(v));
+    //   console.log(b);
+    //   console.log(v);
+    //   b.forEach((el) => {
+    //     console.log(el);
+    //     if (!el.has(v)) {
+    //         return false;
+    //     }
+    //   })
+        
+    // }
+
+    let arr1 = [...a];
+    let arr2 = [...b];
+    let count = 0;
+
+    console.log(arr1, arr2);
+
+    if(arr1.length === arr2.length){
+      next: for(let i = 0; i < arr1.length; i += 1){
+        for(let j = 0; j < arr1.length; j += 1){
+          if(arr1[i].col === arr2[j].col && arr1[i].row === arr2[j].row){
+            count += 1;
+          }
+        }
+      }
+    }
+
+    if(count === arr1.length && arr1.length != 0){
+      return true;
+    }
+};
+
+let result = isSubset(readyPicture, picture);
+console.log(result);
+console.log(picture);
+console.log(readyPicture);
+if(result){
+  let modal = document.createElement('div');
+  modal.classList.add('modal');
+  modal.innerHTML = 'Great! You have solved the nonogram!';
+  body.appendChild(modal);
+  setTimeout(() => {
+    modal.remove();
+  }, 3000)
+  console.log('Super!!!');
+}
 });
-
-}, false);
-
-// Add element.
-
-
-// Render elements.
 

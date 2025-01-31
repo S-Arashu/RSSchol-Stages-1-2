@@ -8,6 +8,20 @@ body {
 
 canvas {
   border: 1px solid black;
-  width: 50vh;
-  height: 50vh;
+  /* width: 50vh;
+  height: 50vh; */
+}
+
+.modal {
+  width: 30vh;
+  height: 30vh;
+  background-color: beige;
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 1%;
+  text-align: center;
 }
