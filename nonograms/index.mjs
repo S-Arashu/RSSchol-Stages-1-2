@@ -1,4 +1,8 @@
-'use strict'
+import cluesVertical from "./cluesVertical.mjs";
+import cluesHorizontal from "./cluesHorizontal.mjs";
+import games from "./games.mjs";
+import namesGames from "./namesGames.mjs";
+import templates from "./templates.mjs";
 
 const body = document.querySelector('body');
 
@@ -8,34 +12,135 @@ canvasElem.setAttribute('height', '300');
 canvasElem.setAttribute('id', 'nonogramsField');
 body.append(canvasElem);
 
+const gameChooseBlock = document.createElement('div');
+gameChooseBlock.classList.add('gameChooseBlock');
+body.append(gameChooseBlock);
+
+const levelBlockEasy = document.createElement('p');
+levelBlockEasy.classList.add('level');
+levelBlockEasy.innerHTML = 'Easy';
+gameChooseBlock.append(levelBlockEasy);
+
 const canvas = document.getElementById('nonogramsField');
 const ctx = canvas.getContext('2d');
 
+let countLevel = 0;
+
+levelBlockEasy.addEventListener('click', () => {
+  if (countLevel === 0){
+    levelBlockEasy.classList.add('active');
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.font = "20px Arial";
+// ctx.textAlign = "center";
+// ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
+
+  for (let i = 0; i < 5; i += 1){
+    const nameGame = document.createElement('p');
+  nameGame.classList.add('nameGame');
+  nameGame.setAttribute('id', namesGames[i].id);
+  nameGame.innerHTML = namesGames[i].name;
+  gameChooseBlock.append(nameGame);
+  }
+
+  countLevel += 1;
+  } else {
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.font = "20px Arial";
+// ctx.textAlign = "center";
+// ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
+levelBlockEasy.classList.remove('active');
+const levels = document.querySelectorAll('.nameGame');
+levels.forEach((elem) => {
+  elem.remove();
+  countLevel = 0;
+})
+  }
+  
+})
+
+let id = 0;
+let verticalCeil = games[id].verticalCeil;
+let horizontalCeil = games[id].horizontalCeil;
+let elemLeft;
+let elemTop;
+let elements;
+let ceilSizeWidth;
+let ceilSizeHeight;
+
+ctx.font = "20px Arial";
+ctx.textAlign = "center";
+ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
 
 
-const verticalCeil = 7;
-const horizontalCeil = 6;
+
+gameChooseBlock.addEventListener('click', (event) => {
+const target = event.target;
+
+  if (target.className === 'nameGame'){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const levels = document.querySelectorAll('.nameGame');
+levels.forEach((elem) => {
+  elem.classList.remove('active');
+})
+  
+  console.dir(target);
+
+  id = target.id;
+  target.classList.add('active');
+  verticalCeil = games[id].verticalCeil;
+  horizontalCeil = games[id].horizontalCeil;
+  
+  createField(verticalCeil, horizontalCeil);
+  }
+  
+})
+
+
+// let verticalCeil;
+// let horizontalCeil;
+
+// if(name === games[id].name){
+
+// }
+
+console.log(games[id].verticalCeil);
 
 // const body = document.querySelector('body');
-const ceilSizeWidth = canvas.width / horizontalCeil;
-const ceilSizeHeight = canvas.height / verticalCeil;
+// const ceilSizeWidth = canvas.width / horizontalCeil;
+// const ceilSizeHeight = canvas.height / verticalCeil;
 
 // const ceilSizeWidth = 30;
 // const ceilSizeHeight = 30 / 2;
-const cluesFieldHorizontal = 2;
-const cluesFieldVertical = 1;
+// const cluesFieldHorizontal = 2;
+// const cluesFieldVertical = 1;
 
 // canvas.style.width = ceilSizeWidth * horizontalCeil + 'px';
 // canvas.style.height = ceilSizeHeight * verticalCeil + 'px';
 
-const cluesVertical = [
-  [0, 0, 2, 0, 2, 0],
-  [0, 2, 1, 5, 1, 2]
-]
+// const cluesVertical = [
+//   [0, 0, 2, 0, 2, 0],
+//   [0, 2, 1, 5, 1, 2]
+// ]
 
-const cluesHorizontal = [
-  [1, 5, 5, 1, 3]
-]
+// const cluesHorizontal = [
+//   [1, 5, 5, 1, 3]
+// ]
+
+
+
+
+
+function createField (vertical, horizontal){
+  ctx.font = "15px Arial";
+  ceilSizeWidth = canvas.width / horizontalCeil;
+ceilSizeHeight = canvas.height / verticalCeil;
+elemLeft = canvas.offsetLeft + canvas.clientLeft;
+elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
+
+
+    // context = canvas.getContext('2d'),
+    elements = new Set();
+let a = 0;
 
 let moveRightCoord = 0;
   let moveDownCoord = 0;
@@ -43,33 +148,31 @@ let moveRightCoord = 0;
   let stepVertical = 0;
   let stepInMatrix = 0;
   let step = 0;
-
-createField(verticalCeil, horizontalCeil);
-
-function createField (vertical, horizontal){
   stepInMatrixVertical = 0;
-  stepInMatrix = 0;
+  
+  // step = 0;
 
-  for(let i = 0; i < vertical; i+=1){
+  for(let i = 0; i < vertical; i += 1){
     moveRightCoord = 0;
+    stepInMatrix = 0;
     
     // if(stepInMatrixVertical >= cluesFieldHorizontal){
       
       // break;
     // }
-
+// console.log(stepInMatrix, step);
     for(let j = 0; j < horizontal; j+=1){
-
-      if(i < cluesFieldHorizontal){
-        console.log(cluesVertical[stepInMatrixVertical][j] === 0);
+console.log(stepInMatrix, step);
+      if(i < games[id].cluesFieldHorizontal){
+        // console.log(cluesVertical[id][stepInMatrixVertical][j] === 0);
         // for(let k = 0; k < horizontalCeil; k+=1){
           ctx.fillStyle = '#dce2f2';
           ctx.fillRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
           ctx.fillStyle = '#464646';
-          if(cluesVertical[stepInMatrixVertical][j] === 0){
+          if(cluesVertical[id][stepInMatrixVertical][j] === 0){
             ctx.fillStyle = 'transparent';
           }
-          ctx.fillText(cluesVertical[stepInMatrixVertical][j], moveRightCoord + ceilSizeWidth / 2.5, moveDownCoord + ceilSizeHeight / 1.5);
+          ctx.fillText(cluesVertical[id][stepInMatrixVertical][j], moveRightCoord + ceilSizeWidth / 2, moveDownCoord + ceilSizeHeight / 1.5);
 
           // if(i == cluesFieldHorizontal - 1){
           //   ctx.fillStyle = 'orange';
@@ -80,30 +183,35 @@ function createField (vertical, horizontal){
         // i+=cluesFieldHorizontal;
       }
 
-      if(i >= cluesFieldHorizontal && moveRightCoord === 0){
+      if(i >= games[id].cluesFieldHorizontal && moveRightCoord < ceilSizeWidth * games[id].cluesFieldVertical){
+        
         // for(let k = 0; k < verticalCeil - cluesFieldHorizontal; k+=1){
           ctx.fillStyle = '#dce2f2';
           ctx.fillRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
           ctx.strokeRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
           ctx.fillStyle = '#464646';
           // ctx.font = '15px serif';
-          ctx.fillText(cluesHorizontal[stepInMatrix][step], moveRightCoord + ceilSizeWidth / 2.5, moveDownCoord + ceilSizeHeight / 1.5);
+          if(cluesHorizontal[id][stepInMatrix][step - games[id].cluesFieldHorizontal] === 0){
+            ctx.fillStyle = 'transparent';
+          }
+          ctx.fillText(cluesHorizontal[id][stepInMatrix][step - games[id].cluesFieldHorizontal], moveRightCoord + ceilSizeWidth / 2, moveDownCoord + ceilSizeHeight / 1.5);
         // }
         moveRightCoord += ceilSizeWidth;
-        step += 1;
+        stepInMatrix += 1;
+        
       } else {
         ctx.strokeRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
         moveRightCoord += ceilSizeWidth;
       };
+      
     };
 
     stepInMatrixVertical += 1;
-    
+    step += 1;
 
     moveDownCoord += ceilSizeHeight;
   }
-  stepInMatrix += 1;
-
+  
   drawLines();
 }
 
@@ -112,14 +220,16 @@ function drawLines () {
   ctx.lineWidth = 2;
 
   ctx.beginPath();
-  ctx.moveTo(0, ceilSizeHeight * cluesFieldHorizontal);
-  ctx.lineTo(ceilSizeWidth * horizontalCeil, ceilSizeHeight * cluesFieldHorizontal);
+  ctx.moveTo(0, ceilSizeHeight * games[id].cluesFieldHorizontal);
+  ctx.lineTo(ceilSizeWidth * horizontalCeil, ceilSizeHeight * games[id].cluesFieldHorizontal);
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.moveTo(ceilSizeWidth * cluesFieldVertical, 0);
-  ctx.lineTo(ceilSizeWidth * cluesFieldVertical, ceilSizeHeight * verticalCeil);
+  ctx.moveTo(ceilSizeWidth * games[id].cluesFieldVertical, 0);
+  ctx.lineTo(ceilSizeWidth * games[id].cluesFieldVertical, ceilSizeHeight * verticalCeil);
   ctx.stroke();
+
+  ctx.strokeStyle = '#353535';
 }
 
 // canvas.addEventListener('click', (event) => {
@@ -130,13 +240,13 @@ function drawLines () {
 //   const row = (y / Math.floor(ceilSizeWidth));
 //   console.log(col, row);
 // })
-let elemLeft = canvas.offsetLeft + canvas.clientLeft;
-    let elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
+// let elemLeft = canvas.offsetLeft + canvas.clientLeft;
+//     let elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
 
 
-    // context = canvas.getContext('2d'),
-    let elements = new Set();
-let a = 0;
+//     // context = canvas.getContext('2d'),
+//     let elements = new Set();
+// let a = 0;
 
 
 window.addEventListener('resize', () => {
@@ -155,7 +265,7 @@ canvas.addEventListener('click', function(event) {
 
     // Collision detection between clicked offset and element.
     // elements.forEach(function(element) {
-        if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
+        if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
 
           // && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight
           
@@ -260,7 +370,7 @@ function squares(){
 
     
 
-console.log(moveRightCoord);
+// console.log(moveRightCoord);
 let readyPicture = new Set();
 elements.forEach((elem) => {
   readyPicture.add({col: elem.col,
@@ -268,23 +378,23 @@ elements.forEach((elem) => {
   });
   console.log(readyPicture);
 })
-const picture = new Set([
-  {col: 3, row: 2},
-  {col: 3, row: 3},
-  {col: 3, row: 4},
-  {col: 3, row: 5},
-  {col: 3, row: 6},
-  {col: 1, row: 3},
-  {col: 2, row: 3},
-  {col: 4, row: 3},
-  {col: 5, row: 3},
-  {col: 5, row: 4},
-  {col: 4, row: 4},
-  {col: 2, row: 4},
-  {col: 1, row: 4},
-  {col: 2, row: 6},
-  {col: 4, row: 6}
-]);
+// const picture = new Set([
+//   {col: 3, row: 2},
+//   {col: 3, row: 3},
+//   {col: 3, row: 4},
+//   {col: 3, row: 5},
+//   {col: 3, row: 6},
+//   {col: 1, row: 3},
+//   {col: 2, row: 3},
+//   {col: 4, row: 3},
+//   {col: 5, row: 3},
+//   {col: 5, row: 4},
+//   {col: 4, row: 4},
+//   {col: 2, row: 4},
+//   {col: 1, row: 4},
+//   {col: 2, row: 6},
+//   {col: 4, row: 6}
+// ]);
 
 // const isSubset = (a, b) => a.size === b.size && a.isSubsetOf(b);
 function isSubset (a, b) {
@@ -309,7 +419,7 @@ function isSubset (a, b) {
     //   })
         
     // }
-
+console.log(templates);
     let arr1 = [...a];
     let arr2 = [...b];
     let count = 0;
@@ -331,9 +441,9 @@ function isSubset (a, b) {
     }
 };
 
-let result = isSubset(readyPicture, picture);
+let result = isSubset(readyPicture, templates[id]);
 console.log(result);
-console.log(picture);
+console.log(templates[id]);
 console.log(readyPicture);
 if(result){
   let modal = document.createElement('div');

@@ -4,6 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 canvas {
@@ -24,4 +25,24 @@ canvas {
   font-size: 1.1em;
   padding: 1%;
   text-align: center;
+}
+
+.gameChooseBlock {
+  text-align: center;
+  width: 40vh;
+}
+
+.nameGame,
+.level {
+  cursor: pointer;
+  margin: 0;
+  padding: 7%;
+  transition: all .3s ease-in-out;
+}
+
+.nameGame:hover,
+.level:hover,
+.active {
+  background-color: #ffa50099;
+  border-radius: 10px;
 }
