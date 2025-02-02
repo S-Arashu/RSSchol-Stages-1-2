@@ -64,6 +64,7 @@ let horizontalCeil = games[id].horizontalCeil;
 let elemLeft;
 let elemTop;
 let elements;
+let elementsCross;
 let ceilSizeWidth;
 let ceilSizeHeight;
 
@@ -71,7 +72,13 @@ ctx.font = "20px Arial";
 ctx.textAlign = "center";
 ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
 
-
+window.addEventListener('resize', () => {
+  // canvas.addEventListener('click', () => {
+elemLeft = canvas.offsetLeft + canvas.clientLeft;
+        elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
+  // })
+      
+  })
 
 gameChooseBlock.addEventListener('click', (event) => {
 const target = event.target;
@@ -140,6 +147,7 @@ elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
 
     // context = canvas.getContext('2d'),
     elements = new Set();
+    elementsCross = new Set();
 let a = 0;
 
 let moveRightCoord = 0;
@@ -247,15 +255,108 @@ function drawLines () {
 //     // context = canvas.getContext('2d'),
 //     let elements = new Set();
 // let a = 0;
+document.oncontextmenu = function(event) {
+    event.preventDefault();
+    let x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+        if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight){
+          const col = Math.floor(x / (ceilSizeWidth));
+    const row = Math.floor(y / (ceilSizeHeight));
+  // ctx.fillStyle = 'black';
+  // console.log(event.pageX, event.pageY);
+  // console.log(row, games[id].cluesFieldHorizontal, col, games[id].cluesFieldVertical);
+  //   ctx.fillText('x', ((col + games[id].cluesFieldVertical) * (ceilSizeWidth)) - (ceilSizeWidth * 0.5), ((row + (games[id].cluesFieldHorizontal)) * (ceilSizeHeight)) - (ceilSizeWidth * 0.5));
+  let itemCross;
+    let index;
+    ctx.fillStyle = 'black';
 
 
-window.addEventListener('resize', () => {
-  // canvas.addEventListener('click', () => {
-elemLeft = canvas.offsetLeft + canvas.clientLeft;
-        elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
-  // })
-      
-  })
+
+//     elements.add({
+//     // color: '#05EFFF',
+//     width: ceilSizeWidth,
+//     height: ceilSizeHeight,
+//     top: ceilSizeHeight * row,
+//     left: ceilSizeWidth * col,
+//     col: col,
+//     row: row,
+//     count: 0
+// });
+    // if(elements.length != 0){
+      // elements.forEach((element) => {
+        elementsCross.forEach((elem) => {
+          if(elem.col === col && elem.row === row){
+            itemCross = elem;
+          }});
+        // index = elements.indexOf(item);
+        // console.log(item);
+        if(!elementsCross.has(itemCross)){
+  ctx.fillStyle = 'black';
+  elementsCross.add({
+    // color: '#05EFFF',
+    width: ceilSizeWidth,
+    height: ceilSizeHeight,
+    top: ceilSizeHeight * row,
+    left: ceilSizeWidth * col,
+    col: col,
+    row: row,
+    count: 0
+});
+squares(elementsCross)
+  // item.count++;
+} else {
+  
+  ctx.fillStyle = '#d3d3d3';
+  squares(elementsCross)
+      elementsCross.delete(itemCross);
+// console.log(elements);
+}
+
+function squares(elements){
+  elements.forEach(function(element) {
+  // console.log(elements);
+
+//   let color = ctx.getImageData(event.pageX, event.pageY, ceilSizeWidth, ceilSizeHeight);
+// console.log(color);
+
+// for (let i = 0; i < color.data.length; i += 4) {
+//   color.data[i] = 255-color.data[i];
+//   color.data[i+1] = 255-color.data[i+1];
+//   color.data[i+2] = 255-color.data[i+2];
+//   color.data[i+3] = 255;
+// }
+// ctx.putImageData(color, element.left, element.top);
+  // console.log(item);
+  // if(item) {
+  //   ctx.fillStyle = 'lightgrey';
+  //   item.count++
+  // } else {
+  //   ctx.fillStyle = 'black';
+  // }
+// if(item.count == 2){
+  // ctx.fillStyle = 'lightgrey';
+  //     elements.splice(index, 1);
+// }
+
+    if(element.col === col && element.row === row){
+      ctx.fillText('x', element.left + element.width / 2, element.top + element.height / 2);
+    // ctx.strokeStyle = '#353535';
+    // ctx.strokeRect(element.left, element.top, element.width, element.height);
+    // drawLines ();
+    }
+    
+// if(item.count == 2){
+//   elements.splice(index, 1);
+// }
+});
+}
+        }
+
+        
+    
+  };
+
+
 // Add event listener for `click` events.
 canvas.addEventListener('click', function(event) {
     let x = event.pageX - elemLeft,
@@ -274,6 +375,8 @@ canvas.addEventListener('click', function(event) {
     let item;
     let index;
     ctx.fillStyle = 'black';
+
+
 
 //     elements.add({
 //     // color: '#05EFFF',
@@ -305,12 +408,12 @@ canvas.addEventListener('click', function(event) {
     row: row,
     count: 0
 });
-squares()
+squares(elements)
   // item.count++;
 } else {
   
   ctx.fillStyle = '#d3d3d3';
-  squares()
+  squares(elements)
       elements.delete(item);
 console.log(elements);
 }
@@ -322,7 +425,7 @@ console.log(elements);
           console.log(x, y);
           console.log(col, row);
             
-function squares(){
+function squares(elements){
   elements.forEach(function(element) {
   console.log(elements);
 
