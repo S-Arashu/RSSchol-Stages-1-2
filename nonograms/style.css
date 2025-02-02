@@ -5,6 +5,13 @@ body {
   justify-content: center;
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
 }
 
 canvas {
@@ -42,7 +49,15 @@ canvas {
 
 .nameGame:hover,
 .level:hover,
-.active {
+.active,
+.resetButton:hover {
   background-color: #ffa50099;
   border-radius: 10px;
+}
+
+.resetButton {
+  padding: 1.5%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
 }

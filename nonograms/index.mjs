@@ -6,25 +6,40 @@ import templates from "./templates.mjs";
 
 const body = document.querySelector('body');
 
+const container = document.createElement('div');
+container.classList.add('container');
+body.append(container);
+
 const canvasElem = document.createElement('canvas');
 canvasElem.setAttribute('width', '300');
 canvasElem.setAttribute('height', '300');
 canvasElem.setAttribute('id', 'nonogramsField');
-body.append(canvasElem);
+container.append(canvasElem);
 
 const gameChooseBlock = document.createElement('div');
 gameChooseBlock.classList.add('gameChooseBlock');
-body.append(gameChooseBlock);
+container.append(gameChooseBlock);
 
 const levelBlockEasy = document.createElement('p');
 levelBlockEasy.classList.add('level');
 levelBlockEasy.innerHTML = 'Easy';
 gameChooseBlock.append(levelBlockEasy);
 
+const resetButton = document.createElement('button');
+resetButton.classList.add('resetButton');
+resetButton.innerHTML = 'Reset game';
+body.prepend(resetButton);
+
 const canvas = document.getElementById('nonogramsField');
 const ctx = canvas.getContext('2d');
 
 let countLevel = 0;
+let isReset = false;
+
+// let eventOncontext = new MouseEvent('click');
+//   let eventClick = new MouseEvent('click');
+
+
 
 levelBlockEasy.addEventListener('click', () => {
   if (countLevel === 0){
@@ -72,6 +87,8 @@ ctx.font = "20px Arial";
 ctx.textAlign = "center";
 ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
 
+
+
 window.addEventListener('resize', () => {
   // canvas.addEventListener('click', () => {
 elemLeft = canvas.offsetLeft + canvas.clientLeft;
@@ -79,6 +96,18 @@ elemLeft = canvas.offsetLeft + canvas.clientLeft;
   // })
       
   })
+
+  resetButton.addEventListener('click', () => {
+  isReset = true;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  verticalCeil = games[id].verticalCeil;
+  horizontalCeil = games[id].horizontalCeil;
+  
+  createField(verticalCeil, horizontalCeil);
+  // canvas.click();
+  // canvas.dispatchEvent(eventOncontext);
+  // canvas.dispatchEvent(eventClick);
+})
 
 gameChooseBlock.addEventListener('click', (event) => {
 const target = event.target;
@@ -101,7 +130,6 @@ levels.forEach((elem) => {
   }
   
 })
-
 
 // let verticalCeil;
 // let horizontalCeil;
@@ -271,7 +299,12 @@ document.oncontextmenu = function(event) {
     ctx.fillStyle = 'black';
 
 
-
+if(isReset){
+  elementsCross.clear();
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // squares(elementsCross);
+  isReset = false;
+}
 //     elements.add({
 //     // color: '#05EFFF',
 //     width: ceilSizeWidth,
@@ -376,7 +409,11 @@ canvas.addEventListener('click', function(event) {
     let index;
     ctx.fillStyle = 'black';
 
-
+if(isReset){
+  elements.clear();
+  // squares(elements);
+  isReset = false;
+}
 
 //     elements.add({
 //     // color: '#05EFFF',
