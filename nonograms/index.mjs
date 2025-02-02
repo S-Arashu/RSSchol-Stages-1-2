@@ -35,6 +35,9 @@ const ctx = canvas.getContext('2d');
 
 let countLevel = 0;
 let isReset = false;
+let start;
+let end;
+let timeCount;
 
 // let eventOncontext = new MouseEvent('click');
 //   let eventClick = new MouseEvent('click');
@@ -99,6 +102,7 @@ elemLeft = canvas.offsetLeft + canvas.clientLeft;
 
   resetButton.addEventListener('click', () => {
   isReset = true;
+  timeCount = 0;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   verticalCeil = games[id].verticalCeil;
   horizontalCeil = games[id].horizontalCeil;
@@ -113,6 +117,7 @@ gameChooseBlock.addEventListener('click', (event) => {
 const target = event.target;
 
   if (target.className === 'nameGame'){
+    timeCount = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const levels = document.querySelectorAll('.nameGame');
 levels.forEach((elem) => {
@@ -285,9 +290,15 @@ function drawLines () {
 // let a = 0;
 document.oncontextmenu = function(event) {
     event.preventDefault();
+    
+    
     let x = event.pageX - elemLeft,
         y = event.pageY - elemTop;
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight){
+          if(timeCount === 0){
+      start = new Date();
+      timeCount += 1;
+    }
           const col = Math.floor(x / (ceilSizeWidth));
     const row = Math.floor(y / (ceilSizeHeight));
   // ctx.fillStyle = 'black';
@@ -392,6 +403,8 @@ function squares(elements){
 
 // Add event listener for `click` events.
 canvas.addEventListener('click', function(event) {
+
+
     let x = event.pageX - elemLeft,
         y = event.pageY - elemTop;
 
@@ -400,7 +413,10 @@ canvas.addEventListener('click', function(event) {
     // Collision detection between clicked offset and element.
     // elements.forEach(function(element) {
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
-
+if(timeCount === 0){
+      start = new Date();
+      timeCount += 1;
+    }
           // && event.pageX > canvas.offsetLeft + ceilSizeWidth * cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight
           
           const col = Math.floor(x / (ceilSizeWidth));
@@ -586,14 +602,35 @@ console.log(result);
 console.log(templates[id]);
 console.log(readyPicture);
 if(result){
+  end = new Date();
+  let time = end - start;
+//   const toHmsTimeString = (time) => {
+//   let seconds = time / 1000;
+//   const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+//   const secondsPart = (seconds % 60).toString().padStart(2, '0');
+//   return `${minutes}:${secondsPart}`;
+// };
+
+let timeToSolve = (time / 1000).toFixed(3).split('.');
+
+const sec = timeToSolve[0].toString().padStart(2, '0');
+const millisec = timeToSolve[1];
+  // const time = end - start;
+  // let minutes = Math.floor((time / (1000 * 60)) % 60);
+  // minutes = minutes < 10 ? `0${minutes}` : minutes; 
+  // let seconds = Math.floor((time / 1000) % 60);
+  // seconds = seconds < 10 ? `0${seconds}` : seconds;
+
   let modal = document.createElement('div');
   modal.classList.add('modal');
-  modal.innerHTML = 'Great! You have solved the nonogram!';
+  modal.innerHTML = `Great! You have solved the nonogram in ${sec}:${millisec} seconds!`;
+  
   body.appendChild(modal);
   setTimeout(() => {
     modal.remove();
   }, 3000)
   console.log('Super!!!');
+  timeCount = 0;
 }
 });
 
