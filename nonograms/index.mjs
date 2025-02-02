@@ -42,7 +42,17 @@ let timeCount;
 // let eventOncontext = new MouseEvent('click');
 //   let eventClick = new MouseEvent('click');
 
+function createAudio (id, src) {
+  const audio = document.createElement('audio');
+  audio.setAttribute('id', id);
+  audio.setAttribute('autoplay', 'true');
+  body.append(audio);
 
+  const source = document.createElement('source');
+  source.setAttribute('src', src);
+  source.setAttribute('type', 'audio/mp3');
+  audio.append(source);
+}
 
 levelBlockEasy.addEventListener('click', () => {
   if (countLevel === 0){
@@ -295,6 +305,7 @@ document.oncontextmenu = function(event) {
     let x = event.pageX - elemLeft,
         y = event.pageY - elemTop;
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight){
+          createAudio('click', './sounds/click.mp3');
           if(timeCount === 0){
       start = new Date();
       timeCount += 1;
@@ -384,6 +395,15 @@ function squares(elements){
 
     if(element.col === col && element.row === row){
       ctx.fillText('x', element.left + element.width / 2, element.top + element.height / 2);
+
+      if(ctx.fillStyle === '#d3d3d3'){
+        ctx.fillRect(element.left, element.top, element.width, element.height);
+    ctx.strokeStyle = '#353535';
+    ctx.strokeRect(element.left, element.top, element.width, element.height);
+    drawLines ();
+      }
+
+      // if (ctx.fillStyle === 'black'){
     // ctx.strokeStyle = '#353535';
     // ctx.strokeRect(element.left, element.top, element.width, element.height);
     // drawLines ();
@@ -413,6 +433,7 @@ canvas.addEventListener('click', function(event) {
     // Collision detection between clicked offset and element.
     // elements.forEach(function(element) {
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
+          createAudio('click', './sounds/click.mp3');
 if(timeCount === 0){
       start = new Date();
       timeCount += 1;
@@ -624,7 +645,7 @@ const millisec = timeToSolve[1];
   let modal = document.createElement('div');
   modal.classList.add('modal');
   modal.innerHTML = `Great! You have solved the nonogram in ${sec}:${millisec} seconds!`;
-  
+  createAudio('win', './sounds/win.mp3')
   body.appendChild(modal);
   setTimeout(() => {
     modal.remove();
