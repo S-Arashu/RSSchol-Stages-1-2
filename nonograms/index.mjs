@@ -31,6 +31,28 @@ if(localStorage.theme === '0'){
 levelBlockEasy.innerHTML = 'Easy';
 gameChooseBlock.append(levelBlockEasy);
 
+const levelBlockMedium = document.createElement('p');
+
+if(localStorage.theme === '0'){
+  levelBlockMedium.classList.add('level');
+} else {
+  levelBlockMedium.classList.add('darkThemeLevel')
+}
+
+levelBlockMedium.innerHTML = 'Medium';
+gameChooseBlock.append(levelBlockMedium);
+
+const levelBlockHard = document.createElement('p');
+
+if(localStorage.theme === '0'){
+  levelBlockHard.classList.add('level');
+} else {
+  levelBlockHard.classList.add('darkThemeLevel')
+}
+
+levelBlockHard.innerHTML = 'Hard';
+gameChooseBlock.append(levelBlockHard);
+
 const containerForButtons = document.createElement('div');
 containerForButtons.classList.add('containerForButtons');
 body.prepend(containerForButtons);
@@ -162,22 +184,43 @@ function createAudio (id, src) {
   audio.append(source);
 }
 
-levelBlockEasy.addEventListener('click', () => {
+
+gameChooseBlock.addEventListener('click', (event) => {
+  let numOfGame;
+  let startCount;
+  let target = event.target;
 
 
-  if (countLevel === 0){
+  if(target.innerHTML === 'Easy' || target.innerHTML === 'Medium' || target.innerHTML === 'Hard'){
+    if (countLevel === 0){
     if(localStorage.theme === '0'){
-      levelBlockEasy.classList.add('active');
+      target.classList.add('active');
     } else {
-      levelBlockEasy.classList.add('activeDark');
+      target.classList.add('activeDark');
     }
     
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
 //     ctx.font = "20px Arial";
 // ctx.textAlign = "center";
 // ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
+    // if(target.innerHTML === 'Easy'){
+    //   startCount = 0;
+    //   numOfGame = 5;
+    // }
 
-  for (let i = 0; i < 5; i += 1){
+    // if(target.innerHTML === 'Medium'){
+    //   startCount = 5;
+    //   numOfGame = 10;
+    // }
+
+    // if(target.innerHTML === 'Medium'){
+    //   startCount = 10;
+    //   numOfGame = 15;
+    // }
+    startCount = 5;
+      numOfGame = 10;
+
+  for (let i = startCount; i < numOfGame; i += 1){
     const nameGame = document.createElement('p');
   
   if(localStorage.theme === '0'){
@@ -197,9 +240,9 @@ levelBlockEasy.addEventListener('click', () => {
 // ctx.textAlign = "center";
 // ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
 if(localStorage.theme === '0'){
-      levelBlockEasy.classList.remove('active');
+      target.classList.remove('active');
     } else {
-      levelBlockEasy.classList.remove('activeDark');
+      target.classList.remove('activeDark');
     }
 let levels;
     if(localStorage.theme === '0') {
@@ -213,6 +256,9 @@ levels.forEach((elem) => {
   countLevel = 0;
 })
   }
+  }
+
+  
   
 })
 
@@ -457,6 +503,21 @@ console.log(elem.id === savedId);
 
 gameChooseBlock.addEventListener('click', (event) => {
 const target = event.target;
+
+if(target.id < 5){
+  canvasElem.setAttribute('width', '300');
+canvasElem.setAttribute('height', '300');
+} 
+
+if (target.id >= 5 && target.id < 10){
+  canvasElem.setAttribute('width', '500');
+canvasElem.setAttribute('height', '500');
+}
+
+if(target.id >= 10 && target.id < 15){
+  canvasElem.setAttribute('width', '700');
+canvasElem.setAttribute('height', '700');
+}
 
 console.log(target.className === 'nameGame' || target.className === 'darkTheme');
 

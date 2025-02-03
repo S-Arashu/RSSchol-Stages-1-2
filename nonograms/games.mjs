@@ -34,6 +34,34 @@ const games = [
     cluesFieldHorizontal: 2,
     cluesFieldVertical: 2
   },
+  {
+    name: 'Hut in winter',
+    verticalCeil: 13,
+    horizontalCeil: 13,
+    cluesFieldHorizontal: 3,
+    cluesFieldVertical: 3
+  },
+  {
+    name: 'Confession',
+    verticalCeil: 14,
+    horizontalCeil: 13,
+    cluesFieldHorizontal: 4,
+    cluesFieldVertical: 3
+  },
+  {
+    name: 'Cup',
+    verticalCeil: 12,
+    horizontalCeil: 14,
+    cluesFieldHorizontal: 2,
+    cluesFieldVertical: 4
+  },
+  {
+    name: 'Insect',
+    verticalCeil: 13,
+    horizontalCeil: 14,
+    cluesFieldHorizontal: 3,
+    cluesFieldVertical: 4
+  },
 ];
 
 export default games
