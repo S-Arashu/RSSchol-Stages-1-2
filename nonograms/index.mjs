@@ -25,10 +25,24 @@ levelBlockEasy.classList.add('level');
 levelBlockEasy.innerHTML = 'Easy';
 gameChooseBlock.append(levelBlockEasy);
 
+const containerForButtons = document.createElement('div');
+containerForButtons.classList.add('containerForButtons');
+body.prepend(containerForButtons);
+
 const resetButton = document.createElement('button');
 resetButton.classList.add('resetButton');
 resetButton.innerHTML = 'Reset game';
-body.prepend(resetButton);
+containerForButtons.prepend(resetButton);
+
+const saveButton = document.createElement('button');
+saveButton.classList.add('saveButton');
+saveButton.innerHTML = 'Save game';
+containerForButtons.prepend(saveButton);
+
+const loadButton = document.createElement('button');
+loadButton.classList.add('loadButton');
+loadButton.innerHTML = 'Load game';
+containerForButtons.prepend(loadButton);
 
 const canvas = document.getElementById('nonogramsField');
 const ctx = canvas.getContext('2d');
@@ -41,6 +55,10 @@ let timeCount;
 
 // let eventOncontext = new MouseEvent('click');
 //   let eventClick = new MouseEvent('click');
+console.log(localStorage.length);
+if (localStorage.length === 0){
+  loadButton.classList.add('disable');
+} 
 
 function createAudio (id, src) {
   const audio = document.createElement('audio');
@@ -87,6 +105,8 @@ levels.forEach((elem) => {
 })
 
 let id = 0;
+let savedId;
+let isLoaded = false;
 let verticalCeil = games[id].verticalCeil;
 let horizontalCeil = games[id].horizontalCeil;
 let elemLeft;
@@ -100,7 +120,13 @@ ctx.font = "20px Arial";
 ctx.textAlign = "center";
 ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
 
-
+setInterval(() => {
+  if ((!elements || elements.size === 0) && (!elementsCross || elementsCross.size === 0)){
+  saveButton.classList.add('disable');
+} else {
+  saveButton.classList.remove('disable');
+}
+}, 500)
 
 window.addEventListener('resize', () => {
   // canvas.addEventListener('click', () => {
@@ -109,6 +135,165 @@ elemLeft = canvas.offsetLeft + canvas.clientLeft;
   // })
       
   })
+
+  saveButton.addEventListener('click', () => {
+    localStorage.clear();
+    localStorage.square = JSON.stringify(Array.from(elements));
+    localStorage.cross = JSON.stringify(Array.from(elementsCross));
+    
+    savedId = id;
+    localStorage.id = JSON.stringify(savedId);
+    
+    loadButton.classList.remove('disable');
+  })
+
+  loadButton.addEventListener('click', () => {
+    
+    isLoaded = true;
+    const elementsStorage = JSON.parse(localStorage.square);
+    
+    elements = new Set(elementsStorage);
+    console.log(elements);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    savedId = JSON.parse(localStorage.id);
+    console.log(savedId);
+    createField(games[savedId].verticalCeil, games[savedId].horizontalCeil);
+    console.dir(levelBlockEasy.className);
+
+
+  const levels = document.querySelectorAll('.nameGame');
+  if(levelBlockEasy.className === 'level active'){
+    levels.forEach((elem) => {
+console.log(elem.id === savedId);
+  if(elem.id === savedId){
+    elem.classList.add('active');
+  } else {
+    elem.classList.remove('active');
+  }
+  
+  countLevel += 1;
+})
+  } else {
+    
+    levelBlockEasy.classList.add('active');
+    
+    for (let i = 0; i < 5; i += 1){
+    const nameGame = document.createElement('p');
+  nameGame.classList.add('nameGame');
+  nameGame.setAttribute('id', namesGames[i].id);
+  nameGame.innerHTML = namesGames[i].name;
+  gameChooseBlock.append(nameGame);
+  }
+
+  const levels = document.querySelectorAll('.nameGame');
+levels.forEach((elem) => {
+console.log(elem.id === savedId);
+  if(elem.id === savedId){
+    elem.classList.add('active');
+  } else {
+    elem.classList.remove('active');
+  }
+  
+  countLevel += 1;
+})
+
+  }
+    
+
+  elements.forEach(function(element) {
+  console.log(elements);
+
+//   let color = ctx.getImageData(event.pageX, event.pageY, ceilSizeWidth, ceilSizeHeight);
+// console.log(color);
+
+// for (let i = 0; i < color.data.length; i += 4) {
+//   color.data[i] = 255-color.data[i];
+//   color.data[i+1] = 255-color.data[i+1];
+//   color.data[i+2] = 255-color.data[i+2];
+//   color.data[i+3] = 255;
+// }
+// ctx.putImageData(color, element.left, element.top);
+  // console.log(item);
+  // if(item) {
+  //   ctx.fillStyle = 'lightgrey';
+  //   item.count++
+  // } else {
+  //   ctx.fillStyle = 'black';
+  // }
+// if(item.count == 2){
+  // ctx.fillStyle = 'lightgrey';
+  //     elements.splice(index, 1);
+// }
+
+    // if(element.col === col && element.row === row){
+    ctx.fillStyle = 'black';
+      ctx.fillRect(element.left, element.top, element.width, element.height);
+    ctx.strokeStyle = '#353535';
+    ctx.strokeRect(element.left, element.top, element.width, element.height);
+    drawLines ();
+    // }
+    
+// if(item.count == 2){
+//   elements.splice(index, 1);
+// }
+});
+    const elementsCrossStorage = JSON.parse(localStorage.cross);
+    elementsCross = new Set(elementsCrossStorage);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // createField(games[savedId].verticalCeil, games[savedId].horizontalCeil);
+          elementsCross.forEach(function(element) {
+  // console.log(elements);
+
+//   let color = ctx.getImageData(event.pageX, event.pageY, ceilSizeWidth, ceilSizeHeight);
+// console.log(color);
+
+// for (let i = 0; i < color.data.length; i += 4) {
+//   color.data[i] = 255-color.data[i];
+//   color.data[i+1] = 255-color.data[i+1];
+//   color.data[i+2] = 255-color.data[i+2];
+//   color.data[i+3] = 255;
+// }
+// ctx.putImageData(color, element.left, element.top);
+  // console.log(item);
+  // if(item) {
+  //   ctx.fillStyle = 'lightgrey';
+  //   item.count++
+  // } else {
+  //   ctx.fillStyle = 'black';
+  // }
+// if(item.count == 2){
+  // ctx.fillStyle = 'lightgrey';
+  //     elements.splice(index, 1);
+// }
+
+    // if(element.col === col && element.row === row){
+      ctx.fillText('x', element.left + element.width / 2, element.top + element.height / 2);
+
+      if(ctx.fillStyle === '#d3d3d3'){
+        ctx.fillRect(element.left, element.top, element.width, element.height);
+    ctx.strokeStyle = '#353535';
+    ctx.strokeRect(element.left, element.top, element.width, element.height);
+    drawLines ();
+
+    
+      }
+
+      // if (ctx.fillStyle === 'black'){
+    // ctx.strokeStyle = '#353535';
+    // ctx.strokeRect(element.left, element.top, element.width, element.height);
+    // drawLines ();
+    // }
+    
+// if(item.count == 2){
+//   elements.splice(index, 1);
+// }
+});
+    
+  })
+
+  console.log(localStorage.square);
+
+  
 
   resetButton.addEventListener('click', () => {
   isReset = true;
@@ -176,11 +361,24 @@ console.log(games[id].verticalCeil);
 //   [1, 5, 5, 1, 3]
 // ]
 
+// loadButton.classList.add('disable');
 
+console.log(localStorage.length === 0);
+console.log(elements, elementsCross);
+// if ((!elements || elements.size === 0) && (!elementsCross || elementsCross.size === 0)){
+//   saveButton.classList.add('disable');
+// }
 
 
 
 function createField (vertical, horizontal){
+
+  if(isLoaded){
+    id = savedId;
+    verticalCeil = games[id].verticalCeil;
+  horizontalCeil = games[id].horizontalCeil;
+  }
+  
   ctx.font = "15px Arial";
   ceilSizeWidth = canvas.width / horizontalCeil;
 ceilSizeHeight = canvas.height / verticalCeil;
@@ -189,9 +387,13 @@ elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
 
 
     // context = canvas.getContext('2d'),
-    elements = new Set();
+    if(isLoaded === false){
+      elements = new Set();
     elementsCross = new Set();
+    }
+    
 let a = 0;
+
 
 let moveRightCoord = 0;
   let moveDownCoord = 0;
@@ -264,6 +466,8 @@ console.log(stepInMatrix, step);
   }
   
   drawLines();
+
+  isLoaded = false;
 }
 
 function drawLines () {
@@ -306,6 +510,7 @@ document.oncontextmenu = function(event) {
         y = event.pageY - elemTop;
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight){
           createAudio('click', './sounds/click.mp3');
+          
           if(timeCount === 0){
       start = new Date();
       timeCount += 1;
@@ -368,6 +573,11 @@ squares(elementsCross)
 }
 
 function squares(elements){
+//   if ((!elements || elements.size === 1 || elements.size === 0) && (!elementsCross || elementsCross.size === 1 || elementsCross.size === 0)){
+//   saveButton.classList.add('disable');
+// } else {
+//   saveButton.classList.remove('disable');
+// }
   elements.forEach(function(element) {
   // console.log(elements);
 
@@ -434,6 +644,11 @@ canvas.addEventListener('click', function(event) {
     // elements.forEach(function(element) {
         if (event.target.tagName === 'CANVAS' && event.pageX > canvas.offsetLeft + ceilSizeWidth * games[id].cluesFieldVertical - 2 && event.pageX < canvas.offsetLeft + canvas.offsetWidth && event.pageY > canvas.offsetTop + canvas.scrollTop + Math.round(ceilSizeHeight) * (games[id].cluesFieldHorizontal) && event.pageY < canvas.offsetTop + canvas.offsetHeight) {
           createAudio('click', './sounds/click.mp3');
+//           if ((!elements || elements.size === 0) && (!elementsCross || elementsCross.size === 0)){
+//   saveButton.classList.add('disable');
+// } else {
+//   saveButton.classList.remove('disable');
+// }
 if(timeCount === 0){
       start = new Date();
       timeCount += 1;
@@ -500,6 +715,11 @@ console.log(elements);
           console.log(col, row);
             
 function squares(elements){
+//   if ((!elements || elements.size === 0) && (!elementsCross || elementsCross.size === 0)){
+//   saveButton.classList.add('disable');
+// } else {
+//   saveButton.classList.remove('disable');
+// }
   elements.forEach(function(element) {
   console.log(elements);
 

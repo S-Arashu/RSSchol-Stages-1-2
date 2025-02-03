@@ -50,14 +50,32 @@ canvas {
 .nameGame:hover,
 .level:hover,
 .active,
-.resetButton:hover {
+.resetButton:hover,
+.loadButton:hover,
+.saveButton:hover {
   background-color: #ffa50099;
   border-radius: 10px;
 }
 
-.resetButton {
+.resetButton,
+.loadButton,
+.saveButton {
   padding: 1.5%;
   border-radius: 10px;
   cursor: pointer;
   transition: all .3s ease-in-out;
+  margin-bottom: 2%;
+}
+
+.containerForButtons {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6%;
+  justify-content: center;
+}
+
+.disable {
+  pointer-events: none;
+  filter: brightness(.7);
 }
