@@ -1,0 +1,107 @@
+body {
+  background-color: lightgrey;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+}
+
+canvas {
+  border: 1px solid black;
+  /* width: 50vh;
+  height: 50vh; */
+}
+
+.modal {
+  width: 30vh;
+  height: 30vh;
+  /* background-color: beige; */
+  position: absolute;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  padding: 1%;
+  text-align: center;
+}
+
+.modalLight {
+  background-color: #ffe4ae;
+  color: #353535;
+}
+
+.modalDark {
+  background-color: #830101;
+  color: #edfafa;
+}
+
+.gameChooseBlock {
+  text-align: center;
+  width: 40vh;
+}
+
+.nameGame,
+.level,
+.darkTheme,
+.darkThemeLevel {
+  cursor: pointer;
+  margin: 0;
+  padding: 7%;
+  transition: all .3s ease-in-out;
+}
+
+.nameGame:hover,
+.level:hover,
+.active,
+.resetButton:hover,
+.loadButton:hover,
+.saveButton:hover,
+.changeThemeButton:hover {
+  background-color: #ffa50099;
+  border-radius: 10px;
+}
+
+.darkTheme,
+.darkThemeLevel {
+  color: azure;
+}
+
+.darkTheme:hover,
+.darkThemeLevel:hover,
+.activeDark {
+  background-color: #83010188;
+  border-radius: 10px;
+}
+
+.resetButton,
+.loadButton,
+.saveButton,
+.changeThemeButton {
+  padding: 1.5%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  margin-bottom: 2%;
+}
+
+.containerForButtons {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6%;
+  justify-content: center;
+}
+
+.disable {
+  pointer-events: none;
+  filter: brightness(.7);
+}
