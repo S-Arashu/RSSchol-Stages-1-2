@@ -21,7 +21,13 @@ gameChooseBlock.classList.add('gameChooseBlock');
 container.append(gameChooseBlock);
 
 const levelBlockEasy = document.createElement('p');
-levelBlockEasy.classList.add('level');
+
+if(localStorage.theme === '0'){
+  levelBlockEasy.classList.add('level');
+} else {
+  levelBlockEasy.classList.add('darkThemeLevel')
+}
+
 levelBlockEasy.innerHTML = 'Easy';
 gameChooseBlock.append(levelBlockEasy);
 
@@ -44,14 +50,98 @@ loadButton.classList.add('loadButton');
 loadButton.innerHTML = 'Load game';
 containerForButtons.prepend(loadButton);
 
+const changeThemeButton = document.createElement('button');
+changeThemeButton.classList.add('changeThemeButton');
+changeThemeButton.innerHTML = 'Click me!';
+body.append(changeThemeButton);
+
 const canvas = document.getElementById('nonogramsField');
 const ctx = canvas.getContext('2d');
 
+if(!localStorage.theme){
+  localStorage.theme = '0';
+}
+
 let countLevel = 0;
 let isReset = false;
+// let isLight = true;
 let start;
 let end;
 let timeCount;
+
+// light theme
+
+const LIGHT_GREY = '#d3d3d3';
+const VERY_LIGHT_GREY = '#dce2f2';
+const GREY = '#353535';
+const BLACK = '#000000';
+const ORANGE = '#ffa600';
+
+// dark theme
+
+const DARK_BLUE = '#080d41';
+const LIGHT_BLUE = '#9698b1';
+const BLUE = '#1121c6';
+const DARK_RED = '#830101';
+const ASURE = '#edfafa';
+
+let fieldColor,
+    cluesColor,
+    linesColor,
+    squaresColor,
+    dividersColor,
+    textColor;
+
+    changeThemeButton.addEventListener('click', () => {
+      if(localStorage.theme === '0'){
+        localStorage.removeItem('theme');
+        localStorage.theme = '1';
+      } else {
+        localStorage.removeItem('theme');
+        localStorage.theme = '0';
+      }
+      
+      
+
+    window.location.reload();
+      // createField(games[savedId].verticalCeil, games[savedId].horizontalCeil);
+    })
+if(localStorage.theme === '0'){
+      fieldColor = LIGHT_GREY;
+      cluesColor = VERY_LIGHT_GREY;
+      linesColor = GREY;
+      squaresColor = BLACK;
+      dividersColor = ORANGE;
+      textColor = BLACK;
+
+      loadButton.style.backgroundColor = '#efefef';
+      loadButton.style.color = '#000000'
+      saveButton.style.backgroundColor = '#efefef';
+      saveButton.style.color = '#000000'
+      resetButton.style.backgroundColor = '#efefef';
+      resetButton.style.color = '#000000'
+      changeThemeButton.style.backgroundColor = '#efefef';
+      changeThemeButton.style.color = '#000000'
+    } else {
+      fieldColor = DARK_BLUE;
+      cluesColor = LIGHT_BLUE;
+      linesColor = BLUE;
+      squaresColor = DARK_RED;
+      dividersColor = ASURE;
+      textColor = ASURE;
+
+      loadButton.style.backgroundColor = '#830101';
+      loadButton.style.color = '#edfafa'
+      saveButton.style.backgroundColor = '#830101';
+      saveButton.style.color = '#edfafa'
+      resetButton.style.backgroundColor = '#830101';
+      resetButton.style.color = '#edfafa'
+      changeThemeButton.style.backgroundColor = '#830101';
+      changeThemeButton.style.color = '#edfafa'
+    }
+
+    body.style.backgroundColor = fieldColor;
+    body.style.color = linesColor;
 
 // let eventOncontext = new MouseEvent('click');
 //   let eventClick = new MouseEvent('click');
@@ -73,8 +163,15 @@ function createAudio (id, src) {
 }
 
 levelBlockEasy.addEventListener('click', () => {
+
+
   if (countLevel === 0){
-    levelBlockEasy.classList.add('active');
+    if(localStorage.theme === '0'){
+      levelBlockEasy.classList.add('active');
+    } else {
+      levelBlockEasy.classList.add('activeDark');
+    }
+    
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
 //     ctx.font = "20px Arial";
 // ctx.textAlign = "center";
@@ -82,7 +179,12 @@ levelBlockEasy.addEventListener('click', () => {
 
   for (let i = 0; i < 5; i += 1){
     const nameGame = document.createElement('p');
-  nameGame.classList.add('nameGame');
+  
+  if(localStorage.theme === '0'){
+    nameGame.classList.add('nameGame');
+  } else {
+    nameGame.classList.add('darkTheme');
+  }
   nameGame.setAttribute('id', namesGames[i].id);
   nameGame.innerHTML = namesGames[i].name;
   gameChooseBlock.append(nameGame);
@@ -94,8 +196,18 @@ levelBlockEasy.addEventListener('click', () => {
 //     ctx.font = "20px Arial";
 // ctx.textAlign = "center";
 // ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
-levelBlockEasy.classList.remove('active');
-const levels = document.querySelectorAll('.nameGame');
+if(localStorage.theme === '0'){
+      levelBlockEasy.classList.remove('active');
+    } else {
+      levelBlockEasy.classList.remove('activeDark');
+    }
+let levels;
+    if(localStorage.theme === '0') {
+      levels = document.querySelectorAll('.nameGame');
+    } else {
+levels = document.querySelectorAll('.darkTheme');
+    }
+// console.log(document.querySelectorAll('nameGame'));
 levels.forEach((elem) => {
   elem.remove();
   countLevel = 0;
@@ -116,6 +228,7 @@ let elementsCross;
 let ceilSizeWidth;
 let ceilSizeHeight;
 
+ctx.fillStyle = textColor;
 ctx.font = "20px Arial";
 ctx.textAlign = "center";
 ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
@@ -161,37 +274,71 @@ elemLeft = canvas.offsetLeft + canvas.clientLeft;
     console.dir(levelBlockEasy.className);
 
 
-  const levels = document.querySelectorAll('.nameGame');
-  if(levelBlockEasy.className === 'level active'){
+  let levels;
+  if(localStorage.theme === '0'){
+levels = document.querySelectorAll('.nameGame');
+  } else {
+    levels = document.querySelectorAll('.darkTheme');
+  }
+  if(levelBlockEasy.className === 'level active' || levelBlockEasy.className === 'darkThemeLevel activeDark'){
     levels.forEach((elem) => {
 console.log(elem.id === savedId);
+if(localStorage.theme === '0'){
   if(elem.id === savedId){
     elem.classList.add('active');
   } else {
     elem.classList.remove('active');
   }
+} else {
+  if(elem.id === savedId){
+    elem.classList.add('activeDark');
+  } else {
+    elem.classList.remove('activeDark');
+  }
+}
+  
   
   countLevel += 1;
 })
   } else {
+    if(localStorage.theme === '0'){
+      levelBlockEasy.classList.add('active');
+    } else {
+      levelBlockEasy.classList.add('activeDark');
+    }
     
-    levelBlockEasy.classList.add('active');
     
     for (let i = 0; i < 5; i += 1){
     const nameGame = document.createElement('p');
-  nameGame.classList.add('nameGame');
+  if(localStorage.theme === '0'){
+    nameGame.classList.add('nameGame');
+  } else {
+    nameGame.classList.add('darkTheme');
+  }
   nameGame.setAttribute('id', namesGames[i].id);
   nameGame.innerHTML = namesGames[i].name;
   gameChooseBlock.append(nameGame);
   }
-
-  const levels = document.querySelectorAll('.nameGame');
+let levels;
+  if(localStorage.theme === '0'){
+levels = document.querySelectorAll('.nameGame');
+  } else {
+    levels = document.querySelectorAll('.darkTheme');
+  }
 levels.forEach((elem) => {
 console.log(elem.id === savedId);
   if(elem.id === savedId){
-    elem.classList.add('active');
+    if(localStorage.theme === '0'){
+      levelBlockEasy.classList.add('active');
+    } else {
+      levelBlockEasy.classList.add('activeDark');
+    }
   } else {
-    elem.classList.remove('active');
+    if(localStorage.theme === '0'){
+      levelBlockEasy.classList.remove('active');
+    } else {
+      levelBlockEasy.classList.remove('activeDark');
+    }
   }
   
   countLevel += 1;
@@ -226,9 +373,9 @@ console.log(elem.id === savedId);
 // }
 
     // if(element.col === col && element.row === row){
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = squaresColor;
       ctx.fillRect(element.left, element.top, element.width, element.height);
-    ctx.strokeStyle = '#353535';
+    ctx.strokeStyle = linesColor;
     ctx.strokeRect(element.left, element.top, element.width, element.height);
     drawLines ();
     // }
@@ -269,9 +416,9 @@ console.log(elem.id === savedId);
     // if(element.col === col && element.row === row){
       ctx.fillText('x', element.left + element.width / 2, element.top + element.height / 2);
 
-      if(ctx.fillStyle === '#d3d3d3'){
+      if(ctx.fillStyle === fieldColor){
         ctx.fillRect(element.left, element.top, element.width, element.height);
-    ctx.strokeStyle = '#353535';
+    ctx.strokeStyle = linesColor;
     ctx.strokeRect(element.left, element.top, element.width, element.height);
     drawLines ();
 
@@ -288,7 +435,7 @@ console.log(elem.id === savedId);
 //   elements.splice(index, 1);
 // }
 });
-    
+    timeCount = 0;
   })
 
   console.log(localStorage.square);
@@ -311,18 +458,39 @@ console.log(elem.id === savedId);
 gameChooseBlock.addEventListener('click', (event) => {
 const target = event.target;
 
-  if (target.className === 'nameGame'){
+console.log(target.className === 'nameGame' || target.className === 'darkTheme');
+
+  if (target.className === 'nameGame' || target.className === 'darkTheme'){
     timeCount = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const levels = document.querySelectorAll('.nameGame');
+    let levels;
+    if(localStorage.theme === '0'){
+      levels = document.querySelectorAll('.nameGame');
+    } else {
+      levels = document.querySelectorAll('.darkTheme');
+    }
+    
 levels.forEach((elem) => {
-  elem.classList.remove('active');
+  if(localStorage.theme === '0'){
+      elem.classList.remove('active');
+    } else {
+      elem.classList.remove('activeDark');
+    }
+  
+    if(target.id === elem.id){
+      if(localStorage.theme === '0'){
+      elem.classList.add('active');
+    } else {
+      elem.classList.add('activeDark');
+    }
+    }
 })
   
   console.dir(target);
 
   id = target.id;
-  target.classList.add('active');
+  
+  
   verticalCeil = games[id].verticalCeil;
   horizontalCeil = games[id].horizontalCeil;
   
@@ -392,13 +560,13 @@ elemTop = canvas.offsetTop + canvas.clientTop + canvas.scrollTop;
     elementsCross = new Set();
     }
     
-let a = 0;
+// let a = 0;
 
 
 let moveRightCoord = 0;
   let moveDownCoord = 0;
   let stepInMatrixVertical = 0;
-  let stepVertical = 0;
+  // let stepVertical = 0;
   let stepInMatrix = 0;
   let step = 0;
   stepInMatrixVertical = 0;
@@ -419,9 +587,9 @@ console.log(stepInMatrix, step);
       if(i < games[id].cluesFieldHorizontal){
         // console.log(cluesVertical[id][stepInMatrixVertical][j] === 0);
         // for(let k = 0; k < horizontalCeil; k+=1){
-          ctx.fillStyle = '#dce2f2';
+          ctx.fillStyle = cluesColor;
           ctx.fillRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
-          ctx.fillStyle = '#464646';
+          ctx.fillStyle = textColor;
           if(cluesVertical[id][stepInMatrixVertical][j] === 0){
             ctx.fillStyle = 'transparent';
           }
@@ -439,10 +607,10 @@ console.log(stepInMatrix, step);
       if(i >= games[id].cluesFieldHorizontal && moveRightCoord < ceilSizeWidth * games[id].cluesFieldVertical){
         
         // for(let k = 0; k < verticalCeil - cluesFieldHorizontal; k+=1){
-          ctx.fillStyle = '#dce2f2';
+          ctx.fillStyle = cluesColor;
           ctx.fillRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
           ctx.strokeRect(moveRightCoord, moveDownCoord, ceilSizeWidth, ceilSizeHeight);
-          ctx.fillStyle = '#464646';
+          ctx.fillStyle = textColor;
           // ctx.font = '15px serif';
           if(cluesHorizontal[id][stepInMatrix][step - games[id].cluesFieldHorizontal] === 0){
             ctx.fillStyle = 'transparent';
@@ -471,7 +639,7 @@ console.log(stepInMatrix, step);
 }
 
 function drawLines () {
-  ctx.strokeStyle = 'orange';
+  ctx.strokeStyle = dividersColor;
   ctx.lineWidth = 2;
 
   ctx.beginPath();
@@ -484,7 +652,7 @@ function drawLines () {
   ctx.lineTo(ceilSizeWidth * games[id].cluesFieldVertical, ceilSizeHeight * verticalCeil);
   ctx.stroke();
 
-  ctx.strokeStyle = '#353535';
+  ctx.strokeStyle = linesColor;
 }
 
 // canvas.addEventListener('click', (event) => {
@@ -522,8 +690,8 @@ document.oncontextmenu = function(event) {
   // console.log(row, games[id].cluesFieldHorizontal, col, games[id].cluesFieldVertical);
   //   ctx.fillText('x', ((col + games[id].cluesFieldVertical) * (ceilSizeWidth)) - (ceilSizeWidth * 0.5), ((row + (games[id].cluesFieldHorizontal)) * (ceilSizeHeight)) - (ceilSizeWidth * 0.5));
   let itemCross;
-    let index;
-    ctx.fillStyle = 'black';
+    // let index;
+    ctx.fillStyle = squaresColor;
 
 
 if(isReset){
@@ -551,7 +719,7 @@ if(isReset){
         // index = elements.indexOf(item);
         // console.log(item);
         if(!elementsCross.has(itemCross)){
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = squaresColor;
   elementsCross.add({
     // color: '#05EFFF',
     width: ceilSizeWidth,
@@ -566,7 +734,7 @@ squares(elementsCross)
   // item.count++;
 } else {
   
-  ctx.fillStyle = '#d3d3d3';
+  ctx.fillStyle = fieldColor;
   squares(elementsCross)
       elementsCross.delete(itemCross);
 // console.log(elements);
@@ -606,9 +774,9 @@ function squares(elements){
     if(element.col === col && element.row === row){
       ctx.fillText('x', element.left + element.width / 2, element.top + element.height / 2);
 
-      if(ctx.fillStyle === '#d3d3d3'){
+      if(ctx.fillStyle === fieldColor){
         ctx.fillRect(element.left, element.top, element.width, element.height);
-    ctx.strokeStyle = '#353535';
+    ctx.strokeStyle = linesColor;
     ctx.strokeRect(element.left, element.top, element.width, element.height);
     drawLines ();
       }
@@ -658,8 +826,8 @@ if(timeCount === 0){
           const col = Math.floor(x / (ceilSizeWidth));
     const row = Math.floor(y / (ceilSizeHeight));
     let item;
-    let index;
-    ctx.fillStyle = 'black';
+    // let index;
+    ctx.fillStyle = squaresColor;
 
 if(isReset){
   elements.clear();
@@ -686,7 +854,7 @@ if(isReset){
         // index = elements.indexOf(item);
         console.log(item);
         if(!elements.has(item)){
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = squaresColor;
   elements.add({
     // color: '#05EFFF',
     width: ceilSizeWidth,
@@ -701,7 +869,7 @@ squares(elements)
   // item.count++;
 } else {
   
-  ctx.fillStyle = '#d3d3d3';
+  ctx.fillStyle = fieldColor;
   squares(elements)
       elements.delete(item);
 console.log(elements);
@@ -747,7 +915,7 @@ function squares(elements){
 
     if(element.col === col && element.row === row){
       ctx.fillRect(element.left, element.top, element.width, element.height);
-    ctx.strokeStyle = '#353535';
+    ctx.strokeStyle = linesColor;
     ctx.strokeRect(element.left, element.top, element.width, element.height);
     drawLines ();
     }
@@ -824,7 +992,7 @@ console.log(templates);
     console.log(arr1, arr2);
 
     if(arr1.length === arr2.length){
-      next: for(let i = 0; i < arr1.length; i += 1){
+      for(let i = 0; i < arr1.length; i += 1){
         for(let j = 0; j < arr1.length; j += 1){
           if(arr1[i].col === arr2[j].col && arr1[i].row === arr2[j].row){
             count += 1;
@@ -864,6 +1032,11 @@ const millisec = timeToSolve[1];
 
   let modal = document.createElement('div');
   modal.classList.add('modal');
+  if(localStorage.theme === '0'){
+    modal.classList.add('modalLight');
+  } else {
+    modal.classList.add('modalDark');
+  }
   modal.innerHTML = `Great! You have solved the nonogram in ${sec}:${millisec} seconds!`;
   createAudio('win', './sounds/win.mp3')
   body.appendChild(modal);
