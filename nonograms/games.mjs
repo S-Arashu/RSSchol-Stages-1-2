@@ -83,6 +83,27 @@ const games = [
     cluesFieldHorizontal: 4,
     cluesFieldVertical: 8
   },
+  {
+    name: 'Snail',
+    verticalCeil: 21,
+    horizontalCeil: 20,
+    cluesFieldHorizontal: 6,
+    cluesFieldVertical: 5
+  },
+  {
+    name: 'Cowboy',
+    verticalCeil: 20,
+    horizontalCeil: 21,
+    cluesFieldHorizontal: 5,
+    cluesFieldVertical: 6
+  },
+  {
+    name: 'Operator',
+    verticalCeil: 20,
+    horizontalCeil: 20,
+    cluesFieldHorizontal: 5,
+    cluesFieldVertical: 5
+  },
 ];
 
 export default games
