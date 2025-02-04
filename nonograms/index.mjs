@@ -203,22 +203,22 @@ gameChooseBlock.addEventListener('click', (event) => {
 //     ctx.font = "20px Arial";
 // ctx.textAlign = "center";
 // ctx.fillText('Choose your game!', canvas.width / 2, canvas.height / 2);
-    // if(target.innerHTML === 'Easy'){
-    //   startCount = 0;
-    //   numOfGame = 5;
-    // }
+    if(target.innerHTML === 'Easy'){
+      startCount = 0;
+      numOfGame = 5;
+    }
 
-    // if(target.innerHTML === 'Medium'){
-    //   startCount = 5;
-    //   numOfGame = 10;
-    // }
-
-    // if(target.innerHTML === 'Medium'){
-    //   startCount = 10;
-    //   numOfGame = 15;
-    // }
-    startCount = 5;
+    if(target.innerHTML === 'Medium'){
+      startCount = 5;
       numOfGame = 10;
+    }
+
+    if(target.innerHTML === 'Medium'){
+      startCount = 10;
+      numOfGame = 12;
+    }
+    // startCount = 10;
+    //   numOfGame = 15;
 
   for (let i = startCount; i < numOfGame; i += 1){
     const nameGame = document.createElement('p');
