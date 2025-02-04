@@ -11,8 +11,8 @@ container.classList.add('container');
 body.append(container);
 
 const canvasElem = document.createElement('canvas');
-canvasElem.setAttribute('width', '300');
-canvasElem.setAttribute('height', '300');
+canvasElem.setAttribute('width', '200');
+canvasElem.setAttribute('height', '200');
 canvasElem.setAttribute('id', 'nonogramsField');
 container.append(canvasElem);
 
@@ -215,7 +215,7 @@ gameChooseBlock.addEventListener('click', (event) => {
 
     if(target.innerHTML === 'Hard'){
       startCount = 10;
-      numOfGame = 12;
+      numOfGame = 15;
     }
     // startCount = 10;
     //   numOfGame = 15;
@@ -510,13 +510,13 @@ canvasElem.setAttribute('height', '300');
 } 
 
 if (target.id >= 5 && target.id < 10){
-  canvasElem.setAttribute('width', '500');
-canvasElem.setAttribute('height', '500');
+  canvasElem.setAttribute('width', '400');
+canvasElem.setAttribute('height', '400');
 }
 
 if(target.id >= 10 && target.id < 15){
-  canvasElem.setAttribute('width', '700');
-canvasElem.setAttribute('height', '700');
+  canvasElem.setAttribute('width', '500');
+canvasElem.setAttribute('height', '500');
 }
 
 console.log(target.className === 'nameGame' || target.className === 'darkTheme');
