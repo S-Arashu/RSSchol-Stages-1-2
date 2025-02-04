@@ -213,7 +213,7 @@ gameChooseBlock.addEventListener('click', (event) => {
       numOfGame = 10;
     }
 
-    if(target.innerHTML === 'Medium'){
+    if(target.innerHTML === 'Hard'){
       startCount = 10;
       numOfGame = 12;
     }
