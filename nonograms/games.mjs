@@ -62,6 +62,27 @@ const games = [
     cluesFieldHorizontal: 3,
     cluesFieldVertical: 4
   },
+  {
+    name: 'Snowman',
+    verticalCeil: 14,
+    horizontalCeil: 14,
+    cluesFieldHorizontal: 4,
+    cluesFieldVertical: 4
+  },
+  {
+    name: 'Giza',
+    verticalCeil: 19,
+    horizontalCeil: 19,
+    cluesFieldHorizontal: 4,
+    cluesFieldVertical: 4
+  },
+  {
+    name: 'Halloween',
+    verticalCeil: 19,
+    horizontalCeil: 23,
+    cluesFieldHorizontal: 4,
+    cluesFieldVertical: 8
+  },
 ];
 
 export default games

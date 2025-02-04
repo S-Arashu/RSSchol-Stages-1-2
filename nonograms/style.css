@@ -59,6 +59,14 @@ canvas {
   transition: all .3s ease-in-out;
 }
 
+.level {
+  border-bottom: 1px solid #ffa600;
+}
+
+.darkThemeLevel {
+  border-bottom: 1px solid #edfafa;
+}
+
 .nameGame:hover,
 .level:hover,
 .active,

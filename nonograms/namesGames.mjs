@@ -35,6 +35,18 @@ const namesGames = [
     id: 8,
     name: 'Insect'
   },
+  {
+    id: 9,
+    name: 'Snowman'
+  },
+  {
+    id: 10,
+    name: 'Giza'
+  },
+  {
+    id: 11,
+    name: 'Halloween'
+  },
 ]
 
 export default namesGames
