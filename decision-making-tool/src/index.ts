@@ -1,5 +1,5 @@
-console.log('Hi');
+import '../public/styles.css';
 
-console.log('Hey');
-console.log('Go!');
-console.log('Boo');
+import createTitleApp from './builders/app';
+
+createTitleApp();
