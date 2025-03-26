@@ -24,3 +24,25 @@ body {
 .buttonList:hover {
   transform: scale(0.9);
 }
+
+.item {
+  list-style: none;
+  border: 1px solid bisque;
+  width: 70%;
+  margin: 1% auto;
+  border-radius: 20px;
+}
+
+.label-item {
+  font-size: 1.2vw;
+}
+
+.input-item,
+.button-item {
+  margin: 2vw;
+  border-radius: 10px;
+}
+
+.button-item {
+  cursor: pointer;
+}

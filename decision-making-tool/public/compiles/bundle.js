@@ -234,7 +234,29 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 .buttonList:hover {
   transform: scale(0.9);
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\n.title {\n  text-align: center;\n}\n\n.container {\n  width: 80vw;\n  height: 10vh;\n  margin: 2% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n"],"sourceRoot":""}]);
+
+.item {
+  list-style: none;
+  border: 1px solid bisque;
+  width: 70%;
+  margin: 1% auto;
+  border-radius: 20px;
+}
+
+.label-item {
+  font-size: 1.2vw;
+}
+
+.input-item,
+.button-item {
+  margin: 2vw;
+  border-radius: 10px;
+}
+
+.button-item {
+  cursor: pointer;
+}
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\n.title {\n  text-align: center;\n}\n\n.container {\n  width: 80vw;\n  height: 10vh;\n  margin: 2% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3956,6 +3978,53 @@ class Buttons {
 
 /***/ }),
 
+/***/ "./src/builders/inputFields.ts":
+/*!*************************************!*\
+  !*** ./src/builders/inputFields.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createInput: () => (/* binding */ createInput)
+/* harmony export */ });
+/* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
+
+function createInput(parentTag, count) {
+    const liElem = document.createElement('li');
+    liElem.classList.add('item');
+    parentTag.prepend(liElem);
+    const label = document.createElement('label');
+    label.setAttribute('for', `option-#${count}`);
+    label.textContent = `#${count}`;
+    label.classList.add('label-item');
+    liElem.append(label);
+    const inputElem = document.createElement('input');
+    inputElem.setAttribute('id', `option-#${count}`);
+    inputElem.setAttribute('value', '');
+    inputElem.setAttribute('placeholder', 'Title');
+    inputElem.setAttribute('name', 'title');
+    inputElem.classList.add('input-item');
+    label.append(inputElem);
+    const inputSecondElem = document.createElement('input');
+    inputSecondElem.setAttribute('type', 'number');
+    inputSecondElem.setAttribute('value', '');
+    inputSecondElem.setAttribute('placeholder', 'Weight');
+    inputSecondElem.setAttribute('name', 'weight');
+    inputSecondElem.classList.add('input-item');
+    label.append(inputSecondElem);
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.classList.add('button-item');
+    button.textContent = 'Delete';
+    label.append(button);
+    return liElem;
+}
+
+
+/***/ }),
+
 /***/ "./src/builders/mainBlock.ts":
 /*!***********************************!*\
   !*** ./src/builders/mainBlock.ts ***!
@@ -3969,6 +4038,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+
 
 
 const NAMES_OF_BUTTONS = [
@@ -3981,6 +4052,9 @@ const NAMES_OF_BUTTONS = [
 ];
 const NUM_OF_BUTTONS = 6;
 function create(parentTag) {
+    if (!localStorage.count) {
+        localStorage.count = '1';
+    }
     const container = document.createElement('div');
     container.classList.add('container');
     parentTag.append(container);
@@ -3988,6 +4062,14 @@ function create(parentTag) {
         const button = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
         const elementOfContainer = button.createButton();
         container.append(elementOfContainer);
+        if (i === 0) {
+            elementOfContainer.addEventListener('click', () => {
+                let numOfElem = localStorage.count;
+                numOfElem = +numOfElem + 1;
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_2__.createInput)(container, numOfElem);
+                localStorage.count = numOfElem;
+            });
+        }
     }
 }
 
@@ -4005,6 +4087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _builders_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./builders/app */ "./src/builders/app.ts");
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
+/* harmony import */ var _builders_inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/inputFields */ "./src/builders/inputFields.ts");
+
 
 
 
@@ -4018,6 +4102,10 @@ window.addEventListener('load', event => {
     }
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
+    }
+    const count = +localStorage.count;
+    for (let i = count; i > 0; i -= 1) {
+        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, i);
     }
 });
 const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -4106,7 +4194,7 @@ document.body.append(title);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("11a0625913691a18e807")
+/******/ 		__webpack_require__.h = () => ("d60455a926ce51c8f1e6")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
