@@ -3990,8 +3990,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   createInput: () => (/* binding */ createInput)
 /* harmony export */ });
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! .. */ "./src/index.ts");
 
-function createInput(parentTag, count) {
+
+function createInput(parentTag, count, valuesOpt, valuesWeight) {
     const liElem = document.createElement('li');
     liElem.classList.add('item');
     parentTag.prepend(liElem);
@@ -4002,14 +4004,14 @@ function createInput(parentTag, count) {
     liElem.append(label);
     const inputElem = document.createElement('input');
     inputElem.setAttribute('id', `option-#${count}`);
-    inputElem.setAttribute('value', '');
+    inputElem.setAttribute('value', `${valuesOpt || ''}`);
     inputElem.setAttribute('placeholder', 'Title');
     inputElem.setAttribute('name', 'title');
     inputElem.classList.add('input-item');
     label.append(inputElem);
     const inputSecondElem = document.createElement('input');
     inputSecondElem.setAttribute('type', 'number');
-    inputSecondElem.setAttribute('value', '');
+    inputSecondElem.setAttribute('value', `${valuesWeight || ''}`);
     inputSecondElem.setAttribute('placeholder', 'Weight');
     inputSecondElem.setAttribute('name', 'weight');
     inputSecondElem.classList.add('input-item');
@@ -4019,6 +4021,36 @@ function createInput(parentTag, count) {
     button.classList.add('button-item');
     button.textContent = 'Delete';
     label.append(button);
+    button.addEventListener('click', () => {
+        let previous = button.previousElementSibling;
+        if (previous instanceof HTMLInputElement) {
+            let doublePrevious = previous.previousElementSibling;
+            if (doublePrevious instanceof HTMLInputElement) {
+                let nameOfOption = doublePrevious.value;
+                let weightOfOption = previous.value;
+            }
+        }
+    });
+    inputElem.oninput = saveData;
+    inputSecondElem.oninput = saveData;
+    function saveData(event) {
+        var _a, _b;
+        const current = event.target;
+        if (current instanceof HTMLInputElement) {
+            if (current.id) {
+                ___WEBPACK_IMPORTED_MODULE_1__.objData[current.id] = current.value;
+                console.log(___WEBPACK_IMPORTED_MODULE_1__.objData);
+            }
+            else if (!current.id &&
+                current.previousSibling &&
+                ((_a = current.previousSibling.previousSibling) === null || _a === void 0 ? void 0 : _a.nodeValue)) {
+                ___WEBPACK_IMPORTED_MODULE_1__.objData[(_b = current.previousSibling.previousSibling) === null || _b === void 0 ? void 0 : _b.nodeValue] = current.value;
+                console.log(___WEBPACK_IMPORTED_MODULE_1__.objData);
+            }
+        }
+        const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+        localStorage.setItem('dataFromInputs', jsonString);
+    }
     return liElem;
 }
 
@@ -4084,6 +4116,9 @@ function create(parentTag) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   objData: () => (/* binding */ objData)
+/* harmony export */ });
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _builders_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./builders/app */ "./src/builders/app.ts");
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
@@ -4092,6 +4127,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function getFromLocalStorage(key) {
+    const jsonString = localStorage.getItem(key);
+    return jsonString ? JSON.parse(jsonString) : null;
+}
+const retrievedObject = getFromLocalStorage('dataFromInputs');
+const objData = retrievedObject || {};
 window.addEventListener('load', event => {
     if (!localStorage.page) {
         localStorage.page = '0';
@@ -4103,9 +4144,26 @@ window.addEventListener('load', event => {
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
     }
-    const count = +localStorage.count;
+    const count = +localStorage.count || 0;
+    let valOpt;
+    let valW;
     for (let i = count; i > 0; i -= 1) {
-        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, i);
+        valOpt = '';
+        valW = 0;
+        for (let key of Object.keys(objData)) {
+            if (i === +key.replace(/\D/g, '') && key[0] === 'o') {
+                valOpt = String(objData[key]);
+                console.log('this' + key);
+            }
+            else if (i === +key.replace(/\D/g, '') && key[0] === '#') {
+                valW = +objData[key];
+                console.log('there' + key[key.length - 1]);
+            }
+            else {
+                continue;
+            }
+        }
+        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, i, valOpt, valW);
     }
 });
 const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -4194,7 +4252,7 @@ document.body.append(title);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("d60455a926ce51c8f1e6")
+/******/ 		__webpack_require__.h = () => ("6402056f77b9b9d01422")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
