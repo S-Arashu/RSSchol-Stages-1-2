@@ -1,3 +1,4 @@
+import { getFromLocalStorage } from '..';
 import '../../public/styles.css';
 import { Buttons } from './buttons';
 import { createInput } from './inputFields';
@@ -15,7 +16,7 @@ const NUM_OF_BUTTONS = 6;
 
 export function create(parentTag: { append: (arg0: HTMLDivElement) => void }) {
   if (!localStorage.count) {
-    localStorage.count = '1';
+    localStorage.setItem('count', JSON.stringify([1]));
   }
 
   const container = document.createElement('div');
@@ -29,11 +30,17 @@ export function create(parentTag: { append: (arg0: HTMLDivElement) => void }) {
 
     if (i === 0) {
       elementOfContainer.addEventListener('click', () => {
-        let numOfElem = localStorage.count;
-        numOfElem = +numOfElem + 1;
-        createInput(container, numOfElem);
+        let numOfElem = getFromLocalStorage('count') || [];
+        console.log(numOfElem);
+        if (numOfElem.length === 0) {
+          numOfElem.push(1);
+        } else {
+          numOfElem.push(numOfElem[numOfElem.length - 1] + 1);
+        }
 
-        localStorage.count = numOfElem;
+        createInput(container, numOfElem[numOfElem.length - 1]);
+
+        localStorage.setItem('count', JSON.stringify(numOfElem));
       });
     }
   }

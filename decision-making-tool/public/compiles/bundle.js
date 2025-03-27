@@ -4022,12 +4022,33 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
     button.textContent = 'Delete';
     label.append(button);
     button.addEventListener('click', () => {
+        var _a, _b;
         let previous = button.previousElementSibling;
         if (previous instanceof HTMLInputElement) {
             let doublePrevious = previous.previousElementSibling;
             if (doublePrevious instanceof HTMLInputElement) {
                 let nameOfOption = doublePrevious.value;
                 let weightOfOption = previous.value;
+                console.dir((_a = doublePrevious.parentNode) === null || _a === void 0 ? void 0 : _a.parentNode);
+                const parent = (_b = doublePrevious.parentNode) === null || _b === void 0 ? void 0 : _b.parentNode;
+                if (parent instanceof HTMLDivElement || parent instanceof HTMLElement) {
+                    parent.remove();
+                }
+                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[doublePrevious.id];
+                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[`#${doublePrevious.id.replace(/\D/g, '')}`];
+                const countElem = (0,___WEBPACK_IMPORTED_MODULE_1__.getFromLocalStorage)('count');
+                let deleteElem = countElem.indexOf(+doublePrevious.id.replace(/\D/g, ''));
+                console.log(deleteElem);
+                console.log(doublePrevious.id.replace(/\D/g, ''));
+                if (deleteElem != -1) {
+                    countElem.splice(deleteElem, 1);
+                }
+                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+                localStorage.setItem('dataFromInputs', jsonString);
+                localStorage.setItem('count', JSON.stringify(countElem));
+                if (countElem.length === 0) {
+                    localStorage.removeItem('count');
+                }
             }
         }
     });
@@ -4068,9 +4089,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   create: () => (/* binding */ create)
 /* harmony export */ });
-/* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
-/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
-/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
+/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+
 
 
 
@@ -4085,21 +4108,27 @@ const NAMES_OF_BUTTONS = [
 const NUM_OF_BUTTONS = 6;
 function create(parentTag) {
     if (!localStorage.count) {
-        localStorage.count = '1';
+        localStorage.setItem('count', JSON.stringify([1]));
     }
     const container = document.createElement('div');
     container.classList.add('container');
     parentTag.append(container);
     for (let i = 0; i < NUM_OF_BUTTONS; i += 1) {
-        const button = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
+        const button = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
         const elementOfContainer = button.createButton();
         container.append(elementOfContainer);
         if (i === 0) {
             elementOfContainer.addEventListener('click', () => {
-                let numOfElem = localStorage.count;
-                numOfElem = +numOfElem + 1;
-                (0,_inputFields__WEBPACK_IMPORTED_MODULE_2__.createInput)(container, numOfElem);
-                localStorage.count = numOfElem;
+                let numOfElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+                console.log(numOfElem);
+                if (numOfElem.length === 0) {
+                    numOfElem.push(1);
+                }
+                else {
+                    numOfElem.push(numOfElem[numOfElem.length - 1] + 1);
+                }
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(container, numOfElem[numOfElem.length - 1]);
+                localStorage.setItem('count', JSON.stringify(numOfElem));
             });
         }
     }
@@ -4117,6 +4146,7 @@ function create(parentTag) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getFromLocalStorage: () => (/* binding */ getFromLocalStorage),
 /* harmony export */   objData: () => (/* binding */ objData)
 /* harmony export */ });
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../public/styles.css */ "./public/styles.css");
@@ -4132,6 +4162,7 @@ function getFromLocalStorage(key) {
     return jsonString ? JSON.parse(jsonString) : null;
 }
 const retrievedObject = getFromLocalStorage('dataFromInputs');
+const countElem = getFromLocalStorage('count');
 const objData = retrievedObject || {};
 window.addEventListener('load', event => {
     if (!localStorage.page) {
@@ -4144,18 +4175,18 @@ window.addEventListener('load', event => {
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
     }
-    const count = +localStorage.count || 0;
+    const count = countElem || [1];
     let valOpt;
     let valW;
-    for (let i = count; i > 0; i -= 1) {
+    for (let i = count.length - 1; i >= 0; i -= 1) {
         valOpt = '';
         valW = 0;
         for (let key of Object.keys(objData)) {
-            if (i === +key.replace(/\D/g, '') && key[0] === 'o') {
+            if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
                 valOpt = String(objData[key]);
                 console.log('this' + key);
             }
-            else if (i === +key.replace(/\D/g, '') && key[0] === '#') {
+            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#') {
                 valW = +objData[key];
                 console.log('there' + key[key.length - 1]);
             }
@@ -4163,7 +4194,7 @@ window.addEventListener('load', event => {
                 continue;
             }
         }
-        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, i, valOpt, valW);
+        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, count[i], valOpt, valW);
     }
 });
 const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -4252,7 +4283,7 @@ document.body.append(title);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("6402056f77b9b9d01422")
+/******/ 		__webpack_require__.h = () => ("069e6515fe21efbda319")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
