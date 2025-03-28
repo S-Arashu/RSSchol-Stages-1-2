@@ -35,6 +35,10 @@ body {
 
 .label-item {
   font-size: 1.2vw;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .input-item,
