@@ -1,6 +1,7 @@
 import { getFromLocalStorage, objData } from '..';
 import '../../public/styles.css';
 import { Buttons } from './buttons';
+import { clearList } from './clearList';
 import { dialogWrongValue } from './dialog';
 import { createInput } from './inputFields';
 
@@ -15,14 +16,19 @@ const NAMES_OF_BUTTONS = [
 
 const NUM_OF_BUTTONS = 6;
 
-export function create(parentTag: { append: (arg0: HTMLDivElement) => void }) {
+export const container = document.createElement('div');
+export const containerForOptions = document.createElement('div');
+
+export function create(parentTag: { after: (arg0: HTMLDivElement) => void }) {
   if (!localStorage.count) {
     localStorage.setItem('count', JSON.stringify([1]));
   }
 
-  const container = document.createElement('div');
+  // const container = document.createElement('div');
+  // containerForOptions.classList.add('container');
   container.classList.add('container');
-  parentTag.append(container);
+  parentTag.after(containerForOptions);
+  parentTag.after(container);
 
   const dialog = document.createElement('dialog');
   dialog.setAttribute('aria-label', 'Paste list');
@@ -78,32 +84,33 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
       let countElem = getFromLocalStorage('count') || [];
       console.log(dataNum);
       if (dataNum) {
-        objData[`#${countElem[countElem.length - 1] + 1}`] = dataNum[0]?.replace(',', '');
-        objData[`option-#${countElem[countElem.length - 1] + 1}`] = data[0];
-        // let numOfElem = getFromLocalStorage('count') || [];
         if (countElem.length === 0) {
           countElem.push(1);
         } else {
           countElem.push(countElem[countElem.length - 1] + 1);
         }
-        localStorage.setItem('count', JSON.stringify(countElem));
-        const jsonString = JSON.stringify(objData);
-        localStorage.setItem('dataFromInputs', jsonString);
+        objData[`#${countElem[countElem.length - 1]}`] = dataNum[0]?.replace(',', '');
+        objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+        // let numOfElem = getFromLocalStorage('count') || [];
+
         createInput(
-          container,
+          containerForOptions,
           countElem[countElem.length - 1],
           data[0],
           +dataNum[0]?.replace(',', ''),
         );
+        localStorage.setItem('count', JSON.stringify(countElem));
+        const jsonString = JSON.stringify(objData);
+        localStorage.setItem('dataFromInputs', jsonString);
         textarea.value = '';
       } else if (dataNum == null) {
-        dialogWrongValue(container);
+        dialogWrongValue(containerForOptions);
         event.preventDefault();
       }
     });
 
     if (isNaN(lastSymbol)) {
-      dialogWrongValue(container);
+      dialogWrongValue(containerForOptions);
       event.preventDefault();
     }
   });
@@ -123,7 +130,7 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
           numOfElem.push(numOfElem[numOfElem.length - 1] + 1);
         }
 
-        createInput(container, numOfElem[numOfElem.length - 1]);
+        createInput(containerForOptions, numOfElem[numOfElem.length - 1]);
 
         localStorage.setItem('count', JSON.stringify(numOfElem));
       });
@@ -131,6 +138,11 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     if (i === 1) {
       elementOfContainer.addEventListener('click', () => {
         dialog.showModal();
+      });
+    }
+    if (i === 2) {
+      elementOfContainer.addEventListener('click', () => {
+        clearList(containerForOptions);
       });
     }
   }

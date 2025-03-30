@@ -10,10 +10,18 @@ body:has(dialog[open]) {
   text-align: center;
 }
 
+.containerForOptions {
+  width: 80vw;
+  /* height: 10vh; */
+  margin: 2% auto;
+}
+
 .container {
   width: 80vw;
-  height: 10vh;
-  margin: 2% auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1% auto;
 }
 
 .buttonList {

@@ -2,14 +2,14 @@ import '../../public/styles.css';
 import { getFromLocalStorage, objData } from '..';
 
 export function createInput(
-  parentTag: { before: (arg0: HTMLLIElement) => void },
+  parentTag: { append: (arg0: HTMLLIElement) => void },
   count: string | number,
   valuesOpt?: string,
   valuesWeight?: number,
 ) {
   const liElem = document.createElement('li');
   liElem.classList.add('item');
-  parentTag.before(liElem);
+  parentTag.append(liElem);
 
   const label = document.createElement('label');
   label.setAttribute('for', `option-#${count}`);
@@ -83,14 +83,14 @@ export function createInput(
     if (current instanceof HTMLInputElement) {
       if (current.id) {
         objData[current.id] = current.value;
-        console.log(objData);
+        console.log(current.id);
       } else if (
         !current.id &&
         current.previousSibling &&
         current.previousSibling.previousSibling?.nodeValue
       ) {
         objData[current.previousSibling.previousSibling?.nodeValue] = current.value;
-        console.log(objData);
+        console.log(current.previousSibling.previousSibling?.nodeValue);
       }
     }
 

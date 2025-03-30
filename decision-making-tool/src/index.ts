@@ -1,7 +1,7 @@
 import '../public/styles.css';
 
 import createTitleApp from './builders/app';
-import { create } from './builders/mainBlock';
+import { container, containerForOptions, create } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
 
 export function getFromLocalStorage(key: string) {
@@ -36,7 +36,7 @@ window.addEventListener('load', event => {
   const count = countElem || [1];
   let valOpt: string | undefined;
   let valW: number | undefined;
-  for (let i = count.length - 1; i >= 0; i -= 1) {
+  for (let i = 0; i <= count.length - 1; i += 1) {
     valOpt = '';
     valW = 0;
     for (let key of Object.keys(objData)) {
@@ -52,7 +52,7 @@ window.addEventListener('load', event => {
     }
 
     // if (valOpt !== undefined && valW !== undefined) {
-    createInput(title, count[i], valOpt, valW);
+    createInput(containerForOptions, count[i], valOpt, valW);
     // }
   }
 
@@ -64,3 +64,7 @@ const title = createTitleApp();
 document.body.append(title);
 
 create(title);
+
+// export const containerForOptions = document.createElement('div');
+containerForOptions.classList.add('containerForOptions');
+title.append(containerForOptions);
