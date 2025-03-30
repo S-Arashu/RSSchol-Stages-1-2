@@ -1,9 +1,12 @@
+import * as fs from 'fs';
+
 import { getFromLocalStorage, objData } from '..';
 import '../../public/styles.css';
 import { Buttons } from './buttons';
 import { clearList } from './clearList';
 import { dialogWrongValue } from './dialog';
 import { createInput } from './inputFields';
+import { saveToFile } from './saveData';
 
 const NAMES_OF_BUTTONS = [
   'Add Option',
@@ -143,6 +146,11 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     if (i === 2) {
       elementOfContainer.addEventListener('click', () => {
         clearList(containerForOptions);
+      });
+    }
+    if (i === 3) {
+      elementOfContainer.addEventListener('click', () => {
+        saveToFile();
       });
     }
   }

@@ -4163,6 +4163,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clearList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./clearList */ "./src/builders/clearList.ts");
 /* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
 /* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _saveData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./saveData */ "./src/builders/saveData.ts");
+
 
 
 
@@ -4289,7 +4291,42 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
                 (0,_clearList__WEBPACK_IMPORTED_MODULE_3__.clearList)(containerForOptions);
             });
         }
+        if (i === 3) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_saveData__WEBPACK_IMPORTED_MODULE_6__.saveToFile)();
+            });
+        }
     }
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/saveData.ts":
+/*!**********************************!*\
+  !*** ./src/builders/saveData.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   saveToFile: () => (/* binding */ saveToFile)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+
+function saveToFile() {
+    const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData, null, 2);
+    function downloadJSON(jsonString, filename) {
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    downloadJSON(jsonString, 'myObject.json');
 }
 
 
@@ -4443,7 +4480,7 @@ title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOption
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("3369c6608f89383259cc")
+/******/ 		__webpack_require__.h = () => ("b3387efa49b950ee7dd1")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
