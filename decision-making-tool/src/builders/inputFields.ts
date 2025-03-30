@@ -2,14 +2,14 @@ import '../../public/styles.css';
 import { getFromLocalStorage, objData } from '..';
 
 export function createInput(
-  parentTag: { prepend: (arg0: HTMLLIElement) => void },
+  parentTag: { before: (arg0: HTMLLIElement) => void },
   count: string | number,
   valuesOpt?: string,
   valuesWeight?: number,
 ) {
   const liElem = document.createElement('li');
   liElem.classList.add('item');
-  parentTag.prepend(liElem);
+  parentTag.before(liElem);
 
   const label = document.createElement('label');
   label.setAttribute('for', `option-#${count}`);

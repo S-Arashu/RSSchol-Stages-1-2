@@ -14,7 +14,9 @@ export function getFromLocalStorage(key: string) {
 const retrievedObject = getFromLocalStorage('dataFromInputs');
 const countElem = getFromLocalStorage('count');
 
-export const objData: { [key: string]: string | number } = retrievedObject || {};
+export const objData: {
+  [key: string]: string | number | RegExpExecArray | null | string[] | undefined;
+} = retrievedObject || {};
 
 window.addEventListener('load', event => {
   if (!localStorage.page) {
@@ -41,7 +43,7 @@ window.addEventListener('load', event => {
       if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
         valOpt = String(objData[key]);
         console.log('this' + key);
-      } else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#') {
+      } else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && objData[key]) {
         valW = +objData[key];
         console.log('there' + key[key.length - 1]);
       } else {

@@ -2,6 +2,10 @@ body {
   background-color: rgba(27, 122, 224, 0.619);
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 .title {
   text-align: center;
 }
@@ -49,4 +53,9 @@ body {
 
 .button-item {
   cursor: pointer;
+}
+
+.containerForButtons {
+  display: flex;
+  justify-content: space-around;
 }

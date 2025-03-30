@@ -212,6 +212,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   background-color: rgba(27, 122, 224, 0.619);
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 .title {
   text-align: center;
 }
@@ -260,7 +264,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 .button-item {
   cursor: pointer;
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\n.title {\n  text-align: center;\n}\n\n.container {\n  width: 80vw;\n  height: 10vh;\n  margin: 2% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n"],"sourceRoot":""}]);
+
+.containerForButtons {
+  display: flex;
+  justify-content: space-around;
+}
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.container {\n  width: 80vw;\n  height: 10vh;\n  margin: 2% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3982,6 +3991,28 @@ class Buttons {
 
 /***/ }),
 
+/***/ "./src/builders/dialog.ts":
+/*!********************************!*\
+  !*** ./src/builders/dialog.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   dialogWrongValue: () => (/* binding */ dialogWrongValue)
+/* harmony export */ });
+function dialogWrongValue(parent) {
+    const dialog = document.createElement('dialog');
+    dialog.classList.add('popup');
+    dialog.textContent = 'Please, enter correct data';
+    parent.append(dialog);
+    dialog.showModal();
+}
+
+
+/***/ }),
+
 /***/ "./src/builders/inputFields.ts":
 /*!*************************************!*\
   !*** ./src/builders/inputFields.ts ***!
@@ -4000,7 +4031,7 @@ __webpack_require__.r(__webpack_exports__);
 function createInput(parentTag, count, valuesOpt, valuesWeight) {
     const liElem = document.createElement('li');
     liElem.classList.add('item');
-    parentTag.prepend(liElem);
+    parentTag.before(liElem);
     const label = document.createElement('label');
     label.setAttribute('for', `option-#${count}`);
     label.textContent = `#${count}`;
@@ -4096,7 +4127,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
-/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+
 
 
 
@@ -4117,6 +4150,80 @@ function create(parentTag) {
     const container = document.createElement('div');
     container.classList.add('container');
     parentTag.append(container);
+    const dialog = document.createElement('dialog');
+    dialog.setAttribute('aria-label', 'Paste list');
+    dialog.classList.add('popup');
+    container.append(dialog);
+    const form = document.createElement('form');
+    form.setAttribute('method', 'dialog');
+    form.classList.add('formForDialog');
+    dialog.append(form);
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('textarea');
+    textarea.setAttribute('rows', '12');
+    textarea.setAttribute('cols', '64');
+    textarea.setAttribute('placeholder', `
+    Paste a list of new options in a CSV-like format:
+
+title,1                 -> | title                 | 1 |
+title with whitespace,2 -> | title with whitespace | 2 |
+title , with , commas,3 -> | title , with , commas | 3 |
+title with "quotes",4   -> | title with "quotes"   | 4 |`);
+    textarea.setAttribute('name', 'table');
+    form.append(textarea);
+    const containerForButtons = document.createElement('div');
+    containerForButtons.classList.add('containerForButtons');
+    form.append(containerForButtons);
+    const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Cancel', 'cancelButton');
+    const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Confirm', 'confirmButton');
+    const cancelBut = cancel.createButton();
+    const confirmBut = confirm.createButton();
+    containerForButtons.append(cancelBut);
+    containerForButtons.append(confirmBut);
+    form.addEventListener('keypress', function (event) {
+        let key = event.key;
+        if (key === 'Enter') {
+            const lastSymbol = +textarea.value[textarea.value.length - 1];
+            if (isNaN(lastSymbol)) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_3__.dialogWrongValue)(container);
+            }
+        }
+        console.log(key);
+    });
+    confirmBut.addEventListener('click', event => {
+        const lastSymbol = +textarea.value[textarea.value.length - 1];
+        const dataFromTextarea = textarea.value.split('\n');
+        dataFromTextarea.forEach(arrayElem => {
+            var _a, _b;
+            let data = arrayElem.split(/,[1-9]/);
+            let dataNum = /,[1-9]/.exec(arrayElem);
+            let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+            console.log(dataNum);
+            if (dataNum) {
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1] + 1}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1] + 1}`] = data[0];
+                if (countElem.length === 0) {
+                    countElem.push(1);
+                }
+                else {
+                    countElem.push(countElem[countElem.length - 1] + 1);
+                }
+                localStorage.setItem('count', JSON.stringify(countElem));
+                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
+                localStorage.setItem('dataFromInputs', jsonString);
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_4__.createInput)(container, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
+                textarea.value = '';
+            }
+            else if (dataNum == null) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_3__.dialogWrongValue)(container);
+                event.preventDefault();
+            }
+        });
+        if (isNaN(lastSymbol)) {
+            (0,_dialog__WEBPACK_IMPORTED_MODULE_3__.dialogWrongValue)(container);
+            event.preventDefault();
+        }
+    });
     for (let i = 0; i < NUM_OF_BUTTONS; i += 1) {
         const button = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
         const elementOfContainer = button.createButton();
@@ -4131,8 +4238,13 @@ function create(parentTag) {
                 else {
                     numOfElem.push(numOfElem[numOfElem.length - 1] + 1);
                 }
-                (0,_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(container, numOfElem[numOfElem.length - 1]);
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_4__.createInput)(container, numOfElem[numOfElem.length - 1]);
                 localStorage.setItem('count', JSON.stringify(numOfElem));
+            });
+        }
+        if (i === 1) {
+            elementOfContainer.addEventListener('click', () => {
+                dialog.showModal();
             });
         }
     }
@@ -4190,7 +4302,7 @@ window.addEventListener('load', event => {
                 valOpt = String(objData[key]);
                 console.log('this' + key);
             }
-            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#') {
+            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && objData[key]) {
                 valW = +objData[key];
                 console.log('there' + key[key.length - 1]);
             }
@@ -4287,7 +4399,7 @@ document.body.append(title);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c87d961a55b668517573")
+/******/ 		__webpack_require__.h = () => ("d889970e6deea6cfd248")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
