@@ -7,6 +7,8 @@ import { clearList } from './clearList';
 import { dialogWrongValue } from './dialog';
 import { createInput } from './inputFields';
 import { saveToFile } from './saveData';
+import { downloadData } from './downloadData';
+import { loadOptions } from './loadOptions';
 
 const NAMES_OF_BUTTONS = [
   'Add Option',
@@ -77,9 +79,10 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     }
     console.log(key);
   });
+
   confirmBut.addEventListener('click', event => {
     const lastSymbol = +textarea.value[textarea.value.length - 1];
-
+    let objData = getFromLocalStorage('dataFromInputs');
     const dataFromTextarea = textarea.value.split('\n');
     dataFromTextarea.forEach(arrayElem => {
       let data = arrayElem.split(/,[1-9]/);
@@ -151,6 +154,12 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     if (i === 3) {
       elementOfContainer.addEventListener('click', () => {
         saveToFile();
+      });
+    }
+    if (i === 4) {
+      elementOfContainer.addEventListener('click', () => {
+        // clearList(containerForOptions);
+        downloadData(elementOfContainer);
       });
     }
   }

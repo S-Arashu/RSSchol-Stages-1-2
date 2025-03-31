@@ -4044,6 +4044,95 @@ function dialogWrongValue(parent) {
 
 /***/ }),
 
+/***/ "./src/builders/downloadData.ts":
+/*!**************************************!*\
+  !*** ./src/builders/downloadData.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   downloadData: () => (/* binding */ downloadData)
+/* harmony export */ });
+/* harmony import */ var _clearList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clearList */ "./src/builders/clearList.ts");
+/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+function downloadData(elem) {
+    elem.setAttribute('id', 'loadButton');
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('id', 'fileInput');
+    fileInput.setAttribute('accept', '.json');
+    fileInput.setAttribute('style', 'display: none;');
+    elem.after(fileInput);
+    elem.addEventListener('click', function () {
+        fileInput.click();
+    });
+    fileInput.addEventListener('change', event => {
+        if (event.target && event.target instanceof HTMLInputElement) {
+            if (event.target.files) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        var _a, _b;
+                        try {
+                            console.log(typeof ((_a = e.target) === null || _a === void 0 ? void 0 : _a.result) === 'string');
+                            if (e.target && typeof ((_b = e.target) === null || _b === void 0 ? void 0 : _b.result) === 'string') {
+                                const jsonObject = JSON.parse(e.target.result);
+                                console.log(jsonObject);
+                                (0,_clearList__WEBPACK_IMPORTED_MODULE_0__.clearList)(_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
+                                let objLength;
+                                let weightLength = [];
+                                let titleLength = [];
+                                let objCount;
+                                for (let key of Object.keys(jsonObject)) {
+                                    console.log(key[0] === 'o');
+                                    if (key[0] === 'o') {
+                                        titleLength.push(+key.replace(/\D/g, ''));
+                                    }
+                                    else if (key[0] === '#') {
+                                        weightLength.push(+key.replace(/\D/g, ''));
+                                    }
+                                    if (weightLength.length > titleLength.length) {
+                                        objCount = weightLength.slice(0);
+                                    }
+                                    else {
+                                        objCount = titleLength.slice(0);
+                                    }
+                                }
+                                const objData = jsonObject;
+                                if (objCount) {
+                                    localStorage.setItem('count', JSON.stringify(objCount));
+                                    (0,_loadOptions__WEBPACK_IMPORTED_MODULE_1__.loadOptions)(objData);
+                                    localStorage.setItem('dataFromInputs', JSON.stringify(objData));
+                                }
+                            }
+                        }
+                        catch (error) {
+                            console.error('Error parsing JSON:', error);
+                        }
+                    };
+                    reader.onerror = error => {
+                        console.error('Error reading file:', error);
+                    };
+                    reader.readAsText(file);
+                }
+                else {
+                    console.error('No file selected');
+                }
+            }
+        }
+    });
+}
+
+
+/***/ }),
+
 /***/ "./src/builders/inputFields.ts":
 /*!*************************************!*\
   !*** ./src/builders/inputFields.ts ***!
@@ -4100,8 +4189,8 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
                 if (parent instanceof HTMLDivElement || parent instanceof HTMLElement) {
                     parent.remove();
                 }
-                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[doublePrevious.id];
-                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[`#${doublePrevious.id.replace(/\D/g, '')}`];
+                delete objData[doublePrevious.id];
+                delete objData[`#${doublePrevious.id.replace(/\D/g, '')}`];
                 const countElem = (0,___WEBPACK_IMPORTED_MODULE_1__.getFromLocalStorage)('count');
                 let deleteElem = countElem.indexOf(+doublePrevious.id.replace(/\D/g, ''));
                 console.log(deleteElem);
@@ -4109,7 +4198,7 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
                 if (deleteElem != -1) {
                     countElem.splice(deleteElem, 1);
                 }
-                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+                const jsonString = JSON.stringify(objData);
                 localStorage.setItem('dataFromInputs', jsonString);
                 localStorage.setItem('count', JSON.stringify(countElem));
                 if (countElem.length === 0) {
@@ -4120,25 +4209,69 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
     });
     inputElem.oninput = saveData;
     inputSecondElem.oninput = saveData;
+    let objData = (0,___WEBPACK_IMPORTED_MODULE_1__.getFromLocalStorage)('dataFromInputs');
     function saveData(event) {
         var _a, _b, _c;
         const current = event.target;
         if (current instanceof HTMLInputElement) {
             if (current.id) {
-                ___WEBPACK_IMPORTED_MODULE_1__.objData[current.id] = current.value;
+                objData[current.id] = current.value;
                 console.log(current.id);
             }
             else if (!current.id &&
                 current.previousSibling &&
                 ((_a = current.previousSibling.previousSibling) === null || _a === void 0 ? void 0 : _a.nodeValue)) {
-                ___WEBPACK_IMPORTED_MODULE_1__.objData[(_b = current.previousSibling.previousSibling) === null || _b === void 0 ? void 0 : _b.nodeValue] = current.value;
+                objData[(_b = current.previousSibling.previousSibling) === null || _b === void 0 ? void 0 : _b.nodeValue] = current.value;
                 console.log((_c = current.previousSibling.previousSibling) === null || _c === void 0 ? void 0 : _c.nodeValue);
             }
         }
-        const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+        const jsonString = JSON.stringify(objData);
         localStorage.setItem('dataFromInputs', jsonString);
     }
     return liElem;
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/loadOptions.ts":
+/*!*************************************!*\
+  !*** ./src/builders/loadOptions.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadOptions: () => (/* binding */ loadOptions)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+function loadOptions(object) {
+    const count = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [1];
+    let valOpt;
+    let valW;
+    for (let i = 0; i < count.length; i += 1) {
+        valOpt = '';
+        valW = 0;
+        for (let key of Object.keys(object)) {
+            console.log(key);
+            if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
+                valOpt = String(object[key]);
+            }
+            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && object[key]) {
+                valW = +object[key];
+            }
+            else {
+                continue;
+            }
+        }
+        (0,_inputFields__WEBPACK_IMPORTED_MODULE_1__.createInput)(_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions, count[i], valOpt, valW);
+    }
 }
 
 
@@ -4164,6 +4297,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
 /* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
 /* harmony import */ var _saveData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./saveData */ "./src/builders/saveData.ts");
+/* harmony import */ var _downloadData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./downloadData */ "./src/builders/downloadData.ts");
+
 
 
 
@@ -4231,6 +4366,7 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
     });
     confirmBut.addEventListener('click', event => {
         const lastSymbol = +textarea.value[textarea.value.length - 1];
+        let objData = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs');
         const dataFromTextarea = textarea.value.split('\n');
         dataFromTextarea.forEach(arrayElem => {
             var _a, _b;
@@ -4245,11 +4381,11 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
                 else {
                     countElem.push(countElem[countElem.length - 1] + 1);
                 }
-                ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
-                ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+                objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
+                objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
                 (0,_inputFields__WEBPACK_IMPORTED_MODULE_5__.createInput)(containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
                 localStorage.setItem('count', JSON.stringify(countElem));
-                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
+                const jsonString = JSON.stringify(objData);
                 localStorage.setItem('dataFromInputs', jsonString);
                 textarea.value = '';
             }
@@ -4294,6 +4430,11 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
         if (i === 3) {
             elementOfContainer.addEventListener('click', () => {
                 (0,_saveData__WEBPACK_IMPORTED_MODULE_6__.saveToFile)();
+            });
+        }
+        if (i === 4) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_downloadData__WEBPACK_IMPORTED_MODULE_7__.downloadData)(elementOfContainer);
             });
         }
     }
@@ -4347,7 +4488,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _builders_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./builders/app */ "./src/builders/app.ts");
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
-/* harmony import */ var _builders_inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/loadOptions */ "./src/builders/loadOptions.ts");
 
 
 
@@ -4370,27 +4511,7 @@ window.addEventListener('load', event => {
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
     }
-    const count = countElem || [1];
-    let valOpt;
-    let valW;
-    for (let i = 0; i <= count.length - 1; i += 1) {
-        valOpt = '';
-        valW = 0;
-        for (let key of Object.keys(objData)) {
-            if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
-                valOpt = String(objData[key]);
-                console.log('this' + key);
-            }
-            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && objData[key]) {
-                valW = +objData[key];
-                console.log('there' + key[key.length - 1]);
-            }
-            else {
-                continue;
-            }
-        }
-        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions, count[i], valOpt, valW);
-    }
+    (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
 });
 const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
 document.body.append(title);
@@ -4480,7 +4601,7 @@ title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOption
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("b3387efa49b950ee7dd1")
+/******/ 		__webpack_require__.h = () => ("bcb43357690ec44fa81c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

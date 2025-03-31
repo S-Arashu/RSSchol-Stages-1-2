@@ -78,6 +78,8 @@ export function createInput(
   inputElem.oninput = saveData;
   inputSecondElem.oninput = saveData;
 
+  let objData = getFromLocalStorage('dataFromInputs');
+
   function saveData(event: Event): void {
     const current = event.target;
     if (current instanceof HTMLInputElement) {

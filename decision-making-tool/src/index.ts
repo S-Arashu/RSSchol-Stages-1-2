@@ -3,6 +3,7 @@ import '../public/styles.css';
 import createTitleApp from './builders/app';
 import { container, containerForOptions, create } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
+import { loadOptions } from './builders/loadOptions';
 
 export function getFromLocalStorage(key: string) {
   const jsonString = localStorage.getItem(key);
@@ -32,29 +33,28 @@ window.addEventListener('load', event => {
     location.hash = 'decision-maker';
   }
 
+  loadOptions(objData);
   // if (localStorage.count !== '0') {
-  const count = countElem || [1];
-  let valOpt: string | undefined;
-  let valW: number | undefined;
-  for (let i = 0; i <= count.length - 1; i += 1) {
-    valOpt = '';
-    valW = 0;
-    for (let key of Object.keys(objData)) {
-      if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
-        valOpt = String(objData[key]);
-        console.log('this' + key);
-      } else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && objData[key]) {
-        valW = +objData[key];
-        console.log('there' + key[key.length - 1]);
-      } else {
-        continue;
-      }
-    }
+  // const count = countElem || [1];
+  // let valOpt: string | undefined;
+  // let valW: number | undefined;
+  // for (let i = 0; i <= count.length - 1; i += 1) {
+  //   valOpt = '';
+  //   valW = 0;
+  //   for (let key of Object.keys(objData)) {
+  //     if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
+  //       valOpt = String(objData[key]);
+  //     } else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && objData[key]) {
+  //       valW = +objData[key];
+  //     } else {
+  //       continue;
+  //     }
+  //   }
 
-    // if (valOpt !== undefined && valW !== undefined) {
-    createInput(containerForOptions, count[i], valOpt, valW);
-    // }
-  }
+  //   // if (valOpt !== undefined && valW !== undefined) {
+  //   createInput(containerForOptions, count[i], valOpt, valW);
+  //   // }
+  // }
 
   // }
 });
