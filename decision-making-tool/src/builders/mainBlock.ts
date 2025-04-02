@@ -9,6 +9,7 @@ import { createInput } from './inputFields';
 import { saveToFile } from './saveData';
 import { downloadData } from './downloadData';
 import { loadOptions } from './loadOptions';
+import { createChoosePage } from './wheel';
 
 const NAMES_OF_BUTTONS = [
   'Add Option',
@@ -82,7 +83,7 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
 
   confirmBut.addEventListener('click', event => {
     const lastSymbol = +textarea.value[textarea.value.length - 1];
-    let objData = getFromLocalStorage('dataFromInputs');
+    // let objData = getFromLocalStorage('dataFromInputs');
     const dataFromTextarea = textarea.value.split('\n');
     dataFromTextarea.forEach(arrayElem => {
       let data = arrayElem.split(/,[1-9]/);
@@ -160,6 +161,20 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
       elementOfContainer.addEventListener('click', () => {
         // clearList(containerForOptions);
         downloadData(elementOfContainer);
+      });
+    }
+    if (i === 5) {
+      elementOfContainer.addEventListener('click', () => {
+        if (
+          !localStorage.getItem('dataFromInputs') ||
+          Object.keys(getFromLocalStorage('dataFromInputs')).length < 4
+        ) {
+          dialogWrongValue(containerForOptions);
+        } else {
+          localStorage.page = '1';
+          location.hash = 'decision-maker';
+          createChoosePage();
+        }
       });
     }
   }

@@ -78,21 +78,20 @@ export function createInput(
   inputElem.oninput = saveData;
   inputSecondElem.oninput = saveData;
 
-  let objData = getFromLocalStorage('dataFromInputs');
+  // let objData = getFromLocalStorage('dataFromInputs');
 
   function saveData(event: Event): void {
+    let objData = getFromLocalStorage('dataFromInputs');
     const current = event.target;
     if (current instanceof HTMLInputElement) {
       if (current.id) {
         objData[current.id] = current.value;
-        console.log(current.id);
       } else if (
         !current.id &&
         current.previousSibling &&
         current.previousSibling.previousSibling?.nodeValue
       ) {
         objData[current.previousSibling.previousSibling?.nodeValue] = current.value;
-        console.log(current.previousSibling.previousSibling?.nodeValue);
       }
     }
 

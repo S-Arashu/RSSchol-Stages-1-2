@@ -4,6 +4,24 @@ import createTitleApp from './builders/app';
 import { container, containerForOptions, create } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
 import { loadOptions } from './builders/loadOptions';
+import { createChoosePage } from './builders/wheel';
+
+const retrievedObject = getFromLocalStorage('dataFromInputs');
+const countElem = getFromLocalStorage('count');
+
+export const objData: {
+  [key: string]: string | number | RegExpExecArray | null | string[] | undefined;
+} = retrievedObject || {};
+
+export const title = createTitleApp();
+
+document.body.append(title);
+
+create(title);
+
+// export const containerForOptions = document.createElement('div');
+containerForOptions.classList.add('containerForOptions');
+title.append(containerForOptions);
 
 export function getFromLocalStorage(key: string) {
   const jsonString = localStorage.getItem(key);
@@ -12,28 +30,43 @@ export function getFromLocalStorage(key: string) {
 }
 
 // Call the function to retrieve the object
-const retrievedObject = getFromLocalStorage('dataFromInputs');
-const countElem = getFromLocalStorage('count');
-
-export const objData: {
-  [key: string]: string | number | RegExpExecArray | null | string[] | undefined;
-} = retrievedObject || {};
 
 window.addEventListener('load', event => {
   if (!localStorage.page) {
+    containerForOptions.textContent = '';
+    container.textContent = '';
     localStorage.page = '0';
     location.hash = 'main';
+
+    document.body.append(title);
+
+    create(title);
+
+    // export const containerForOptions = document.createElement('div');
+    containerForOptions.classList.add('containerForOptions');
+    title.append(containerForOptions);
+    loadOptions(objData);
   }
 
   if (localStorage.page === '0') {
+    containerForOptions.textContent = '';
+    container.textContent = '';
     location.hash = 'main';
+
+    document.body.append(title);
+
+    create(title);
+
+    // export const containerForOptions = document.createElement('div');
+    containerForOptions.classList.add('containerForOptions');
+    title.append(containerForOptions);
+    loadOptions(objData);
   }
 
   if (localStorage.page === '1') {
     location.hash = 'decision-maker';
+    createChoosePage();
   }
-
-  loadOptions(objData);
   // if (localStorage.count !== '0') {
   // const count = countElem || [1];
   // let valOpt: string | undefined;
@@ -58,13 +91,3 @@ window.addEventListener('load', event => {
 
   // }
 });
-
-const title = createTitleApp();
-
-document.body.append(title);
-
-create(title);
-
-// export const containerForOptions = document.createElement('div');
-containerForOptions.classList.add('containerForOptions');
-title.append(containerForOptions);
