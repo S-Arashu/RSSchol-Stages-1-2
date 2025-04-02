@@ -40,10 +40,13 @@ export function create(parentTag: { after: (arg0: HTMLDivElement) => void }) {
   dialog.setAttribute('aria-label', 'Paste list');
   dialog.classList.add('popup');
   container.append(dialog);
+  const dialogWrapper = document.createElement('div');
+  dialogWrapper.classList.add('dialog-wrapper');
+  dialog.append(dialogWrapper);
   const form = document.createElement('form');
   form.setAttribute('method', 'dialog');
   form.classList.add('formForDialog');
-  dialog.append(form);
+  dialogWrapper.append(form);
   const textarea = document.createElement('textarea');
   textarea.classList.add('textarea');
   textarea.setAttribute('rows', '12');
@@ -80,6 +83,19 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     }
     console.log(key);
   });
+
+  dialog.addEventListener('click', closeOnBackDropClick);
+
+  function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
+    const dialogElement = currentTarget;
+
+    if (dialogElement instanceof HTMLDialogElement) {
+      const isClickedOnBackDrop = target === dialogElement;
+      if (isClickedOnBackDrop && dialogElement) {
+        dialogElement.close();
+      }
+    }
+  }
 
   confirmBut.addEventListener('click', event => {
     const lastSymbol = +textarea.value[textarea.value.length - 1];

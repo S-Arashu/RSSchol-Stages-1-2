@@ -16,6 +16,15 @@ body:has(dialog[open]) {
   margin: 2% auto;
 }
 
+.dialog {
+  border: none;
+  padding: 0;
+}
+
+.dialog-wrapper {
+  padding: 1em;
+}
+
 .container {
   width: 80vw;
   display: flex;
