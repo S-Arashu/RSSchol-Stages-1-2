@@ -4,4 +4,10 @@ export function dialogWrongValue(parent: { append: (arg0: HTMLDialogElement) => 
   dialog.textContent = 'Please, enter correct data';
   parent.append(dialog);
   dialog.showModal();
+
+  dialog.addEventListener('cancel', event => {
+    // if (event.key === 'Escape') {
+    dialog.remove();
+    // }
+  });
 }

@@ -31,112 +31,126 @@ export function create(parentTag: { after: (arg0: HTMLDivElement) => void }) {
   }
 
   // const container = document.createElement('div');
-  // containerForOptions.classList.add('container');
+  containerForOptions.classList.add('container');
   container.classList.add('container');
   parentTag.after(containerForOptions);
   parentTag.after(container);
 
-  const dialog = document.createElement('dialog');
-  dialog.setAttribute('aria-label', 'Paste list');
-  dialog.classList.add('popup');
-  container.append(dialog);
-  const dialogWrapper = document.createElement('div');
-  dialogWrapper.classList.add('dialog-wrapper');
-  dialog.append(dialogWrapper);
-  const form = document.createElement('form');
-  form.setAttribute('method', 'dialog');
-  form.classList.add('formForDialog');
-  dialogWrapper.append(form);
-  const textarea = document.createElement('textarea');
-  textarea.classList.add('textarea');
-  textarea.setAttribute('rows', '12');
-  textarea.setAttribute('cols', '64');
-  textarea.setAttribute(
-    'placeholder',
-    `
-    Paste a list of new options in a CSV-like format:
+  //   const dialog = document.createElement('dialog');
+  //   dialog.setAttribute('aria-label', 'Paste list');
+  //   dialog.classList.add('popup');
+  //   container.append(dialog);
+  //   const dialogWrapper = document.createElement('div');
+  //   dialogWrapper.classList.add('dialog-wrapper');
+  //   dialog.append(dialogWrapper);
+  //   const form = document.createElement('form');
+  //   form.setAttribute('method', 'dialog');
+  //   form.classList.add('formForDialog');
+  //   dialogWrapper.append(form);
+  //   const textarea = document.createElement('textarea');
+  //   textarea.classList.add('textarea');
+  //   textarea.setAttribute('rows', '12');
+  //   textarea.setAttribute('cols', '64');
+  //   textarea.setAttribute(
+  //     'placeholder',
+  //     `
+  //     Paste a list of new options in a CSV-like format:
 
-title,1                 -> | title                 | 1 |
-title with whitespace,2 -> | title with whitespace | 2 |
-title , with , commas,3 -> | title , with , commas | 3 |
-title with "quotes",4   -> | title with "quotes"   | 4 |`,
-  );
-  textarea.setAttribute('name', 'table');
-  form.append(textarea);
-  const containerForButtons = document.createElement('div');
-  containerForButtons.classList.add('containerForButtons');
-  form.append(containerForButtons);
-  const cancel: Buttons = new Buttons('button', 'Cancel', 'cancelButton');
-  const confirm: Buttons = new Buttons('button', 'Confirm', 'confirmButton');
-  const cancelBut = cancel.createButton();
-  const confirmBut = confirm.createButton();
-  containerForButtons.append(cancelBut);
-  containerForButtons.append(confirmBut);
-  form.addEventListener('keypress', function (event) {
-    let key = event.key;
-    if (key === 'Enter') {
-      const lastSymbol = +textarea.value[textarea.value.length - 1];
-      // const firstNum =
-      if (isNaN(lastSymbol)) {
-        dialogWrongValue(container);
-      }
-    }
-    console.log(key);
-  });
+  // title,1                 -> | title                 | 1 |
+  // title with whitespace,2 -> | title with whitespace | 2 |
+  // title , with , commas,3 -> | title , with , commas | 3 |
+  // title with "quotes",4   -> | title with "quotes"   | 4 |`,
+  //   );
+  //   textarea.setAttribute('name', 'table');
+  //   form.append(textarea);
+  //   const containerForButtons = document.createElement('div');
+  //   containerForButtons.classList.add('containerForButtons');
+  //   form.append(containerForButtons);
+  //   const cancel: Buttons = new Buttons('button', 'Cancel', 'cancelButton');
+  //   const confirm: Buttons = new Buttons('button', 'Confirm', 'confirmButton');
+  //   const cancelBut = cancel.createButton();
+  //   const confirmBut = confirm.createButton();
+  //   containerForButtons.append(cancelBut);
+  //   containerForButtons.append(confirmBut);
 
-  dialog.addEventListener('click', closeOnBackDropClick);
+  //   cancelBut.addEventListener('click', () => {
+  //     dialog.remove();
+  //   });
 
-  function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
-    const dialogElement = currentTarget;
+  //   form.addEventListener('keypress', function (event) {
+  //     let key = event.key;
+  //     if (key === 'Enter') {
+  //       const lastSymbol = +textarea.value[textarea.value.length - 1];
+  //       if (isNaN(lastSymbol)) {
+  //         dialogWrongValue(container);
+  //       }
+  //     }
+  //   });
 
-    if (dialogElement instanceof HTMLDialogElement) {
-      const isClickedOnBackDrop = target === dialogElement;
-      if (isClickedOnBackDrop && dialogElement) {
-        dialogElement.close();
-      }
-    }
-  }
+  //   document.addEventListener('keypress', function (event) {
+  //     let key = event.key;
 
-  confirmBut.addEventListener('click', event => {
-    const lastSymbol = +textarea.value[textarea.value.length - 1];
-    // let objData = getFromLocalStorage('dataFromInputs');
-    const dataFromTextarea = textarea.value.split('\n');
-    dataFromTextarea.forEach(arrayElem => {
-      let data = arrayElem.split(/,[1-9]/);
-      let dataNum = /,[1-9]/.exec(arrayElem);
-      let countElem = getFromLocalStorage('count') || [];
-      console.log(dataNum);
-      if (dataNum) {
-        if (countElem.length === 0) {
-          countElem.push(1);
-        } else {
-          countElem.push(countElem[countElem.length - 1] + 1);
-        }
-        objData[`#${countElem[countElem.length - 1]}`] = dataNum[0]?.replace(',', '');
-        objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
-        // let numOfElem = getFromLocalStorage('count') || [];
+  //     if (key === 'Escape') {
+  //       dialog.remove();
+  //     }
+  //     console.log(key);
+  //   });
 
-        createInput(
-          containerForOptions,
-          countElem[countElem.length - 1],
-          data[0],
-          +dataNum[0]?.replace(',', ''),
-        );
-        localStorage.setItem('count', JSON.stringify(countElem));
-        const jsonString = JSON.stringify(objData);
-        localStorage.setItem('dataFromInputs', jsonString);
-        textarea.value = '';
-      } else if (dataNum == null) {
-        dialogWrongValue(containerForOptions);
-        event.preventDefault();
-      }
-    });
+  //   dialog.addEventListener('click', closeOnBackDropClick);
 
-    if (isNaN(lastSymbol)) {
-      dialogWrongValue(containerForOptions);
-      event.preventDefault();
-    }
-  });
+  //   function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
+  //     const dialogElement = currentTarget;
+
+  //     if (dialogElement instanceof HTMLDialogElement) {
+  //       const isClickedOnBackDrop = target === dialogElement;
+  //       if (isClickedOnBackDrop && dialogElement) {
+  //         dialogElement.close();
+  //         dialog.remove();
+  //       }
+  //     }
+  //   }
+
+  //   confirmBut.addEventListener('click', event => {
+  //     const lastSymbol = +textarea.value[textarea.value.length - 1];
+  //     // let objData = getFromLocalStorage('dataFromInputs');
+  //     const dataFromTextarea = textarea.value.split('\n');
+  //     dataFromTextarea.forEach(arrayElem => {
+  //       let data = arrayElem.split(/,[1-9]/);
+  //       let dataNum = /,[1-9]/.exec(arrayElem);
+  //       let countElem = getFromLocalStorage('count') || [];
+  //       console.log(dataNum);
+  //       if (dataNum) {
+  //         if (countElem.length === 0) {
+  //           countElem.push(1);
+  //         } else {
+  //           countElem.push(countElem[countElem.length - 1] + 1);
+  //         }
+  //         objData[`#${countElem[countElem.length - 1]}`] = dataNum[0]?.replace(',', '');
+  //         objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+  //         // let numOfElem = getFromLocalStorage('count') || [];
+
+  //         createInput(
+  //           containerForOptions,
+  //           countElem[countElem.length - 1],
+  //           data[0],
+  //           +dataNum[0]?.replace(',', ''),
+  //         );
+  //         localStorage.setItem('count', JSON.stringify(countElem));
+  //         const jsonString = JSON.stringify(objData);
+  //         localStorage.setItem('dataFromInputs', jsonString);
+  //         textarea.value = '';
+  //       } else if (dataNum == null) {
+  //         dialogWrongValue(containerForOptions);
+  //         event.preventDefault();
+  //       }
+  //     });
+
+  //     if (isNaN(lastSymbol)) {
+  //       dialogWrongValue(containerForOptions);
+  //       event.preventDefault();
+  //     }
+  //     dialog.remove();
+  //   });
 
   for (let i = 0; i < NUM_OF_BUTTONS; i += 1) {
     const button = new Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
@@ -160,6 +174,132 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`,
     }
     if (i === 1) {
       elementOfContainer.addEventListener('click', () => {
+        // container.classList.add('container');
+        // parentTag.after(containerForOptions);
+        // parentTag.after(container);
+
+        const dialog = document.createElement('dialog');
+        dialog.setAttribute('aria-label', 'Paste list');
+        dialog.classList.add('popup');
+        container.append(dialog);
+        const dialogWrapper = document.createElement('div');
+        dialogWrapper.classList.add('dialog-wrapper');
+        dialog.append(dialogWrapper);
+        const form = document.createElement('form');
+        form.setAttribute('method', 'dialog');
+        form.classList.add('formForDialog');
+        dialogWrapper.append(form);
+        const textarea = document.createElement('textarea');
+        textarea.classList.add('textarea');
+        textarea.setAttribute('rows', '12');
+        textarea.setAttribute('cols', '64');
+        textarea.setAttribute(
+          'placeholder',
+          `
+    Paste a list of new options in a CSV-like format:
+
+title,1                 -> | title                 | 1 |
+title with whitespace,2 -> | title with whitespace | 2 |
+title , with , commas,3 -> | title , with , commas | 3 |
+title with "quotes",4   -> | title with "quotes"   | 4 |`,
+        );
+        textarea.setAttribute('name', 'table');
+        form.append(textarea);
+        const containerForButtons = document.createElement('div');
+        containerForButtons.classList.add('containerForButtons');
+        form.append(containerForButtons);
+        const cancel: Buttons = new Buttons('button', 'Cancel', 'cancelButton');
+        const confirm: Buttons = new Buttons('button', 'Confirm', 'confirmButton');
+        const cancelBut = cancel.createButton();
+        const confirmBut = confirm.createButton();
+        containerForButtons.append(cancelBut);
+        containerForButtons.append(confirmBut);
+
+        cancelBut.addEventListener('click', () => {
+          dialog.remove();
+        });
+
+        form.addEventListener('keypress', function (event) {
+          let key = event.key;
+          if (key === 'Enter') {
+            const lastSymbol = +textarea.value[textarea.value.length - 1];
+            if (isNaN(lastSymbol)) {
+              dialogWrongValue(container);
+            }
+          }
+        });
+
+        document.addEventListener('keypress', function (event) {
+          let key = event.key;
+
+          if (key === 'Escape') {
+            dialog.remove();
+          }
+          console.log(key);
+        });
+
+        dialog.addEventListener('click', closeOnBackDropClick);
+
+        function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
+          const dialogElement = currentTarget;
+
+          if (dialogElement instanceof HTMLDialogElement) {
+            const isClickedOnBackDrop = target === dialogElement;
+            if (isClickedOnBackDrop && dialogElement) {
+              dialogElement.close();
+              dialog.remove();
+            }
+          }
+        }
+
+        confirmBut.addEventListener('click', event => {
+          const lastSymbol = +textarea.value[textarea.value.length - 1];
+          // let objData = getFromLocalStorage('dataFromInputs');
+          const dataFromTextarea = textarea.value.split('\n');
+          dataFromTextarea.forEach(arrayElem => {
+            let data = arrayElem.split(/,[1-9]/);
+            let dataNum = /,[1-9]/.exec(arrayElem);
+            let countElem = getFromLocalStorage('count') || [];
+            console.log(dataNum);
+            if (dataNum) {
+              if (countElem.length === 0) {
+                countElem.push(1);
+              } else {
+                countElem.push(countElem[countElem.length - 1] + 1);
+              }
+              objData[`#${countElem[countElem.length - 1]}`] = dataNum[0]?.replace(',', '');
+              objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+              // let numOfElem = getFromLocalStorage('count') || [];
+
+              createInput(
+                containerForOptions,
+                countElem[countElem.length - 1],
+                data[0],
+                +dataNum[0]?.replace(',', ''),
+              );
+              localStorage.setItem('count', JSON.stringify(countElem));
+              const jsonString = JSON.stringify(objData);
+              localStorage.setItem('dataFromInputs', jsonString);
+              textarea.value = '';
+            } else if (dataNum == null) {
+              dialogWrongValue(containerForOptions);
+              event.preventDefault();
+            }
+          });
+
+          if (isNaN(lastSymbol)) {
+            dialogWrongValue(containerForOptions);
+            event.preventDefault();
+          } else {
+            dialog.remove();
+          }
+        });
+
+        dialog.addEventListener('cancel', event => {
+          // if (event.key === 'Escape') {
+          dialog.remove();
+          // }
+        });
         dialog.showModal();
       });
     }

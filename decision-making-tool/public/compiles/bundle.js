@@ -304,6 +304,15 @@ canvas {
   z-index: 1;
 }
 
+/* .popup-wrong {
+  display: none;
+  width: 400px;
+  height: 50px;
+  margin: 10% auto;
+  position: absolute;
+  z-index: 5;
+} */
+
 @media (max-width: 900px) {
   .label-item {
     flex-wrap: wrap;
@@ -315,7 +324,7 @@ canvas {
     width: 100%;
   }
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n.dialog-wrapper {\n  padding: 1em;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n.dialog-wrapper {\n  padding: 1em;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4077,6 +4086,9 @@ function dialogWrongValue(parent) {
     dialog.textContent = 'Please, enter correct data';
     parent.append(dialog);
     dialog.showModal();
+    dialog.addEventListener('cancel', event => {
+        dialog.remove();
+    });
 }
 
 
@@ -4359,96 +4371,10 @@ function create(parentTag) {
     if (!localStorage.count) {
         localStorage.setItem('count', JSON.stringify([1]));
     }
+    containerForOptions.classList.add('container');
     container.classList.add('container');
     parentTag.after(containerForOptions);
     parentTag.after(container);
-    const dialog = document.createElement('dialog');
-    dialog.setAttribute('aria-label', 'Paste list');
-    dialog.classList.add('popup');
-    container.append(dialog);
-    const dialogWrapper = document.createElement('div');
-    dialogWrapper.classList.add('dialog-wrapper');
-    dialog.append(dialogWrapper);
-    const form = document.createElement('form');
-    form.setAttribute('method', 'dialog');
-    form.classList.add('formForDialog');
-    dialogWrapper.append(form);
-    const textarea = document.createElement('textarea');
-    textarea.classList.add('textarea');
-    textarea.setAttribute('rows', '12');
-    textarea.setAttribute('cols', '64');
-    textarea.setAttribute('placeholder', `
-    Paste a list of new options in a CSV-like format:
-
-title,1                 -> | title                 | 1 |
-title with whitespace,2 -> | title with whitespace | 2 |
-title , with , commas,3 -> | title , with , commas | 3 |
-title with "quotes",4   -> | title with "quotes"   | 4 |`);
-    textarea.setAttribute('name', 'table');
-    form.append(textarea);
-    const containerForButtons = document.createElement('div');
-    containerForButtons.classList.add('containerForButtons');
-    form.append(containerForButtons);
-    const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Cancel', 'cancelButton');
-    const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Confirm', 'confirmButton');
-    const cancelBut = cancel.createButton();
-    const confirmBut = confirm.createButton();
-    containerForButtons.append(cancelBut);
-    containerForButtons.append(confirmBut);
-    form.addEventListener('keypress', function (event) {
-        let key = event.key;
-        if (key === 'Enter') {
-            const lastSymbol = +textarea.value[textarea.value.length - 1];
-            if (isNaN(lastSymbol)) {
-                (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(container);
-            }
-        }
-        console.log(key);
-    });
-    dialog.addEventListener('click', closeOnBackDropClick);
-    function closeOnBackDropClick({ currentTarget, target }) {
-        const dialogElement = currentTarget;
-        if (dialogElement instanceof HTMLDialogElement) {
-            const isClickedOnBackDrop = target === dialogElement;
-            if (isClickedOnBackDrop && dialogElement) {
-                dialogElement.close();
-            }
-        }
-    }
-    confirmBut.addEventListener('click', event => {
-        const lastSymbol = +textarea.value[textarea.value.length - 1];
-        const dataFromTextarea = textarea.value.split('\n');
-        dataFromTextarea.forEach(arrayElem => {
-            var _a, _b;
-            let data = arrayElem.split(/,[1-9]/);
-            let dataNum = /,[1-9]/.exec(arrayElem);
-            let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
-            console.log(dataNum);
-            if (dataNum) {
-                if (countElem.length === 0) {
-                    countElem.push(1);
-                }
-                else {
-                    countElem.push(countElem[countElem.length - 1] + 1);
-                }
-                ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
-                ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
-                (0,_inputFields__WEBPACK_IMPORTED_MODULE_5__.createInput)(containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
-                localStorage.setItem('count', JSON.stringify(countElem));
-                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
-                localStorage.setItem('dataFromInputs', jsonString);
-                textarea.value = '';
-            }
-            else if (dataNum == null) {
-                (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
-                event.preventDefault();
-            }
-        });
-        if (isNaN(lastSymbol)) {
-            (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
-            event.preventDefault();
-        }
-    });
     for (let i = 0; i < NUM_OF_BUTTONS; i += 1) {
         const button = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
         const elementOfContainer = button.createButton();
@@ -4469,6 +4395,109 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
         }
         if (i === 1) {
             elementOfContainer.addEventListener('click', () => {
+                const dialog = document.createElement('dialog');
+                dialog.setAttribute('aria-label', 'Paste list');
+                dialog.classList.add('popup');
+                container.append(dialog);
+                const dialogWrapper = document.createElement('div');
+                dialogWrapper.classList.add('dialog-wrapper');
+                dialog.append(dialogWrapper);
+                const form = document.createElement('form');
+                form.setAttribute('method', 'dialog');
+                form.classList.add('formForDialog');
+                dialogWrapper.append(form);
+                const textarea = document.createElement('textarea');
+                textarea.classList.add('textarea');
+                textarea.setAttribute('rows', '12');
+                textarea.setAttribute('cols', '64');
+                textarea.setAttribute('placeholder', `
+    Paste a list of new options in a CSV-like format:
+
+title,1                 -> | title                 | 1 |
+title with whitespace,2 -> | title with whitespace | 2 |
+title , with , commas,3 -> | title , with , commas | 3 |
+title with "quotes",4   -> | title with "quotes"   | 4 |`);
+                textarea.setAttribute('name', 'table');
+                form.append(textarea);
+                const containerForButtons = document.createElement('div');
+                containerForButtons.classList.add('containerForButtons');
+                form.append(containerForButtons);
+                const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Cancel', 'cancelButton');
+                const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Confirm', 'confirmButton');
+                const cancelBut = cancel.createButton();
+                const confirmBut = confirm.createButton();
+                containerForButtons.append(cancelBut);
+                containerForButtons.append(confirmBut);
+                cancelBut.addEventListener('click', () => {
+                    dialog.remove();
+                });
+                form.addEventListener('keypress', function (event) {
+                    let key = event.key;
+                    if (key === 'Enter') {
+                        const lastSymbol = +textarea.value[textarea.value.length - 1];
+                        if (isNaN(lastSymbol)) {
+                            (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(container);
+                        }
+                    }
+                });
+                document.addEventListener('keypress', function (event) {
+                    let key = event.key;
+                    if (key === 'Escape') {
+                        dialog.remove();
+                    }
+                    console.log(key);
+                });
+                dialog.addEventListener('click', closeOnBackDropClick);
+                function closeOnBackDropClick({ currentTarget, target }) {
+                    const dialogElement = currentTarget;
+                    if (dialogElement instanceof HTMLDialogElement) {
+                        const isClickedOnBackDrop = target === dialogElement;
+                        if (isClickedOnBackDrop && dialogElement) {
+                            dialogElement.close();
+                            dialog.remove();
+                        }
+                    }
+                }
+                confirmBut.addEventListener('click', event => {
+                    const lastSymbol = +textarea.value[textarea.value.length - 1];
+                    const dataFromTextarea = textarea.value.split('\n');
+                    dataFromTextarea.forEach(arrayElem => {
+                        var _a, _b;
+                        let data = arrayElem.split(/,[1-9]/);
+                        let dataNum = /,[1-9]/.exec(arrayElem);
+                        let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+                        console.log(dataNum);
+                        if (dataNum) {
+                            if (countElem.length === 0) {
+                                countElem.push(1);
+                            }
+                            else {
+                                countElem.push(countElem[countElem.length - 1] + 1);
+                            }
+                            ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
+                            ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+                            (0,_inputFields__WEBPACK_IMPORTED_MODULE_5__.createInput)(containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
+                            localStorage.setItem('count', JSON.stringify(countElem));
+                            const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
+                            localStorage.setItem('dataFromInputs', jsonString);
+                            textarea.value = '';
+                        }
+                        else if (dataNum == null) {
+                            (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
+                            event.preventDefault();
+                        }
+                    });
+                    if (isNaN(lastSymbol)) {
+                        (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
+                        event.preventDefault();
+                    }
+                    else {
+                        dialog.remove();
+                    }
+                });
+                dialog.addEventListener('cancel', event => {
+                    dialog.remove();
+                });
                 dialog.showModal();
             });
         }
@@ -4801,7 +4830,7 @@ window.addEventListener('load', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("03be42a874bf42ba2756")
+/******/ 		__webpack_require__.h = () => ("6692fda405e5594d55fc")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

@@ -94,6 +94,15 @@ canvas {
   z-index: 1;
 }
 
+/* .popup-wrong {
+  display: none;
+  width: 400px;
+  height: 50px;
+  margin: 10% auto;
+  position: absolute;
+  z-index: 5;
+} */
+
 @media (max-width: 900px) {
   .label-item {
     flex-wrap: wrap;
