@@ -4095,10 +4095,13 @@ function dialogWrongValue(parent) {
     dialog.classList.add('popup-wrong');
     dialog.textContent = 'Please, enter correct data';
     parent.append(dialog);
+    const dialogWrapper = document.createElement('div');
+    dialogWrapper.classList.add('dialog-wrapper');
+    dialog.append(dialogWrapper);
     const dialogButton = document.createElement('button');
     dialogButton.classList.add('dialog-button');
     dialogButton.innerText = 'OK';
-    dialog.append(dialogButton);
+    dialogWrapper.append(dialogButton);
     dialog.showModal();
     dialog.addEventListener('cancel', event => {
         dialog.remove();
@@ -4107,6 +4110,17 @@ function dialogWrongValue(parent) {
         dialog.close();
         dialog.remove();
     });
+    dialog.addEventListener('click', closeOnBackDropClick);
+    function closeOnBackDropClick({ currentTarget, target }) {
+        const dialogElement = currentTarget;
+        if (dialogElement instanceof HTMLDialogElement) {
+            const isClickedOnBackDrop = target === dialogElement;
+            if (isClickedOnBackDrop && dialogElement) {
+                dialogElement.close();
+                dialog.remove();
+            }
+        }
+    }
 }
 
 
@@ -4848,7 +4862,7 @@ window.addEventListener('load', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("73312bc269b461294030")
+/******/ 		__webpack_require__.h = () => ("1c09b2ce84024a92dd8c")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
