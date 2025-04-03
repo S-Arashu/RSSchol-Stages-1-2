@@ -35,6 +35,10 @@ body:has(dialog[open]) {
   justify-content: space-around;
 }
 
+.dialog-button {
+  width: 100%;
+}
+
 .container {
   width: 80vw;
   display: flex;

@@ -5,6 +5,7 @@ import { container, containerForOptions, create } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
 import { loadOptions } from './builders/loadOptions';
 import { createChoosePage } from './builders/wheel';
+import { dialogWrongValue } from './builders/dialog';
 
 const retrievedObject = getFromLocalStorage('dataFromInputs');
 const countElem = getFromLocalStorage('count');
@@ -91,3 +92,35 @@ window.addEventListener('load', event => {
 
   // }
 });
+
+function locationHashChanged() {
+  if (location.hash === '#main') {
+    containerForOptions.textContent = '';
+    container.textContent = '';
+    localStorage.page = '0';
+
+    document.body.append(title);
+
+    create(title);
+
+    // export const containerForOptions = document.createElement('div');
+    containerForOptions.classList.add('containerForOptions');
+    title.append(containerForOptions);
+    loadOptions(objData);
+  }
+
+  if (location.hash === '#decision-maker') {
+    if (
+      !localStorage.getItem('dataFromInputs') ||
+      Object.keys(getFromLocalStorage('dataFromInputs')).length < 4
+    ) {
+      dialogWrongValue(containerForOptions);
+    } else {
+      localStorage.page = '1';
+      location.hash = 'decision-maker';
+      createChoosePage();
+    }
+  }
+}
+
+window.onhashchange = locationHashChanged;
