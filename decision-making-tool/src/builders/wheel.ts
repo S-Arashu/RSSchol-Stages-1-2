@@ -136,6 +136,10 @@ export function createChoosePage() {
 
   startButton.addEventListener('click', () => {
     spinWheel(3); // Spin for 3 seconds
+    homeButton.disabled = true;
+    window.setTimeout(() => {
+      homeButton.disabled = false;
+    }, 3000);
   });
 
   // Initial drawing of the wheel

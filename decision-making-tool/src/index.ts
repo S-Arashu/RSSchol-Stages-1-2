@@ -118,10 +118,9 @@ function locationHashChanged() {
   if (location.hash === '#decision-maker') {
     // location.hash = 'main';
     // localStorage.page = '1';
-    // startBut.click();
+    startBut.click();
     // document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-    createPasteList();
-    // dialogWrongValue(containerForOptions);
+    console.log('hash changed to decision');
   }
 }
 

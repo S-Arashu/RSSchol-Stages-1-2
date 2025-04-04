@@ -4763,6 +4763,10 @@ function createChoosePage() {
     }
     startButton.addEventListener('click', () => {
         spinWheel(3);
+        homeButton.disabled = true;
+        window.setTimeout(() => {
+            homeButton.disabled = false;
+        }, 3000);
     });
     drawWheel();
 }
@@ -4788,8 +4792,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
 /* harmony import */ var _builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/loadOptions */ "./src/builders/loadOptions.ts");
 /* harmony import */ var _builders_wheel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./builders/wheel */ "./src/builders/wheel.ts");
-/* harmony import */ var _builders_pasteList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./builders/pasteList */ "./src/builders/pasteList.ts");
-
 
 
 
@@ -4851,7 +4853,8 @@ function locationHashChanged() {
         console.log('hash changed to main');
     }
     if (location.hash === '#decision-maker') {
-        (0,_builders_pasteList__WEBPACK_IMPORTED_MODULE_5__.createPasteList)();
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.startBut.click();
+        console.log('hash changed to decision');
     }
 }
 window.onhashchange = locationHashChanged;
@@ -4941,7 +4944,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("9b718f5695c719e24466")
+/******/ 		__webpack_require__.h = () => ("7c5f3b8ff89acc1bba8b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
