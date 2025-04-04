@@ -4,10 +4,13 @@ import createTitleApp from './builders/app';
 import { container, containerForOptions, create, startBut } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
 import { loadOptions } from './builders/loadOptions';
-import { createChoosePage } from './builders/wheel';
+import { createChoosePage, soundButton } from './builders/wheel';
 import { dialogWrongValue } from './builders/dialog';
 import { createPasteList, dialogElem } from './builders/pasteList';
 
+export let isMusic = Boolean(Number(localStorage.sound));
+export const SOUNDON = 'Sound ON';
+export const SOUNDOFF = 'Sound OFF';
 const retrievedObject = getFromLocalStorage('dataFromInputs');
 const countElem = getFromLocalStorage('count');
 
@@ -95,6 +98,24 @@ window.addEventListener('load', event => {
   // }
 
   // }
+  if (!localStorage.sound) {
+    isMusic = true;
+    localStorage.sound = '1';
+    soundButton.textContent = SOUNDON;
+    console.log('No sound');
+  }
+
+  if (localStorage.sound === '1') {
+    isMusic = true;
+    soundButton.textContent = SOUNDON;
+    console.log('Sound on');
+  }
+
+  if (localStorage.sound === '0') {
+    isMusic = false;
+    soundButton.textContent = SOUNDOFF;
+    console.log('Sound off');
+  }
 });
 
 function locationHashChanged() {

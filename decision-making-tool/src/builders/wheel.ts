@@ -1,4 +1,4 @@
-import { getFromLocalStorage, objData, title } from '..';
+import { getFromLocalStorage, isMusic, objData, SOUNDOFF, SOUNDON, title } from '..';
 import { audio, createAudio } from './createAudio';
 import { loadOptions } from './loadOptions';
 import { container, containerForOptions, create } from './mainBlock';
@@ -8,16 +8,35 @@ import { container, containerForOptions, create } from './mainBlock';
 // // Define a directory and a file name
 // const directory = 'sounds';
 // const fileName = 'sounds_win.mp3';
-
+// const SOUNDON = 'Sound ON';
+// const SOUNDOFF = 'Sound OFF';
+export const soundButton = document.createElement('button');
 // // Create a full path to the file
 // const filePath = path.join(__dirname, directory, fileName);
-export let isSound = true;
+// export let isSound = isMusic;
 
 export function createChoosePage() {
   containerForOptions.textContent = '';
   container.textContent = '';
-  const SOUNDON = 'Sound ON';
-  const SOUNDOFF = 'Sound OFF';
+  let isSound = Boolean(Number(localStorage.sound));
+  // if (!localStorage.sound) {
+  //   isSound = true;
+  //   localStorage.sound = '1';
+  //   soundButton.textContent = SOUNDON;
+  //   console.log('No sound');
+  // }
+
+  // if (localStorage.sound === '1') {
+  //   isSound = true;
+  //   soundButton.textContent = SOUNDON;
+  //   console.log('Sound on');
+  // }
+
+  // if (localStorage.sound === '0') {
+  //   isSound = false;
+  //   soundButton.textContent = SOUNDOFF;
+  //   console.log('Sound off');
+  // }
 
   const canvas = document.createElement('canvas');
   canvas.setAttribute('id', 'wheel');
@@ -43,19 +62,26 @@ export function createChoosePage() {
   homeButton.textContent = 'Home';
   containerForOptions.append(homeButton);
 
-  const soundButton = document.createElement('button');
+  // const soundButton = document.createElement('button');
   soundButton.setAttribute('id', 'soundButton');
-  soundButton.textContent = SOUNDON;
+  // soundButton.textContent = SOUNDON;
   containerForOptions.append(soundButton);
 
+  // soundBtn = soundButton;
+
   soundButton.addEventListener('click', () => {
+    // isSound = Boolean(Number(localStorage.sound));
     isSound = !isSound;
     if (!isSound) {
       // audio.setAttribute('autoplay', 'false');
       // audio.muted;
+      localStorage.sound = '0';
       soundButton.textContent = SOUNDOFF;
-    } else {
+    }
+
+    if (isSound) {
       // audio.setAttribute('autoplay', 'true');
+      localStorage.sound = '1';
       soundButton.textContent = SOUNDON;
       // audio.play();
     }
@@ -249,3 +275,25 @@ export function createChoosePage() {
   //   requestAnimationFrame(spinWheel);
   // });
 }
+
+// window.addEventListener('load', event => {
+//   console.log(localStorage.sound);
+//   if (!localStorage.sound) {
+//     isSound = true;
+//     localStorage.sound = '1';
+//     soundButton.textContent = SOUNDON;
+//     console.log('No sound');
+//   }
+
+//   if (localStorage.sound === '1') {
+//     isSound = true;
+//     soundButton.textContent = SOUNDON;
+//     console.log('Sound on');
+//   }
+
+//   if (localStorage.sound === '0') {
+//     isSound = false;
+//     soundButton.textContent = SOUNDOFF;
+//     console.log('Sound off');
+//   }
+// });

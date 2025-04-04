@@ -1,2 +1,2 @@
-export declare let isSound: boolean;
+export declare const soundButton: HTMLButtonElement;
 export declare function createChoosePage(): void;

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { getFromLocalStorage, objData } from '..';
+import { getFromLocalStorage, isMusic, objData, SOUNDOFF, SOUNDON } from '..';
 import '../../public/styles.css';
 import { Buttons } from './buttons';
 import { clearList } from './clearList';
@@ -9,7 +9,7 @@ import { createInput } from './inputFields';
 import { saveToFile } from './saveData';
 import { downloadData } from './downloadData';
 import { loadOptions } from './loadOptions';
-import { createChoosePage } from './wheel';
+import { createChoosePage, soundButton } from './wheel';
 import { createPasteList } from './pasteList';
 
 const NAMES_OF_BUTTONS = [
@@ -340,6 +340,38 @@ export function create(parentTag: { after: (arg0: HTMLDivElement) => void }) {
           localStorage.page = '1';
           location.hash = 'decision-maker';
           createChoosePage();
+          let isSound = Boolean(Number(localStorage.sound));
+          if (!localStorage.sound) {
+            isSound = true;
+            localStorage.sound = '1';
+            soundButton.textContent = SOUNDON;
+            console.log('No sound');
+          }
+
+          if (localStorage.sound === '1') {
+            isSound = true;
+            soundButton.textContent = SOUNDON;
+            console.log('Sound on');
+          }
+
+          if (localStorage.sound === '0') {
+            isSound = false;
+            soundButton.textContent = SOUNDOFF;
+            console.log('Sound off');
+          }
+          // if (!isMusic) {
+          //   // audio.setAttribute('autoplay', 'false');
+          //   // audio.muted;
+          //   // localStorage.sound = '0';
+          //   soundButton.textContent = SOUNDOFF;
+          // }
+
+          // if (isMusic) {
+          //   // audio.setAttribute('autoplay', 'true');
+          //   // localStorage.sound = '1';
+          //   soundButton.textContent = SOUNDON;
+          //   // audio.play();
+          // }
         }
         console.log(
           !localStorage.getItem('dataFromInputs') ||

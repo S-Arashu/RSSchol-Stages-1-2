@@ -329,6 +329,10 @@ canvas {
   z-index: 1;
 }
 
+#soundButton {
+  width: 20vh;
+}
+
 /* .popup-wrong {
   display: none;
   width: 400px;
@@ -349,7 +353,7 @@ canvas {
     width: 100%;
   }
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;EACE,WAAW;AACb;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n#soundButton {\n  width: 20vh;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4503,6 +4507,23 @@ function create(parentTag) {
                     localStorage.page = '1';
                     location.hash = 'decision-maker';
                     (0,_wheel__WEBPACK_IMPORTED_MODULE_8__.createChoosePage)();
+                    let isSound = Boolean(Number(localStorage.sound));
+                    if (!localStorage.sound) {
+                        isSound = true;
+                        localStorage.sound = '1';
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
+                        console.log('No sound');
+                    }
+                    if (localStorage.sound === '1') {
+                        isSound = true;
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
+                        console.log('Sound on');
+                    }
+                    if (localStorage.sound === '0') {
+                        isSound = false;
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDOFF;
+                        console.log('Sound off');
+                    }
                 }
                 console.log(!localStorage.getItem('dataFromInputs') ||
                     Object.keys((0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs')).length < 4);
@@ -4685,7 +4706,7 @@ function saveToFile() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createChoosePage: () => (/* binding */ createChoosePage),
-/* harmony export */   isSound: () => (/* binding */ isSound)
+/* harmony export */   soundButton: () => (/* binding */ soundButton)
 /* harmony export */ });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
 /* harmony import */ var _createAudio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createAudio */ "./src/builders/createAudio.ts");
@@ -4695,12 +4716,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-let isSound = true;
+const soundButton = document.createElement('button');
 function createChoosePage() {
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.textContent = '';
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.container.textContent = '';
-    const SOUNDON = 'Sound ON';
-    const SOUNDOFF = 'Sound OFF';
+    let isSound = Boolean(Number(localStorage.sound));
     const canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'wheel');
     canvas.setAttribute('width', '400');
@@ -4720,17 +4740,17 @@ function createChoosePage() {
     homeButton.setAttribute('id', 'homeButton');
     homeButton.textContent = 'Home';
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(homeButton);
-    const soundButton = document.createElement('button');
     soundButton.setAttribute('id', 'soundButton');
-    soundButton.textContent = SOUNDON;
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(soundButton);
     soundButton.addEventListener('click', () => {
         isSound = !isSound;
         if (!isSound) {
-            soundButton.textContent = SOUNDOFF;
+            localStorage.sound = '0';
+            soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDOFF;
         }
-        else {
-            soundButton.textContent = SOUNDON;
+        if (isSound) {
+            localStorage.sound = '1';
+            soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
         }
     });
     homeButton.addEventListener('click', () => {
@@ -4834,7 +4854,10 @@ function createChoosePage() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SOUNDOFF: () => (/* binding */ SOUNDOFF),
+/* harmony export */   SOUNDON: () => (/* binding */ SOUNDON),
 /* harmony export */   getFromLocalStorage: () => (/* binding */ getFromLocalStorage),
+/* harmony export */   isMusic: () => (/* binding */ isMusic),
 /* harmony export */   objData: () => (/* binding */ objData),
 /* harmony export */   title: () => (/* binding */ title)
 /* harmony export */ });
@@ -4848,6 +4871,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+let isMusic = Boolean(Number(localStorage.sound));
+const SOUNDON = 'Sound ON';
+const SOUNDOFF = 'Sound OFF';
 const retrievedObject = getFromLocalStorage('dataFromInputs');
 const countElem = getFromLocalStorage('count');
 const objData = retrievedObject || {};
@@ -4888,6 +4914,22 @@ window.addEventListener('load', event => {
         location.hash = 'decision-maker';
         (0,_builders_wheel__WEBPACK_IMPORTED_MODULE_4__.createChoosePage)();
         console.log('page reload with decision');
+    }
+    if (!localStorage.sound) {
+        isMusic = true;
+        localStorage.sound = '1';
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDON;
+        console.log('No sound');
+    }
+    if (localStorage.sound === '1') {
+        isMusic = true;
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDON;
+        console.log('Sound on');
+    }
+    if (localStorage.sound === '0') {
+        isMusic = false;
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDOFF;
+        console.log('Sound off');
     }
 });
 function locationHashChanged() {
@@ -4995,7 +5037,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("3b6ffa45728b64efa3f1")
+/******/ 		__webpack_require__.h = () => ("131de3048d40d340add1")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
