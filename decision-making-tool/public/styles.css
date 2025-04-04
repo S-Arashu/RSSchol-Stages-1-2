@@ -21,8 +21,19 @@ body:has(dialog[open]) {
   padding: 0;
 }
 
-.dialog-wrapper {
+/* .dialog-wrapper {
   padding: 1em;
+} */
+
+dialog[open]::backdrop {
+  background: linear-gradient(
+    45deg,
+    rgba(146, 228, 111, 0.6) 0%,
+    rgba(72, 108, 191, 0.6) 50%,
+    rgba(177, 48, 169, 0.6) 100%
+  );
+
+  backdrop-filter: blur(2px);
 }
 
 .popup-wrong {

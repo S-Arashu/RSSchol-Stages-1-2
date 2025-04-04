@@ -231,8 +231,19 @@ body:has(dialog[open]) {
   padding: 0;
 }
 
-.dialog-wrapper {
+/* .dialog-wrapper {
   padding: 1em;
+} */
+
+dialog[open]::backdrop {
+  background: linear-gradient(
+    45deg,
+    rgba(146, 228, 111, 0.6) 0%,
+    rgba(72, 108, 191, 0.6) 50%,
+    rgba(177, 48, 169, 0.6) 100%
+  );
+
+  backdrop-filter: blur(2px);
 }
 
 .popup-wrong {
@@ -338,7 +349,7 @@ canvas {
     width: 100%;
   }
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n.dialog-wrapper {\n  padding: 1em;\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4095,36 +4106,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   dialogWrongValue: () => (/* binding */ dialogWrongValue)
 /* harmony export */ });
 function dialogWrongValue(parent) {
-    const dialog = document.createElement('dialog');
-    dialog.classList.add('popup-wrong');
-    dialog.textContent = 'Please, enter correct data';
-    parent.append(dialog);
+    const dialogWrong = document.createElement('dialog');
+    dialogWrong.classList.add('popup-wrong');
+    dialogWrong.textContent = 'Please, enter correct data';
+    parent.append(dialogWrong);
     const dialogWrapper = document.createElement('div');
     dialogWrapper.classList.add('dialog-wrapper');
-    dialog.append(dialogWrapper);
+    dialogWrong.append(dialogWrapper);
     const dialogButton = document.createElement('button');
     dialogButton.classList.add('dialog-button');
     dialogButton.innerText = 'OK';
     dialogWrapper.append(dialogButton);
-    dialog.showModal();
-    dialog.addEventListener('cancel', event => {
-        dialog.remove();
+    dialogWrong.showModal();
+    dialogWrong.addEventListener('cancel', event => {
+        dialogWrong.remove();
+        console.log(`remove dialogWrong`);
     });
     dialogButton.addEventListener('click', () => {
-        dialog.close();
-        dialog.remove();
-    });
-    dialog.addEventListener('click', closeOnBackDropClick);
-    function closeOnBackDropClick({ currentTarget, target }) {
-        const dialogElement = currentTarget;
-        if (dialogElement instanceof HTMLDialogElement) {
-            const isClickedOnBackDrop = target === dialogElement;
-            if (isClickedOnBackDrop && dialogElement) {
-                dialogElement.close();
-                dialog.remove();
-            }
+        if (dialogWrong.open) {
+            dialogWrong.remove();
         }
-    }
+    });
+    const handleModalClick = (event) => {
+        const modalRect = dialogWrong.getBoundingClientRect();
+        if (event.clientX < modalRect.left ||
+            event.clientX > modalRect.right ||
+            event.clientY < modalRect.top ||
+            event.clientY > modalRect.bottom) {
+            dialogWrong.remove();
+        }
+    };
+    dialogWrong.addEventListener('click', handleModalClick);
 }
 
 
@@ -4372,7 +4384,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   container: () => (/* binding */ container),
 /* harmony export */   containerForOptions: () => (/* binding */ containerForOptions),
-/* harmony export */   create: () => (/* binding */ create)
+/* harmony export */   create: () => (/* binding */ create),
+/* harmony export */   startBut: () => (/* binding */ startBut)
 /* harmony export */ });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
@@ -4383,6 +4396,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _saveData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./saveData */ "./src/builders/saveData.ts");
 /* harmony import */ var _downloadData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./downloadData */ "./src/builders/downloadData.ts");
 /* harmony import */ var _wheel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./wheel */ "./src/builders/wheel.ts");
+/* harmony import */ var _pasteList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pasteList */ "./src/builders/pasteList.ts");
+
 
 
 
@@ -4400,6 +4415,7 @@ const NAMES_OF_BUTTONS = [
     'Load list from file',
     'Start',
 ];
+let startBut;
 const NUM_OF_BUTTONS = 6;
 const container = document.createElement('div');
 const containerForOptions = document.createElement('div');
@@ -4408,6 +4424,7 @@ function create(parentTag) {
         localStorage.setItem('count', JSON.stringify([1]));
     }
     containerForOptions.classList.add('container');
+    container.setAttribute('tabindex', '1');
     container.classList.add('container');
     parentTag.after(containerForOptions);
     parentTag.after(container);
@@ -4431,110 +4448,7 @@ function create(parentTag) {
         }
         if (i === 1) {
             elementOfContainer.addEventListener('click', () => {
-                const dialog = document.createElement('dialog');
-                dialog.setAttribute('aria-label', 'Paste list');
-                dialog.classList.add('popup');
-                container.append(dialog);
-                const dialogWrapper = document.createElement('div');
-                dialogWrapper.classList.add('dialog-wrapper');
-                dialog.append(dialogWrapper);
-                const form = document.createElement('form');
-                form.setAttribute('method', 'dialog');
-                form.classList.add('formForDialog');
-                dialogWrapper.append(form);
-                const textarea = document.createElement('textarea');
-                textarea.classList.add('textarea');
-                textarea.setAttribute('rows', '12');
-                textarea.setAttribute('cols', '64');
-                textarea.setAttribute('placeholder', `
-    Paste a list of new options in a CSV-like format:
-
-title,1                 -> | title                 | 1 |
-title with whitespace,2 -> | title with whitespace | 2 |
-title , with , commas,3 -> | title , with , commas | 3 |
-title with "quotes",4   -> | title with "quotes"   | 4 |`);
-                textarea.setAttribute('name', 'table');
-                form.append(textarea);
-                const containerForButtons = document.createElement('div');
-                containerForButtons.classList.add('containerForButtons');
-                form.append(containerForButtons);
-                const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Cancel', 'cancelButton');
-                const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', 'Confirm', 'confirmButton');
-                const cancelBut = cancel.createButton();
-                const confirmBut = confirm.createButton();
-                containerForButtons.append(cancelBut);
-                containerForButtons.append(confirmBut);
-                cancelBut.addEventListener('click', () => {
-                    dialog.remove();
-                });
-                form.addEventListener('keypress', function (event) {
-                    let key = event.key;
-                    if (key === 'Enter') {
-                        const lastSymbol = +textarea.value[textarea.value.length - 1];
-                        if (isNaN(lastSymbol)) {
-                            (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(container);
-                        }
-                    }
-                });
-                document.addEventListener('keypress', function (event) {
-                    let key = event.key;
-                    if (key === 'Escape') {
-                        dialog.remove();
-                    }
-                    console.log(key);
-                });
-                dialog.addEventListener('click', closeOnBackDropClick);
-                function closeOnBackDropClick({ currentTarget, target }) {
-                    const dialogElement = currentTarget;
-                    if (dialogElement instanceof HTMLDialogElement) {
-                        const isClickedOnBackDrop = target === dialogElement;
-                        if (isClickedOnBackDrop && dialogElement) {
-                            dialogElement.close();
-                            dialog.remove();
-                        }
-                    }
-                }
-                confirmBut.addEventListener('click', event => {
-                    const lastSymbol = +textarea.value[textarea.value.length - 1];
-                    const dataFromTextarea = textarea.value.split('\n');
-                    dataFromTextarea.forEach(arrayElem => {
-                        var _a, _b;
-                        let data = arrayElem.split(/,[1-9]/);
-                        let dataNum = /,[1-9]/.exec(arrayElem);
-                        let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
-                        console.log(dataNum);
-                        if (dataNum) {
-                            if (countElem.length === 0) {
-                                countElem.push(1);
-                            }
-                            else {
-                                countElem.push(countElem[countElem.length - 1] + 1);
-                            }
-                            ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
-                            ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
-                            (0,_inputFields__WEBPACK_IMPORTED_MODULE_5__.createInput)(containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
-                            localStorage.setItem('count', JSON.stringify(countElem));
-                            const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
-                            localStorage.setItem('dataFromInputs', jsonString);
-                            textarea.value = '';
-                        }
-                        else if (dataNum == null) {
-                            (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
-                            event.preventDefault();
-                        }
-                    });
-                    if (isNaN(lastSymbol)) {
-                        (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
-                        event.preventDefault();
-                    }
-                    else {
-                        dialog.remove();
-                    }
-                });
-                dialog.addEventListener('cancel', event => {
-                    dialog.remove();
-                });
-                dialog.showModal();
+                (0,_pasteList__WEBPACK_IMPORTED_MODULE_9__.createPasteList)();
             });
         }
         if (i === 2) {
@@ -4553,9 +4467,11 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
             });
         }
         if (i === 5) {
+            startBut = elementOfContainer;
             elementOfContainer.addEventListener('click', () => {
                 if (!localStorage.getItem('dataFromInputs') ||
                     Object.keys((0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs')).length < 4) {
+                    (0,_pasteList__WEBPACK_IMPORTED_MODULE_9__.createPasteList)();
                     (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
                 }
                 else {
@@ -4563,9 +4479,142 @@ title with "quotes",4   -> | title with "quotes"   | 4 |`);
                     location.hash = 'decision-maker';
                     (0,_wheel__WEBPACK_IMPORTED_MODULE_8__.createChoosePage)();
                 }
+                console.log(!localStorage.getItem('dataFromInputs') ||
+                    Object.keys((0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs')).length < 4);
             });
         }
     }
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/pasteList.ts":
+/*!***********************************!*\
+  !*** ./src/builders/pasteList.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createPasteList: () => (/* binding */ createPasteList),
+/* harmony export */   dialogElem: () => (/* binding */ dialogElem)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+
+
+let dialogElem;
+function createPasteList() {
+    const dialog = document.createElement('dialog');
+    dialog.setAttribute('aria-label', 'Paste list');
+    dialog.classList.add('popup');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.append(dialog);
+    const dialogWrapper = document.createElement('div');
+    dialogWrapper.classList.add('dialog-wrapper');
+    dialog.append(dialogWrapper);
+    const form = document.createElement('form');
+    form.setAttribute('method', 'dialog');
+    form.classList.add('formForDialog');
+    dialogWrapper.append(form);
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('textarea');
+    textarea.setAttribute('rows', '12');
+    textarea.setAttribute('cols', '64');
+    textarea.setAttribute('placeholder', `
+    Paste a list of new options in a CSV-like format:
+
+title,1                 -> | title                 | 1 |
+title with whitespace,2 -> | title with whitespace | 2 |
+title , with , commas,3 -> | title , with , commas | 3 |
+title with "quotes",4   -> | title with "quotes"   | 4 |`);
+    textarea.setAttribute('name', 'table');
+    form.append(textarea);
+    const containerForButtons = document.createElement('div');
+    containerForButtons.classList.add('containerForButtons');
+    form.append(containerForButtons);
+    const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', 'Cancel', 'cancelButton');
+    const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', 'Confirm', 'confirmButton');
+    const cancelBut = cancel.createButton();
+    const confirmBut = confirm.createButton();
+    containerForButtons.append(cancelBut);
+    containerForButtons.append(confirmBut);
+    dialogElem = dialog;
+    dialog.showModal();
+    cancelBut.addEventListener('click', () => {
+        dialog.remove();
+        location.hash = 'main';
+    });
+    form.addEventListener('keypress', function (event) {
+        let key = event.key;
+        if (key === 'Enter') {
+            const lastSymbol = +textarea.value[textarea.value.length - 1];
+            if (isNaN(lastSymbol)) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.container);
+            }
+        }
+    });
+    const handleModalClick = (event) => {
+        const modalRect = dialog.getBoundingClientRect();
+        if (event.clientX < modalRect.left ||
+            event.clientX > modalRect.right ||
+            event.clientY < modalRect.top ||
+            event.clientY > modalRect.bottom) {
+            dialog.remove();
+            location.hash = 'main';
+        }
+    };
+    dialog.addEventListener('click', handleModalClick);
+    confirmBut.addEventListener('click', event => {
+        const lastSymbol = +textarea.value[textarea.value.length - 1];
+        const dataFromTextarea = textarea.value.split('\n');
+        dataFromTextarea.forEach(arrayElem => {
+            var _a, _b;
+            let data = arrayElem.split(/,[1-9]/);
+            let dataNum = /,[1-9]/.exec(arrayElem);
+            let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+            console.log(dataNum);
+            if (dataNum) {
+                if (countElem.length === 0) {
+                    countElem.push(1);
+                }
+                else {
+                    countElem.push(countElem[countElem.length - 1] + 1);
+                }
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
+                localStorage.setItem('count', JSON.stringify(countElem));
+                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
+                localStorage.setItem('dataFromInputs', jsonString);
+                textarea.value = '';
+            }
+            else if (dataNum == null) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+                event.preventDefault();
+            }
+        });
+        if (isNaN(lastSymbol)) {
+            (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+            event.preventDefault();
+        }
+        else {
+            dialog.remove();
+            location.hash = 'main';
+        }
+    });
+    dialog.addEventListener('cancel', event => {
+        dialog.remove();
+        location.hash = 'main';
+        console.log('Remove dialog');
+    });
 }
 
 
@@ -4739,7 +4788,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
 /* harmony import */ var _builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/loadOptions */ "./src/builders/loadOptions.ts");
 /* harmony import */ var _builders_wheel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./builders/wheel */ "./src/builders/wheel.ts");
-/* harmony import */ var _builders_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./builders/dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _builders_pasteList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./builders/pasteList */ "./src/builders/pasteList.ts");
 
 
 
@@ -4769,6 +4818,7 @@ window.addEventListener('load', event => {
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
         title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
         (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
+        console.log('page reload with no data');
     }
     if (localStorage.page === '0') {
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
@@ -4779,14 +4829,17 @@ window.addEventListener('load', event => {
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
         title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
         (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
+        console.log('page reload with main');
     }
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
         (0,_builders_wheel__WEBPACK_IMPORTED_MODULE_4__.createChoosePage)();
+        console.log('page reload with decision');
     }
 });
 function locationHashChanged() {
     if (location.hash === '#main') {
+        const dataObj = getFromLocalStorage('dataFromInputs');
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
         localStorage.page = '0';
@@ -4794,21 +4847,17 @@ function locationHashChanged() {
         (0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
         _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
         title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
-        (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
+        (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(dataObj);
+        console.log('hash changed to main');
     }
     if (location.hash === '#decision-maker') {
-        if (!localStorage.getItem('dataFromInputs') ||
-            Object.keys(getFromLocalStorage('dataFromInputs')).length < 4) {
-            (0,_builders_dialog__WEBPACK_IMPORTED_MODULE_5__.dialogWrongValue)(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
-        }
-        else {
-            localStorage.page = '1';
-            location.hash = 'decision-maker';
-            (0,_builders_wheel__WEBPACK_IMPORTED_MODULE_4__.createChoosePage)();
-        }
+        (0,_builders_pasteList__WEBPACK_IMPORTED_MODULE_5__.createPasteList)();
     }
 }
 window.onhashchange = locationHashChanged;
+window.addEventListener('keydown', event => {
+    console.log(event.target);
+});
 
 
 /***/ })
@@ -4892,7 +4941,7 @@ window.onhashchange = locationHashChanged;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c78695175acbdf5bcc74")
+/******/ 		__webpack_require__.h = () => ("9b718f5695c719e24466")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

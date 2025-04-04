@@ -1,11 +1,12 @@
 import '../public/styles.css';
 
 import createTitleApp from './builders/app';
-import { container, containerForOptions, create } from './builders/mainBlock';
+import { container, containerForOptions, create, startBut } from './builders/mainBlock';
 import { createInput } from './builders/inputFields';
 import { loadOptions } from './builders/loadOptions';
 import { createChoosePage } from './builders/wheel';
 import { dialogWrongValue } from './builders/dialog';
+import { createPasteList, dialogElem } from './builders/pasteList';
 
 const retrievedObject = getFromLocalStorage('dataFromInputs');
 const countElem = getFromLocalStorage('count');
@@ -47,6 +48,7 @@ window.addEventListener('load', event => {
     containerForOptions.classList.add('containerForOptions');
     title.append(containerForOptions);
     loadOptions(objData);
+    console.log('page reload with no data');
   }
 
   if (localStorage.page === '0') {
@@ -62,11 +64,13 @@ window.addEventListener('load', event => {
     containerForOptions.classList.add('containerForOptions');
     title.append(containerForOptions);
     loadOptions(objData);
+    console.log('page reload with main');
   }
 
   if (localStorage.page === '1') {
     location.hash = 'decision-maker';
     createChoosePage();
+    console.log('page reload with decision');
   }
   // if (localStorage.count !== '0') {
   // const count = countElem || [1];
@@ -95,6 +99,7 @@ window.addEventListener('load', event => {
 
 function locationHashChanged() {
   if (location.hash === '#main') {
+    const dataObj = getFromLocalStorage('dataFromInputs');
     containerForOptions.textContent = '';
     container.textContent = '';
     localStorage.page = '0';
@@ -106,21 +111,22 @@ function locationHashChanged() {
     // export const containerForOptions = document.createElement('div');
     containerForOptions.classList.add('containerForOptions');
     title.append(containerForOptions);
-    loadOptions(objData);
+    loadOptions(dataObj);
+    console.log('hash changed to main');
   }
 
   if (location.hash === '#decision-maker') {
-    if (
-      !localStorage.getItem('dataFromInputs') ||
-      Object.keys(getFromLocalStorage('dataFromInputs')).length < 4
-    ) {
-      dialogWrongValue(containerForOptions);
-    } else {
-      localStorage.page = '1';
-      location.hash = 'decision-maker';
-      createChoosePage();
-    }
+    // location.hash = 'main';
+    // localStorage.page = '1';
+    // startBut.click();
+    // document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+    createPasteList();
+    // dialogWrongValue(containerForOptions);
   }
 }
 
 window.onhashchange = locationHashChanged;
+
+window.addEventListener('keydown', event => {
+  console.log(event.target);
+});

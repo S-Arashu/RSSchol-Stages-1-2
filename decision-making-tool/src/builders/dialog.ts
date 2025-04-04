@@ -1,39 +1,62 @@
 export function dialogWrongValue(parent: { append: (arg0: HTMLDialogElement) => void }) {
-  const dialog = document.createElement('dialog');
-  dialog.classList.add('popup-wrong');
-  dialog.textContent = 'Please, enter correct data';
-  parent.append(dialog);
+  const dialogWrong = document.createElement('dialog');
+  dialogWrong.classList.add('popup-wrong');
+  dialogWrong.textContent = 'Please, enter correct data';
+  parent.append(dialogWrong);
   const dialogWrapper = document.createElement('div');
   dialogWrapper.classList.add('dialog-wrapper');
-  dialog.append(dialogWrapper);
+  dialogWrong.append(dialogWrapper);
   const dialogButton = document.createElement('button');
   dialogButton.classList.add('dialog-button');
   dialogButton.innerText = 'OK';
   dialogWrapper.append(dialogButton);
-  dialog.showModal();
+  dialogWrong.showModal();
+  // dialogWrong.focus();
 
-  dialog.addEventListener('cancel', event => {
+  dialogWrong.addEventListener('cancel', event => {
     // if (event.key === 'Escape') {
-    dialog.remove();
+    dialogWrong.remove();
+    console.log(`remove dialogWrong`);
+    // location.hash = 'main';
     // }
   });
 
   dialogButton.addEventListener('click', () => {
-    dialog.close();
-    dialog.remove();
+    // dialogWrong.close();
+    if (dialogWrong.open) {
+      dialogWrong.remove();
+    }
+
+    // location.hash = 'main';
   });
 
-  dialog.addEventListener('click', closeOnBackDropClick);
+  const handleModalClick = (event: { clientX: number; clientY: number }) => {
+    const modalRect = dialogWrong.getBoundingClientRect();
 
-  function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
-    const dialogElement = currentTarget;
-
-    if (dialogElement instanceof HTMLDialogElement) {
-      const isClickedOnBackDrop = target === dialogElement;
-      if (isClickedOnBackDrop && dialogElement) {
-        dialogElement.close();
-        dialog.remove();
-      }
+    if (
+      event.clientX < modalRect.left ||
+      event.clientX > modalRect.right ||
+      event.clientY < modalRect.top ||
+      event.clientY > modalRect.bottom
+    ) {
+      dialogWrong.remove();
     }
-  }
+  };
+
+  dialogWrong.addEventListener('click', handleModalClick);
+
+  // dialogWrong.addEventListener('click', closeOnBackDropClick);
+
+  // function closeOnBackDropClick({ currentTarget, target }: MouseEvent): void {
+  //   const dialogElement = currentTarget;
+
+  //   if (dialogElement instanceof HTMLDialogElement) {
+  //     const isClickedOnBackDrop = target === dialogElement;
+  //     if (isClickedOnBackDrop && dialogElement) {
+  //       dialogElement.close();
+  //       // dialogElement.remove();
+  //       location.hash = 'main';
+  //     }
+  //   }
+  // }
 }
