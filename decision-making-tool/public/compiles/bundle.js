@@ -4094,6 +4094,31 @@ function clearList(elemForClear) {
 
 /***/ }),
 
+/***/ "./src/builders/createAudio.ts":
+/*!*************************************!*\
+  !*** ./src/builders/createAudio.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   audio: () => (/* binding */ audio),
+/* harmony export */   createAudio: () => (/* binding */ createAudio)
+/* harmony export */ });
+const audio = document.createElement('audio');
+function createAudio(id, src) {
+    audio.setAttribute('id', id);
+    document.body.append(audio);
+    const source = document.createElement('source');
+    source.setAttribute('src', '../sounds/sounds_win.mp3');
+    source.setAttribute('type', 'audio/mp3');
+    audio.append(source);
+}
+
+
+/***/ }),
+
 /***/ "./src/builders/dialog.ts":
 /*!********************************!*\
   !*** ./src/builders/dialog.ts ***!
@@ -4659,46 +4684,65 @@ function saveToFile() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   createChoosePage: () => (/* binding */ createChoosePage)
+/* harmony export */   createChoosePage: () => (/* binding */ createChoosePage),
+/* harmony export */   isSound: () => (/* binding */ isSound)
 /* harmony export */ });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
-/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
-/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+/* harmony import */ var _createAudio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createAudio */ "./src/builders/createAudio.ts");
+/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
 
 
 
+
+let isSound = true;
 function createChoosePage() {
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.textContent = '';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.container.textContent = '';
+    const SOUNDON = 'Sound ON';
+    const SOUNDOFF = 'Sound OFF';
     const canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'wheel');
     canvas.setAttribute('width', '400');
     canvas.setAttribute('height', '400');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.append(canvas);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(canvas);
     const pointer = document.createElement('div');
     pointer.setAttribute('id', 'pointer');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.append(pointer);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(pointer);
     const startButton = document.createElement('button');
     startButton.setAttribute('id', 'start');
     startButton.textContent = 'Start';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.append(startButton);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(startButton);
     const output = document.createElement('div');
     output.setAttribute('id', 'selected-option');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.append(output);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(output);
     const homeButton = document.createElement('button');
     homeButton.setAttribute('id', 'homeButton');
     homeButton.textContent = 'Home';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.append(homeButton);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(homeButton);
+    const soundButton = document.createElement('button');
+    soundButton.setAttribute('id', 'soundButton');
+    soundButton.textContent = SOUNDON;
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(soundButton);
+    soundButton.addEventListener('click', () => {
+        isSound = !isSound;
+        if (!isSound) {
+            soundButton.textContent = SOUNDOFF;
+        }
+        else {
+            soundButton.textContent = SOUNDON;
+        }
+    });
     homeButton.addEventListener('click', () => {
-        _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
-        _mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
+        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.textContent = '';
+        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.container.textContent = '';
         localStorage.page = '0';
         location.hash = 'main';
         document.body.append(___WEBPACK_IMPORTED_MODULE_0__.title);
-        (0,_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(___WEBPACK_IMPORTED_MODULE_0__.title);
-        _mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
-        ___WEBPACK_IMPORTED_MODULE_0__.title.append(_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
-        (0,_loadOptions__WEBPACK_IMPORTED_MODULE_1__.loadOptions)(___WEBPACK_IMPORTED_MODULE_0__.objData);
+        (0,_mainBlock__WEBPACK_IMPORTED_MODULE_3__.create)(___WEBPACK_IMPORTED_MODULE_0__.title);
+        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.classList.add('containerForOptions');
+        ___WEBPACK_IMPORTED_MODULE_0__.title.append(_mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions);
+        (0,_loadOptions__WEBPACK_IMPORTED_MODULE_2__.loadOptions)(___WEBPACK_IMPORTED_MODULE_0__.objData);
     });
     let top = String(canvas.offsetTop + pointer.offsetHeight / 2);
     let left = String(canvas.offsetLeft + canvas.offsetWidth / 2);
@@ -4766,6 +4810,13 @@ function createChoosePage() {
         homeButton.disabled = true;
         window.setTimeout(() => {
             homeButton.disabled = false;
+            (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
+            if (!isSound) {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
+            }
+            else {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.play();
+            }
         }, 3000);
     });
     drawWheel();
@@ -4944,7 +4995,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("7c5f3b8ff89acc1bba8b")
+/******/ 		__webpack_require__.h = () => ("3b6ffa45728b64efa3f1")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

@@ -1,10 +1,23 @@
 import { getFromLocalStorage, objData, title } from '..';
+import { audio, createAudio } from './createAudio';
 import { loadOptions } from './loadOptions';
 import { container, containerForOptions, create } from './mainBlock';
+
+// const path = require('path');
+
+// // Define a directory and a file name
+// const directory = 'sounds';
+// const fileName = 'sounds_win.mp3';
+
+// // Create a full path to the file
+// const filePath = path.join(__dirname, directory, fileName);
+export let isSound = true;
 
 export function createChoosePage() {
   containerForOptions.textContent = '';
   container.textContent = '';
+  const SOUNDON = 'Sound ON';
+  const SOUNDOFF = 'Sound OFF';
 
   const canvas = document.createElement('canvas');
   canvas.setAttribute('id', 'wheel');
@@ -29,6 +42,24 @@ export function createChoosePage() {
   homeButton.setAttribute('id', 'homeButton');
   homeButton.textContent = 'Home';
   containerForOptions.append(homeButton);
+
+  const soundButton = document.createElement('button');
+  soundButton.setAttribute('id', 'soundButton');
+  soundButton.textContent = SOUNDON;
+  containerForOptions.append(soundButton);
+
+  soundButton.addEventListener('click', () => {
+    isSound = !isSound;
+    if (!isSound) {
+      // audio.setAttribute('autoplay', 'false');
+      // audio.muted;
+      soundButton.textContent = SOUNDOFF;
+    } else {
+      // audio.setAttribute('autoplay', 'true');
+      soundButton.textContent = SOUNDON;
+      // audio.play();
+    }
+  });
 
   homeButton.addEventListener('click', () => {
     containerForOptions.textContent = '';
@@ -139,6 +170,16 @@ export function createChoosePage() {
     homeButton.disabled = true;
     window.setTimeout(() => {
       homeButton.disabled = false;
+      createAudio('win');
+      if (!isSound) {
+        // audio.setAttribute('autoplay', 'false');
+        audio.muted;
+        // soundButton.textContent = SOUNDOFF;
+      } else {
+        // audio.setAttribute('autoplay', 'true');
+        // soundButton.textContent = SOUNDON;
+        audio.play();
+      }
     }, 3000);
   });
 
