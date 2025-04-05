@@ -122,6 +122,10 @@ dialog[open]::backdrop {
   margin: 0;
 }
 
+#selected-option {
+  margin: 1%;
+}
+
 canvas {
   border: 1px solid #000;
   display: block;

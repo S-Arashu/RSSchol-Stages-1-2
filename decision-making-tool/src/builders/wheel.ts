@@ -49,14 +49,15 @@ export function createChoosePage() {
   pointer.setAttribute('id', 'pointer');
   containerForOptions.append(pointer);
 
+  const output = document.createElement('div');
+  output.setAttribute('id', 'selected-option');
+  output.textContent = 'Click "Start" to fun!';
+  containerForOptions.append(output);
+
   const startButton = document.createElement('button');
   startButton.setAttribute('id', 'start');
   startButton.textContent = 'Start';
   containerForOptions.append(startButton);
-
-  const output = document.createElement('div');
-  output.setAttribute('id', 'selected-option');
-  containerForOptions.append(output);
 
   const homeButton = document.createElement('button');
   homeButton.setAttribute('id', 'homeButton');
