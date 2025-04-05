@@ -6,6 +6,11 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
+.disabled {
+  pointer-events: none;
+  filter: brightness(0.7);
+}
+
 .title {
   text-align: center;
 }

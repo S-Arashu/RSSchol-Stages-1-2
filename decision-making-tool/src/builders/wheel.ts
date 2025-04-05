@@ -222,13 +222,15 @@ export function createChoosePage() {
   startButton.addEventListener('click', () => {
     if (+timeField.value >= 5 && +timeField.value <= 30) {
       spinWheel(+timeField.value);
-      homeButton.disabled = true;
-      soundButton.disabled = true;
-      timeField.disabled = true;
+      homeButton.classList.add('disabled');
+      soundButton.classList.add('disabled');
+      timeField.classList.add('disabled');
+      startButton.classList.add('disabled');
       window.setTimeout(() => {
-        homeButton.disabled = false;
-        soundButton.disabled = false;
-        timeField.disabled = false;
+        homeButton.classList.remove('disabled');
+        soundButton.classList.remove('disabled');
+        timeField.classList.remove('disabled');
+        startButton.classList.remove('disabled');
         createAudio('win');
         if (!isSound) {
           // audio.setAttribute('autoplay', 'false');
