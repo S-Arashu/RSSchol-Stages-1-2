@@ -194,8 +194,10 @@ export function createChoosePage() {
   startButton.addEventListener('click', () => {
     spinWheel(3); // Spin for 3 seconds
     homeButton.disabled = true;
+    soundButton.disabled = true;
     window.setTimeout(() => {
       homeButton.disabled = false;
+      soundButton.disabled = false;
       createAudio('win');
       if (!isSound) {
         // audio.setAttribute('autoplay', 'false');

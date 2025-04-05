@@ -4828,8 +4828,10 @@ function createChoosePage() {
     startButton.addEventListener('click', () => {
         spinWheel(3);
         homeButton.disabled = true;
+        soundButton.disabled = true;
         window.setTimeout(() => {
             homeButton.disabled = false;
+            soundButton.disabled = false;
             (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
             if (!isSound) {
                 _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
@@ -5037,7 +5039,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("131de3048d40d340add1")
+/******/ 		__webpack_require__.h = () => ("c7b5a8fd331f5fbdc287")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
