@@ -4736,42 +4736,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
 /* harmony import */ var _createAudio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createAudio */ "./src/builders/createAudio.ts");
-/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
-/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
 
 
 
 
 const soundButton = document.createElement('button');
 function createChoosePage() {
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.textContent = '';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.container.textContent = '';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.textContent = '';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.textContent = '';
     let isSound = Boolean(Number(localStorage.sound));
     const canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'wheel');
     canvas.setAttribute('width', '400');
     canvas.setAttribute('height', '400');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(canvas);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(canvas);
     const pointer = document.createElement('div');
     pointer.setAttribute('id', 'pointer');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(pointer);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(pointer);
     const startButton = document.createElement('button');
     startButton.setAttribute('id', 'start');
     startButton.textContent = 'Start';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(startButton);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(startButton);
     const output = document.createElement('div');
     output.setAttribute('id', 'selected-option');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(output);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(output);
     const homeButton = document.createElement('button');
     homeButton.setAttribute('id', 'homeButton');
     homeButton.textContent = 'Home';
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(homeButton);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(homeButton);
     soundButton.setAttribute('id', 'soundButton');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(soundButton);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(soundButton);
     const containerForDuration = document.createElement('div');
     containerForDuration.classList.add('container');
     containerForDuration.classList.add('containerForDuration');
-    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(containerForDuration);
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(containerForDuration);
     const timeIcon = document.createElement('p');
     timeIcon.classList.add('clock-icon');
     timeIcon.textContent = '⏰';
@@ -4780,8 +4782,8 @@ function createChoosePage() {
     timeField.classList.add('duration-input');
     timeField.setAttribute('type', 'number');
     timeField.setAttribute('placeholder', 'Duration in seconds');
-    timeField.setAttribute('value', '3');
-    timeField.setAttribute('min', '3');
+    timeField.setAttribute('value', '5');
+    timeField.setAttribute('min', '5');
     timeField.setAttribute('max', '30');
     timeField.setAttribute('title', 'Please enter a duration between 5 and 30 seconds');
     containerForDuration.append(timeField);
@@ -4797,15 +4799,15 @@ function createChoosePage() {
         }
     });
     homeButton.addEventListener('click', () => {
-        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.textContent = '';
-        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.container.textContent = '';
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.textContent = '';
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.textContent = '';
         localStorage.page = '0';
         location.hash = 'main';
         document.body.append(___WEBPACK_IMPORTED_MODULE_0__.title);
-        (0,_mainBlock__WEBPACK_IMPORTED_MODULE_3__.create)(___WEBPACK_IMPORTED_MODULE_0__.title);
-        _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.classList.add('containerForOptions');
-        ___WEBPACK_IMPORTED_MODULE_0__.title.append(_mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions);
-        (0,_loadOptions__WEBPACK_IMPORTED_MODULE_2__.loadOptions)(___WEBPACK_IMPORTED_MODULE_0__.objData);
+        (0,_mainBlock__WEBPACK_IMPORTED_MODULE_4__.create)(___WEBPACK_IMPORTED_MODULE_0__.title);
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.classList.add('containerForOptions');
+        ___WEBPACK_IMPORTED_MODULE_0__.title.append(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+        (0,_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(___WEBPACK_IMPORTED_MODULE_0__.objData);
     });
     let top = String(canvas.offsetTop + pointer.offsetHeight / 2);
     let left = String(canvas.offsetLeft + canvas.offsetWidth / 2);
@@ -4869,22 +4871,27 @@ function createChoosePage() {
         requestAnimationFrame(animate);
     }
     startButton.addEventListener('click', () => {
-        spinWheel(+timeField.value);
-        homeButton.disabled = true;
-        soundButton.disabled = true;
-        timeField.disabled = true;
-        window.setTimeout(() => {
-            homeButton.disabled = false;
-            soundButton.disabled = false;
-            timeField.disabled = false;
-            (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
-            if (!isSound) {
-                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
-            }
-            else {
-                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.play();
-            }
-        }, +timeField.value * 1000);
+        if (+timeField.value >= 5 && +timeField.value <= 30) {
+            spinWheel(+timeField.value);
+            homeButton.disabled = true;
+            soundButton.disabled = true;
+            timeField.disabled = true;
+            window.setTimeout(() => {
+                homeButton.disabled = false;
+                soundButton.disabled = false;
+                timeField.disabled = false;
+                (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
+                if (!isSound) {
+                    _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
+                }
+                else {
+                    _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.play();
+                }
+            }, +timeField.value * 1000);
+        }
+        else {
+            (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+        }
     });
     drawWheel();
 }
@@ -5084,7 +5091,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("9d961d76c611d20439a7")
+/******/ 		__webpack_require__.h = () => ("dbb50be7cd2e32f23991")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

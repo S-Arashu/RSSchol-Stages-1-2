@@ -1,5 +1,6 @@
 import { getFromLocalStorage, isMusic, objData, SOUNDOFF, SOUNDON, title } from '..';
 import { audio, createAudio } from './createAudio';
+import { dialogWrongValue } from './dialog';
 import { loadOptions } from './loadOptions';
 import { container, containerForOptions, create } from './mainBlock';
 
@@ -84,8 +85,8 @@ export function createChoosePage() {
   timeField.classList.add('duration-input');
   timeField.setAttribute('type', 'number');
   timeField.setAttribute('placeholder', 'Duration in seconds');
-  timeField.setAttribute('value', '3');
-  timeField.setAttribute('min', '3');
+  timeField.setAttribute('value', '5');
+  timeField.setAttribute('min', '5');
   timeField.setAttribute('max', '30');
   timeField.setAttribute('title', 'Please enter a duration between 5 and 30 seconds');
   containerForDuration.append(timeField);
@@ -219,25 +220,29 @@ export function createChoosePage() {
   }
 
   startButton.addEventListener('click', () => {
-    spinWheel(+timeField.value);
-    homeButton.disabled = true;
-    soundButton.disabled = true;
-    timeField.disabled = true;
-    window.setTimeout(() => {
-      homeButton.disabled = false;
-      soundButton.disabled = false;
-      timeField.disabled = false;
-      createAudio('win');
-      if (!isSound) {
-        // audio.setAttribute('autoplay', 'false');
-        audio.muted;
-        // soundButton.textContent = SOUNDOFF;
-      } else {
-        // audio.setAttribute('autoplay', 'true');
-        // soundButton.textContent = SOUNDON;
-        audio.play();
-      }
-    }, +timeField.value * 1000);
+    if (+timeField.value >= 5 && +timeField.value <= 30) {
+      spinWheel(+timeField.value);
+      homeButton.disabled = true;
+      soundButton.disabled = true;
+      timeField.disabled = true;
+      window.setTimeout(() => {
+        homeButton.disabled = false;
+        soundButton.disabled = false;
+        timeField.disabled = false;
+        createAudio('win');
+        if (!isSound) {
+          // audio.setAttribute('autoplay', 'false');
+          audio.muted;
+          // soundButton.textContent = SOUNDOFF;
+        } else {
+          // audio.setAttribute('autoplay', 'true');
+          // soundButton.textContent = SOUNDON;
+          audio.play();
+        }
+      }, +timeField.value * 1000);
+    } else {
+      dialogWrongValue(containerForOptions);
+    }
   });
 
   // Initial drawing of the wheel
