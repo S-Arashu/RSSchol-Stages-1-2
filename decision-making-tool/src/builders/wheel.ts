@@ -1,5 +1,5 @@
 import { getFromLocalStorage, isMusic, objData, SOUNDOFF, SOUNDON, title } from '..';
-import { audio, createAudio } from './createAudio';
+import { audio, audioWrong, createAudio, createAudioWrong } from './createAudio';
 import { dialogWrongValue } from './dialog';
 import { loadOptions } from './loadOptions';
 import { container, containerForOptions, create } from './mainBlock';
@@ -241,6 +241,16 @@ export function createChoosePage() {
         }
       }, +timeField.value * 1000);
     } else {
+      createAudioWrong('squeak');
+      if (!isSound) {
+        // audio.setAttribute('autoplay', 'false');
+        audioWrong.muted;
+        // soundButton.textContent = SOUNDOFF;
+      } else {
+        // audio.setAttribute('autoplay', 'true');
+        // soundButton.textContent = SOUNDON;
+        audioWrong.play();
+      }
       dialogWrongValue(containerForOptions);
     }
   });

@@ -4135,16 +4135,27 @@ function clearList(elemForClear) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   audio: () => (/* binding */ audio),
-/* harmony export */   createAudio: () => (/* binding */ createAudio)
+/* harmony export */   audioWrong: () => (/* binding */ audioWrong),
+/* harmony export */   createAudio: () => (/* binding */ createAudio),
+/* harmony export */   createAudioWrong: () => (/* binding */ createAudioWrong)
 /* harmony export */ });
 const audio = document.createElement('audio');
-function createAudio(id, src) {
+function createAudio(id) {
     audio.setAttribute('id', id);
     document.body.append(audio);
     const source = document.createElement('source');
     source.setAttribute('src', '../sounds/sounds_win.mp3');
     source.setAttribute('type', 'audio/mp3');
     audio.append(source);
+}
+const audioWrong = document.createElement('audio');
+function createAudioWrong(id) {
+    audioWrong.setAttribute('id', id);
+    document.body.append(audioWrong);
+    const source = document.createElement('source');
+    source.setAttribute('src', '../sounds/mouse-squeak.mp3');
+    source.setAttribute('type', 'audio/mp3');
+    audioWrong.append(source);
 }
 
 
@@ -4890,6 +4901,13 @@ function createChoosePage() {
             }, +timeField.value * 1000);
         }
         else {
+            (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudioWrong)('squeak');
+            if (!isSound) {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audioWrong.muted;
+            }
+            else {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audioWrong.play();
+            }
             (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
         }
     });
@@ -5091,7 +5109,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("dbb50be7cd2e32f23991")
+/******/ 		__webpack_require__.h = () => ("fe67f54563bd2231bb61")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
