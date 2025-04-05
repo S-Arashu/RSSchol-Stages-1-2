@@ -224,6 +224,10 @@ body:has(dialog[open]) {
   width: 80vw;
   /* height: 10vh; */
   margin: 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dialog {
@@ -312,6 +316,17 @@ dialog[open]::backdrop {
   justify-content: space-around;
 }
 
+.containerForDuration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9vh;
+}
+
+.containerForDuration p {
+  margin: 0;
+}
+
 canvas {
   border: 1px solid #000;
   display: block;
@@ -329,8 +344,20 @@ canvas {
   z-index: 1;
 }
 
-#soundButton {
-  width: 20vh;
+#soundButton,
+#start,
+#homeButton {
+  width: 30%;
+  height: 5vh;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#soundButton:hover,
+#start:hover,
+#homeButton:hover {
+  background-color: lightsalmon;
 }
 
 /* .popup-wrong {
@@ -353,7 +380,7 @@ canvas {
     width: 100%;
   }
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;EACE,WAAW;AACb;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n#soundButton {\n  width: 20vh;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,aAAa;EACb,eAAe;EACf,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;EAGE,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;;;EAGE,6BAA6B;AAC/B;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: column;\n  align-items: center;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\n.containerForDuration {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 9vh;\n}\n\n.containerForDuration p {\n  margin: 0;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n#soundButton,\n#start,\n#homeButton {\n  width: 30%;\n  height: 5vh;\n  border-radius: 10px;\n  cursor: pointer;\n  transition: all 0.3s ease-in-out;\n}\n\n#soundButton:hover,\n#start:hover,\n#homeButton:hover {\n  background-color: lightsalmon;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4453,7 +4480,6 @@ function create(parentTag) {
         localStorage.setItem('count', JSON.stringify([1]));
     }
     containerForOptions.classList.add('container');
-    container.setAttribute('tabindex', '1');
     container.classList.add('container');
     parentTag.after(containerForOptions);
     parentTag.after(container);
@@ -4742,6 +4768,23 @@ function createChoosePage() {
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(homeButton);
     soundButton.setAttribute('id', 'soundButton');
     _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(soundButton);
+    const containerForDuration = document.createElement('div');
+    containerForDuration.classList.add('container');
+    containerForDuration.classList.add('containerForDuration');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_3__.containerForOptions.append(containerForDuration);
+    const timeIcon = document.createElement('p');
+    timeIcon.classList.add('clock-icon');
+    timeIcon.textContent = '⏰';
+    containerForDuration.append(timeIcon);
+    const timeField = document.createElement('input');
+    timeField.classList.add('duration-input');
+    timeField.setAttribute('type', 'number');
+    timeField.setAttribute('placeholder', 'Duration in seconds');
+    timeField.setAttribute('value', '3');
+    timeField.setAttribute('min', '3');
+    timeField.setAttribute('max', '30');
+    timeField.setAttribute('title', 'Please enter a duration between 5 and 30 seconds');
+    containerForDuration.append(timeField);
     soundButton.addEventListener('click', () => {
         isSound = !isSound;
         if (!isSound) {
@@ -4815,7 +4858,7 @@ function createChoosePage() {
                 const elapsed = timestamp - start;
                 const progress = Math.min(elapsed / spinDuration, 1);
                 const easeOutQuad = progress * (2 - progress);
-                const angle = totalDegree * easeOutQuad;
+                const angle = totalDegree * (totalDegree - 720) * easeOutQuad;
                 startAngle = angle * (Math.PI / 180);
                 drawWheel();
                 if (progress < 1) {
@@ -4826,12 +4869,14 @@ function createChoosePage() {
         requestAnimationFrame(animate);
     }
     startButton.addEventListener('click', () => {
-        spinWheel(3);
+        spinWheel(+timeField.value);
         homeButton.disabled = true;
         soundButton.disabled = true;
+        timeField.disabled = true;
         window.setTimeout(() => {
             homeButton.disabled = false;
             soundButton.disabled = false;
+            timeField.disabled = false;
             (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
             if (!isSound) {
                 _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
@@ -4839,7 +4884,7 @@ function createChoosePage() {
             else {
                 _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.play();
             }
-        }, 3000);
+        }, +timeField.value * 1000);
     });
     drawWheel();
 }
@@ -5039,7 +5084,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c7b5a8fd331f5fbdc287")
+/******/ 		__webpack_require__.h = () => ("9d961d76c611d20439a7")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

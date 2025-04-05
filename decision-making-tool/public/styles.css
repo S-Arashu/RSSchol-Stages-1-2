@@ -14,6 +14,10 @@ body:has(dialog[open]) {
   width: 80vw;
   /* height: 10vh; */
   margin: 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dialog {
@@ -102,6 +106,17 @@ dialog[open]::backdrop {
   justify-content: space-around;
 }
 
+.containerForDuration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9vh;
+}
+
+.containerForDuration p {
+  margin: 0;
+}
+
 canvas {
   border: 1px solid #000;
   display: block;
@@ -119,8 +134,20 @@ canvas {
   z-index: 1;
 }
 
-#soundButton {
-  width: 20vh;
+#soundButton,
+#start,
+#homeButton {
+  width: 30%;
+  height: 5vh;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#soundButton:hover,
+#start:hover,
+#homeButton:hover {
+  background-color: lightsalmon;
 }
 
 /* .popup-wrong {

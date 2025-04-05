@@ -35,7 +35,7 @@ export function create(parentTag: { after: (arg0: HTMLDivElement) => void }) {
 
   // const container = document.createElement('div');
   containerForOptions.classList.add('container');
-  container.setAttribute('tabindex', '1');
+  // container.setAttribute('tabindex', '1');
   container.classList.add('container');
   parentTag.after(containerForOptions);
   parentTag.after(container);

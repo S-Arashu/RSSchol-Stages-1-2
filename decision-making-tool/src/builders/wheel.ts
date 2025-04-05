@@ -69,6 +69,33 @@ export function createChoosePage() {
 
   // soundBtn = soundButton;
 
+  const containerForDuration = document.createElement('div');
+  containerForDuration.classList.add('container');
+  // container.setAttribute('tabindex', '1');
+  containerForDuration.classList.add('containerForDuration');
+  containerForOptions.append(containerForDuration);
+
+  const timeIcon = document.createElement('p');
+  timeIcon.classList.add('clock-icon');
+  timeIcon.textContent = '⏰';
+  containerForDuration.append(timeIcon);
+
+  const timeField = document.createElement('input');
+  timeField.classList.add('duration-input');
+  timeField.setAttribute('type', 'number');
+  timeField.setAttribute('placeholder', 'Duration in seconds');
+  timeField.setAttribute('value', '3');
+  timeField.setAttribute('min', '3');
+  timeField.setAttribute('max', '30');
+  timeField.setAttribute('title', 'Please enter a duration between 5 and 30 seconds');
+  containerForDuration.append(timeField);
+
+  // let durationValue: number;
+
+  // timeField.oninput = function () {
+  //   durationValue = +timeField.value;
+  // };
+
   soundButton.addEventListener('click', () => {
     // isSound = Boolean(Number(localStorage.sound));
     isSound = !isSound;
@@ -165,7 +192,7 @@ export function createChoosePage() {
         const progress = Math.min(elapsed / spinDuration, 1);
         const easeOutQuad = progress * (2 - progress); // Easing function
 
-        const angle = totalDegree * easeOutQuad;
+        const angle = totalDegree * (totalDegree - 720) * easeOutQuad;
         startAngle = angle * (Math.PI / 180);
 
         drawWheel();
@@ -192,12 +219,14 @@ export function createChoosePage() {
   }
 
   startButton.addEventListener('click', () => {
-    spinWheel(3); // Spin for 3 seconds
+    spinWheel(+timeField.value);
     homeButton.disabled = true;
     soundButton.disabled = true;
+    timeField.disabled = true;
     window.setTimeout(() => {
       homeButton.disabled = false;
       soundButton.disabled = false;
+      timeField.disabled = false;
       createAudio('win');
       if (!isSound) {
         // audio.setAttribute('autoplay', 'false');
@@ -208,7 +237,7 @@ export function createChoosePage() {
         // soundButton.textContent = SOUNDON;
         audio.play();
       }
-    }, 3000);
+    }, +timeField.value * 1000);
   });
 
   // Initial drawing of the wheel
