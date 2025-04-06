@@ -212,14 +212,69 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
   background-color: rgba(27, 122, 224, 0.619);
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.disabled {
+  pointer-events: none;
+  filter: brightness(0.7);
+}
+
 .title {
   text-align: center;
 }
 
+.containerForOptions {
+  width: 80vw;
+  /* height: 10vh; */
+  margin: 2% auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog {
+  border: none;
+  padding: 0;
+}
+
+/* .dialog-wrapper {
+  padding: 1em;
+} */
+
+dialog[open]::backdrop {
+  background: linear-gradient(
+    45deg,
+    rgba(146, 228, 111, 0.6) 0%,
+    rgba(72, 108, 191, 0.6) 50%,
+    rgba(177, 48, 169, 0.6) 100%
+  );
+
+  backdrop-filter: blur(2px);
+}
+
+.popup-wrong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  /* gap: 1%; */
+  height: 30vh;
+  justify-content: space-around;
+}
+
+.dialog-button {
+  width: 100%;
+}
+
 .container {
   width: 80vw;
-  height: 10vh;
-  margin: 2% auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1% auto;
 }
 
 .buttonList {
@@ -245,6 +300,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 
 .label-item {
   font-size: 1.2vw;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .input-item,
@@ -256,7 +315,105 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 .button-item {
   cursor: pointer;
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\n.title {\n  text-align: center;\n}\n\n.container {\n  width: 80vw;\n  height: 10vh;\n  margin: 2% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n"],"sourceRoot":""}]);
+
+.containerForButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.containerForDuration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9vh;
+}
+
+.containerForDuration p {
+  margin: 0;
+}
+
+#selected-option {
+  margin: 1%;
+}
+
+/* canvas {
+  border: 1px solid #000;
+  display: block;
+  margin: 20px auto;
+} */
+
+canvas {
+  border: 1px solid black;
+  display: block;
+  margin: 20px auto;
+}
+.selected-option {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+  transition: background-color 0.5s;
+}
+
+/* #pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -25px;
+  height: 50px;
+  width: 10px;
+  background: red;
+  z-index: 1;
+} */
+
+#pointer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid red; /* Цвет указателя */
+  top: 0; /* Позиция указателя */
+  left: calc(50% - 10px); /* Центрирование указателя */
+}
+
+#soundButton,
+#start,
+#homeButton {
+  width: 30%;
+  height: 5vh;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#soundButton:hover,
+#start:hover,
+#homeButton:hover {
+  background-color: lightsalmon;
+}
+
+/* .popup-wrong {
+  display: none;
+  width: 400px;
+  height: 50px;
+  margin: 10% auto;
+  position: absolute;
+  z-index: 5;
+} */
+
+@media (max-width: 900px) {
+  .label-item {
+    flex-wrap: wrap;
+    font-size: 2vw;
+    padding: 2% 0;
+  }
+
+  .input-item {
+    width: 100%;
+  }
+}
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,oBAAoB;EACpB,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,aAAa;EACb,eAAe;EACf,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,UAAU;AACZ;;AAEA;;;;GAIG;;AAEH;EACE,uBAAuB;EACvB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,iCAAiC;AACnC;;AAEA;;;;;;;;;;GAUG;;AAEH;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,mCAAmC;EACnC,oCAAoC;EACpC,6BAA6B,EAAE,mBAAmB;EAClD,MAAM,EAAE,sBAAsB;EAC9B,sBAAsB,EAAE,4BAA4B;AACtD;;AAEA;;;EAGE,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;;;EAGE,6BAA6B;AAC/B;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.disabled {\n  pointer-events: none;\n  filter: brightness(0.7);\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: column;\n  align-items: center;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\n.containerForDuration {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 9vh;\n}\n\n.containerForDuration p {\n  margin: 0;\n}\n\n#selected-option {\n  margin: 1%;\n}\n\n/* canvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n} */\n\ncanvas {\n  border: 1px solid black;\n  display: block;\n  margin: 20px auto;\n}\n.selected-option {\n  text-align: center;\n  font-size: 24px;\n  margin-top: 20px;\n  transition: background-color 0.5s;\n}\n\n/* #pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n} */\n\n#pointer {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-bottom: 20px solid red; /* Цвет указателя */\n  top: 0; /* Позиция указателя */\n  left: calc(50% - 10px); /* Центрирование указателя */\n}\n\n#soundButton,\n#start,\n#homeButton {\n  width: 30%;\n  height: 5vh;\n  border-radius: 10px;\n  cursor: pointer;\n  transition: all 0.3s ease-in-out;\n}\n\n#soundButton:hover,\n#start:hover,\n#homeButton:hover {\n  background-color: lightsalmon;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3978,6 +4135,202 @@ class Buttons {
 
 /***/ }),
 
+/***/ "./src/builders/clearList.ts":
+/*!***********************************!*\
+  !*** ./src/builders/clearList.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   clearList: () => (/* binding */ clearList)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+
+function clearList(elemForClear) {
+    localStorage.setItem('dataFromInputs', JSON.stringify({}));
+    localStorage.setItem('count', JSON.stringify([]));
+    Object.keys(___WEBPACK_IMPORTED_MODULE_0__.objData).forEach(key => delete ___WEBPACK_IMPORTED_MODULE_0__.objData[key]);
+    elemForClear.textContent = '';
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/createAudio.ts":
+/*!*************************************!*\
+  !*** ./src/builders/createAudio.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   audio: () => (/* binding */ audio),
+/* harmony export */   audioWrong: () => (/* binding */ audioWrong),
+/* harmony export */   createAudio: () => (/* binding */ createAudio),
+/* harmony export */   createAudioWrong: () => (/* binding */ createAudioWrong)
+/* harmony export */ });
+const audio = document.createElement('audio');
+function createAudio(id) {
+    audio.setAttribute('id', id);
+    document.body.append(audio);
+    const source = document.createElement('source');
+    source.setAttribute('src', '../sounds/sounds_win.mp3');
+    source.setAttribute('type', 'audio/mp3');
+    audio.append(source);
+}
+const audioWrong = document.createElement('audio');
+function createAudioWrong(id) {
+    audioWrong.setAttribute('id', id);
+    document.body.append(audioWrong);
+    const source = document.createElement('source');
+    source.setAttribute('src', '../sounds/mouse-squeak.mp3');
+    source.setAttribute('type', 'audio/mp3');
+    audioWrong.append(source);
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/dialog.ts":
+/*!********************************!*\
+  !*** ./src/builders/dialog.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   dialogWrongValue: () => (/* binding */ dialogWrongValue)
+/* harmony export */ });
+function dialogWrongValue(parent) {
+    const dialogWrong = document.createElement('dialog');
+    dialogWrong.classList.add('popup-wrong');
+    dialogWrong.textContent = 'Please, enter correct data';
+    parent.append(dialogWrong);
+    const dialogWrapper = document.createElement('div');
+    dialogWrapper.classList.add('dialog-wrapper');
+    dialogWrong.append(dialogWrapper);
+    const dialogButton = document.createElement('button');
+    dialogButton.classList.add('dialog-button');
+    dialogButton.innerText = 'OK';
+    dialogWrapper.append(dialogButton);
+    dialogWrong.showModal();
+    dialogWrong.addEventListener('cancel', event => {
+        dialogWrong.remove();
+        console.log(`remove dialogWrong`);
+    });
+    dialogButton.addEventListener('click', () => {
+        if (dialogWrong.open) {
+            dialogWrong.remove();
+        }
+    });
+    const handleModalClick = (event) => {
+        const modalRect = dialogWrong.getBoundingClientRect();
+        if (event.clientX < modalRect.left ||
+            event.clientX > modalRect.right ||
+            event.clientY < modalRect.top ||
+            event.clientY > modalRect.bottom) {
+            dialogWrong.remove();
+        }
+    };
+    dialogWrong.addEventListener('click', handleModalClick);
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/downloadData.ts":
+/*!**************************************!*\
+  !*** ./src/builders/downloadData.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   downloadData: () => (/* binding */ downloadData)
+/* harmony export */ });
+/* harmony import */ var _clearList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./clearList */ "./src/builders/clearList.ts");
+/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+function downloadData(elem) {
+    elem.setAttribute('id', 'loadButton');
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('id', 'fileInput');
+    fileInput.setAttribute('accept', '.json');
+    fileInput.setAttribute('style', 'display: none;');
+    elem.after(fileInput);
+    elem.addEventListener('click', function () {
+        fileInput.click();
+    });
+    fileInput.addEventListener('change', event => {
+        if (event.target && event.target instanceof HTMLInputElement) {
+            if (event.target.files) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        var _a, _b;
+                        try {
+                            console.log(typeof ((_a = e.target) === null || _a === void 0 ? void 0 : _a.result) === 'string');
+                            if (e.target && typeof ((_b = e.target) === null || _b === void 0 ? void 0 : _b.result) === 'string') {
+                                const jsonObject = JSON.parse(e.target.result);
+                                console.log(jsonObject);
+                                (0,_clearList__WEBPACK_IMPORTED_MODULE_0__.clearList)(_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
+                                let objLength;
+                                let weightLength = [];
+                                let titleLength = [];
+                                let objCount;
+                                for (let key of Object.keys(jsonObject)) {
+                                    console.log(key[0] === 'o');
+                                    if (key[0] === 'o') {
+                                        titleLength.push(+key.replace(/\D/g, ''));
+                                    }
+                                    else if (key[0] === '#') {
+                                        weightLength.push(+key.replace(/\D/g, ''));
+                                    }
+                                    if (weightLength.length > titleLength.length) {
+                                        objCount = weightLength.slice(0);
+                                    }
+                                    else {
+                                        objCount = titleLength.slice(0);
+                                    }
+                                }
+                                const objData = jsonObject;
+                                if (objCount) {
+                                    localStorage.setItem('count', JSON.stringify(objCount));
+                                    (0,_loadOptions__WEBPACK_IMPORTED_MODULE_1__.loadOptions)(objData);
+                                    localStorage.setItem('dataFromInputs', JSON.stringify(objData));
+                                }
+                            }
+                        }
+                        catch (error) {
+                            console.error('Error parsing JSON:', error);
+                        }
+                    };
+                    reader.onerror = error => {
+                        console.error('Error reading file:', error);
+                    };
+                    reader.readAsText(file);
+                }
+                else {
+                    console.error('No file selected');
+                }
+            }
+        }
+    });
+}
+
+
+/***/ }),
+
 /***/ "./src/builders/inputFields.ts":
 /*!*************************************!*\
   !*** ./src/builders/inputFields.ts ***!
@@ -3996,7 +4349,7 @@ __webpack_require__.r(__webpack_exports__);
 function createInput(parentTag, count, valuesOpt, valuesWeight) {
     const liElem = document.createElement('li');
     liElem.classList.add('item');
-    parentTag.prepend(liElem);
+    parentTag.append(liElem);
     const label = document.createElement('label');
     label.setAttribute('for', `option-#${count}`);
     label.textContent = `#${count}`;
@@ -4022,12 +4375,33 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
     button.textContent = 'Delete';
     label.append(button);
     button.addEventListener('click', () => {
+        var _a, _b;
         let previous = button.previousElementSibling;
         if (previous instanceof HTMLInputElement) {
             let doublePrevious = previous.previousElementSibling;
             if (doublePrevious instanceof HTMLInputElement) {
                 let nameOfOption = doublePrevious.value;
                 let weightOfOption = previous.value;
+                console.dir((_a = doublePrevious.parentNode) === null || _a === void 0 ? void 0 : _a.parentNode);
+                const parent = (_b = doublePrevious.parentNode) === null || _b === void 0 ? void 0 : _b.parentNode;
+                if (parent instanceof HTMLDivElement || parent instanceof HTMLElement) {
+                    parent.remove();
+                }
+                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[doublePrevious.id];
+                delete ___WEBPACK_IMPORTED_MODULE_1__.objData[`#${doublePrevious.id.replace(/\D/g, '')}`];
+                const countElem = (0,___WEBPACK_IMPORTED_MODULE_1__.getFromLocalStorage)('count');
+                let deleteElem = countElem.indexOf(+doublePrevious.id.replace(/\D/g, ''));
+                console.log(deleteElem);
+                console.log(doublePrevious.id.replace(/\D/g, ''));
+                if (deleteElem != -1) {
+                    countElem.splice(deleteElem, 1);
+                }
+                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+                localStorage.setItem('dataFromInputs', jsonString);
+                localStorage.setItem('count', JSON.stringify(countElem));
+                if (countElem.length === 0) {
+                    localStorage.removeItem('count');
+                }
             }
         }
     });
@@ -4035,23 +4409,65 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
     inputSecondElem.oninput = saveData;
     function saveData(event) {
         var _a, _b;
+        let objData = (0,___WEBPACK_IMPORTED_MODULE_1__.getFromLocalStorage)('dataFromInputs');
         const current = event.target;
         if (current instanceof HTMLInputElement) {
             if (current.id) {
-                ___WEBPACK_IMPORTED_MODULE_1__.objData[current.id] = current.value;
-                console.log(___WEBPACK_IMPORTED_MODULE_1__.objData);
+                objData[current.id] = current.value;
             }
             else if (!current.id &&
                 current.previousSibling &&
                 ((_a = current.previousSibling.previousSibling) === null || _a === void 0 ? void 0 : _a.nodeValue)) {
-                ___WEBPACK_IMPORTED_MODULE_1__.objData[(_b = current.previousSibling.previousSibling) === null || _b === void 0 ? void 0 : _b.nodeValue] = current.value;
-                console.log(___WEBPACK_IMPORTED_MODULE_1__.objData);
+                objData[(_b = current.previousSibling.previousSibling) === null || _b === void 0 ? void 0 : _b.nodeValue] = current.value;
             }
         }
-        const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_1__.objData);
+        const jsonString = JSON.stringify(objData);
         localStorage.setItem('dataFromInputs', jsonString);
     }
     return liElem;
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/loadOptions.ts":
+/*!*************************************!*\
+  !*** ./src/builders/loadOptions.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadOptions: () => (/* binding */ loadOptions)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+function loadOptions(object) {
+    const count = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [1];
+    let valOpt;
+    let valW;
+    for (let i = 0; i < count.length; i += 1) {
+        valOpt = '';
+        valW = 0;
+        for (let key of Object.keys(object)) {
+            console.log(key);
+            if (count[i] === +key.replace(/\D/g, '') && key[0] === 'o') {
+                valOpt = String(object[key]);
+            }
+            else if (count[i] === +key.replace(/\D/g, '') && key[0] === '#' && object[key]) {
+                valW = +object[key];
+            }
+            else {
+                continue;
+            }
+        }
+        (0,_inputFields__WEBPACK_IMPORTED_MODULE_1__.createInput)(_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions, count[i], valOpt, valW);
+    }
 }
 
 
@@ -4066,11 +4482,28 @@ function createInput(parentTag, count, valuesOpt, valuesWeight) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   create: () => (/* binding */ create)
+/* harmony export */   container: () => (/* binding */ container),
+/* harmony export */   containerForOptions: () => (/* binding */ containerForOptions),
+/* harmony export */   create: () => (/* binding */ create),
+/* harmony export */   startBut: () => (/* binding */ startBut)
 /* harmony export */ });
-/* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
-/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
-/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../public/styles.css */ "./public/styles.css");
+/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
+/* harmony import */ var _clearList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./clearList */ "./src/builders/clearList.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _saveData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./saveData */ "./src/builders/saveData.ts");
+/* harmony import */ var _downloadData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./downloadData */ "./src/builders/downloadData.ts");
+/* harmony import */ var _wheel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./wheel */ "./src/builders/wheel.ts");
+/* harmony import */ var _pasteList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pasteList */ "./src/builders/pasteList.ts");
+
+
+
+
+
+
+
 
 
 
@@ -4082,27 +4515,439 @@ const NAMES_OF_BUTTONS = [
     'Load list from file',
     'Start',
 ];
+let startBut;
 const NUM_OF_BUTTONS = 6;
+const container = document.createElement('div');
+const containerForOptions = document.createElement('div');
 function create(parentTag) {
     if (!localStorage.count) {
-        localStorage.count = '1';
+        localStorage.setItem('count', JSON.stringify([1]));
     }
-    const container = document.createElement('div');
+    containerForOptions.classList.add('container');
     container.classList.add('container');
-    parentTag.append(container);
+    parentTag.after(containerForOptions);
+    parentTag.after(container);
     for (let i = 0; i < NUM_OF_BUTTONS; i += 1) {
-        const button = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
+        const button = new _buttons__WEBPACK_IMPORTED_MODULE_2__.Buttons('button', NAMES_OF_BUTTONS[i], 'buttonList');
         const elementOfContainer = button.createButton();
         container.append(elementOfContainer);
         if (i === 0) {
             elementOfContainer.addEventListener('click', () => {
-                let numOfElem = localStorage.count;
-                numOfElem = +numOfElem + 1;
-                (0,_inputFields__WEBPACK_IMPORTED_MODULE_2__.createInput)(container, numOfElem);
-                localStorage.count = numOfElem;
+                let numOfElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+                console.log(numOfElem);
+                if (numOfElem.length === 0) {
+                    numOfElem.push(1);
+                }
+                else {
+                    numOfElem.push(numOfElem[numOfElem.length - 1] + 1);
+                }
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_5__.createInput)(containerForOptions, numOfElem[numOfElem.length - 1]);
+                localStorage.setItem('count', JSON.stringify(numOfElem));
+            });
+        }
+        if (i === 1) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_pasteList__WEBPACK_IMPORTED_MODULE_9__.createPasteList)();
+            });
+        }
+        if (i === 2) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_clearList__WEBPACK_IMPORTED_MODULE_3__.clearList)(containerForOptions);
+            });
+        }
+        if (i === 3) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_saveData__WEBPACK_IMPORTED_MODULE_6__.saveToFile)();
+            });
+        }
+        if (i === 4) {
+            elementOfContainer.addEventListener('click', () => {
+                (0,_downloadData__WEBPACK_IMPORTED_MODULE_7__.downloadData)(elementOfContainer);
+            });
+        }
+        if (i === 5) {
+            startBut = elementOfContainer;
+            elementOfContainer.addEventListener('click', () => {
+                if (!localStorage.getItem('dataFromInputs') ||
+                    Object.keys((0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs')).length < 4) {
+                    (0,_pasteList__WEBPACK_IMPORTED_MODULE_9__.createPasteList)();
+                    (0,_dialog__WEBPACK_IMPORTED_MODULE_4__.dialogWrongValue)(containerForOptions);
+                }
+                else {
+                    localStorage.page = '1';
+                    location.hash = 'decision-maker';
+                    (0,_wheel__WEBPACK_IMPORTED_MODULE_8__.createChoosePage)();
+                    let isSound = Boolean(Number(localStorage.sound));
+                    if (!localStorage.sound) {
+                        isSound = true;
+                        localStorage.sound = '1';
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
+                        console.log('No sound');
+                    }
+                    if (localStorage.sound === '1') {
+                        isSound = true;
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
+                        console.log('Sound on');
+                    }
+                    if (localStorage.sound === '0') {
+                        isSound = false;
+                        _wheel__WEBPACK_IMPORTED_MODULE_8__.soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDOFF;
+                        console.log('Sound off');
+                    }
+                }
+                console.log(!localStorage.getItem('dataFromInputs') ||
+                    Object.keys((0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs')).length < 4);
             });
         }
     }
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/pasteList.ts":
+/*!***********************************!*\
+  !*** ./src/builders/pasteList.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createPasteList: () => (/* binding */ createPasteList),
+/* harmony export */   dialogElem: () => (/* binding */ dialogElem)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/builders/buttons.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+
+
+let dialogElem;
+function createPasteList() {
+    const dialog = document.createElement('dialog');
+    dialog.setAttribute('aria-label', 'Paste list');
+    dialog.classList.add('popup');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.append(dialog);
+    const dialogWrapper = document.createElement('div');
+    dialogWrapper.classList.add('dialog-wrapper');
+    dialog.append(dialogWrapper);
+    const form = document.createElement('form');
+    form.setAttribute('method', 'dialog');
+    form.classList.add('formForDialog');
+    dialogWrapper.append(form);
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('textarea');
+    textarea.setAttribute('rows', '12');
+    textarea.setAttribute('cols', '64');
+    textarea.setAttribute('placeholder', `
+    Paste a list of new options in a CSV-like format:
+
+title,1                 -> | title                 | 1 |
+title with whitespace,2 -> | title with whitespace | 2 |
+title , with , commas,3 -> | title , with , commas | 3 |
+title with "quotes",4   -> | title with "quotes"   | 4 |`);
+    textarea.setAttribute('name', 'table');
+    form.append(textarea);
+    const containerForButtons = document.createElement('div');
+    containerForButtons.classList.add('containerForButtons');
+    form.append(containerForButtons);
+    const cancel = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', 'Cancel', 'cancelButton');
+    const confirm = new _buttons__WEBPACK_IMPORTED_MODULE_1__.Buttons('button', 'Confirm', 'confirmButton');
+    const cancelBut = cancel.createButton();
+    const confirmBut = confirm.createButton();
+    containerForButtons.append(cancelBut);
+    containerForButtons.append(confirmBut);
+    dialogElem = dialog;
+    dialog.showModal();
+    cancelBut.addEventListener('click', () => {
+        dialog.remove();
+        location.hash = 'main';
+    });
+    form.addEventListener('keypress', function (event) {
+        let key = event.key;
+        if (key === 'Enter') {
+            const lastSymbol = +textarea.value[textarea.value.length - 1];
+            if (isNaN(lastSymbol)) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.container);
+            }
+        }
+    });
+    const handleModalClick = (event) => {
+        const modalRect = dialog.getBoundingClientRect();
+        if (event.clientX < modalRect.left ||
+            event.clientX > modalRect.right ||
+            event.clientY < modalRect.top ||
+            event.clientY > modalRect.bottom) {
+            dialog.remove();
+            location.hash = 'main';
+        }
+    };
+    dialog.addEventListener('click', handleModalClick);
+    confirmBut.addEventListener('click', event => {
+        const lastSymbol = +textarea.value[textarea.value.length - 1];
+        const dataFromTextarea = textarea.value.split('\n');
+        dataFromTextarea.forEach(arrayElem => {
+            var _a, _b;
+            let data = arrayElem.split(/,[1-9]/);
+            let dataNum = /,[1-9]/.exec(arrayElem);
+            let countElem = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('count') || [];
+            console.log(dataNum);
+            if (dataNum) {
+                if (countElem.length === 0) {
+                    countElem.push(1);
+                }
+                else {
+                    countElem.push(countElem[countElem.length - 1] + 1);
+                }
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`#${countElem[countElem.length - 1]}`] = (_a = dataNum[0]) === null || _a === void 0 ? void 0 : _a.replace(',', '');
+                ___WEBPACK_IMPORTED_MODULE_0__.objData[`option-#${countElem[countElem.length - 1]}`] = data[0];
+                (0,_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions, countElem[countElem.length - 1], data[0], +((_b = dataNum[0]) === null || _b === void 0 ? void 0 : _b.replace(',', '')));
+                localStorage.setItem('count', JSON.stringify(countElem));
+                const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData);
+                localStorage.setItem('dataFromInputs', jsonString);
+                textarea.value = '';
+            }
+            else if (dataNum == null) {
+                (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+                event.preventDefault();
+            }
+        });
+        if (isNaN(lastSymbol)) {
+            (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+            event.preventDefault();
+        }
+        else {
+            dialog.remove();
+            location.hash = 'main';
+        }
+    });
+    dialog.addEventListener('cancel', event => {
+        dialog.remove();
+        location.hash = 'main';
+        console.log('Remove dialog');
+    });
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/saveData.ts":
+/*!**********************************!*\
+  !*** ./src/builders/saveData.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   saveToFile: () => (/* binding */ saveToFile)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+
+function saveToFile() {
+    const jsonString = JSON.stringify(___WEBPACK_IMPORTED_MODULE_0__.objData, null, 2);
+    function downloadJSON(jsonString, filename) {
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    downloadJSON(jsonString, 'myObject.json');
+}
+
+
+/***/ }),
+
+/***/ "./src/builders/wheel.ts":
+/*!*******************************!*\
+  !*** ./src/builders/wheel.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createChoosePage: () => (/* binding */ createChoosePage),
+/* harmony export */   soundButton: () => (/* binding */ soundButton)
+/* harmony export */ });
+/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .. */ "./src/index.ts");
+/* harmony import */ var _createAudio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createAudio */ "./src/builders/createAudio.ts");
+/* harmony import */ var _dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dialog */ "./src/builders/dialog.ts");
+/* harmony import */ var _loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _mainBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mainBlock */ "./src/builders/mainBlock.ts");
+
+
+
+
+
+const soundButton = document.createElement('button');
+function createChoosePage() {
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.textContent = '';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.textContent = '';
+    let isSound = Boolean(Number(localStorage.sound));
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('id', 'wheel');
+    canvas.setAttribute('width', '400');
+    canvas.setAttribute('height', '400');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(canvas);
+    const pointer = document.createElement('div');
+    pointer.setAttribute('id', 'pointer');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(pointer);
+    const output = document.createElement('div');
+    output.setAttribute('id', 'selected-option');
+    output.textContent = 'Click "Start" to fun!';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(output);
+    const startButton = document.createElement('button');
+    startButton.setAttribute('id', 'start');
+    startButton.textContent = 'Start';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(startButton);
+    const homeButton = document.createElement('button');
+    homeButton.setAttribute('id', 'homeButton');
+    homeButton.textContent = 'Home';
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(homeButton);
+    soundButton.setAttribute('id', 'soundButton');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(soundButton);
+    const containerForDuration = document.createElement('div');
+    containerForDuration.classList.add('container');
+    containerForDuration.classList.add('containerForDuration');
+    _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.append(containerForDuration);
+    const timeIcon = document.createElement('p');
+    timeIcon.classList.add('clock-icon');
+    timeIcon.textContent = '⏰';
+    containerForDuration.append(timeIcon);
+    const timeField = document.createElement('input');
+    timeField.classList.add('duration-input');
+    timeField.setAttribute('type', 'number');
+    timeField.setAttribute('placeholder', 'Duration in seconds');
+    timeField.setAttribute('value', '5');
+    timeField.setAttribute('min', '5');
+    timeField.setAttribute('max', '30');
+    timeField.setAttribute('title', 'Please enter a duration between 5 and 30 seconds');
+    containerForDuration.append(timeField);
+    soundButton.addEventListener('click', () => {
+        isSound = !isSound;
+        if (!isSound) {
+            localStorage.sound = '0';
+            soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDOFF;
+        }
+        if (isSound) {
+            localStorage.sound = '1';
+            soundButton.textContent = ___WEBPACK_IMPORTED_MODULE_0__.SOUNDON;
+        }
+    });
+    homeButton.addEventListener('click', () => {
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.textContent = '';
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.container.textContent = '';
+        localStorage.page = '0';
+        location.hash = 'main';
+        document.body.append(___WEBPACK_IMPORTED_MODULE_0__.title);
+        (0,_mainBlock__WEBPACK_IMPORTED_MODULE_4__.create)(___WEBPACK_IMPORTED_MODULE_0__.title);
+        _mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions.classList.add('containerForOptions');
+        ___WEBPACK_IMPORTED_MODULE_0__.title.append(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+        (0,_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(___WEBPACK_IMPORTED_MODULE_0__.objData);
+    });
+    let top = String(canvas.offsetTop + pointer.offsetHeight / 2);
+    let left = String(canvas.offsetLeft + canvas.offsetWidth / 2);
+    pointer.style.top = top + 'px';
+    pointer.style.left = left + 'px';
+    window.addEventListener('resize', () => {
+        top = String(canvas.offsetTop + pointer.offsetHeight / 2);
+        left = String(canvas.offsetLeft + canvas.offsetWidth / 2);
+        pointer.style.top = top + 'px';
+        pointer.style.left = left + 'px';
+    });
+    let options = (0,___WEBPACK_IMPORTED_MODULE_0__.getFromLocalStorage)('dataFromInputs');
+    const ctx = canvas.getContext('2d');
+    const sections = Object.keys(options).filter(key => key.startsWith('#'));
+    const sectionValues = sections.map(key => parseInt(options[key], 10));
+    const sectionNames = sections.map(key => options[`option-${key}`]);
+    const total = sectionValues.reduce((sum, val) => sum + val, 0);
+    const angles = sectionValues.map(value => (value / total) * 2 * Math.PI);
+    let startAngle = 0;
+    function drawWheel() {
+        if (ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(centerX, centerY) * 0.9;
+            sections.forEach((section, index) => {
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, startAngle + angles[index]);
+                ctx.fillStyle = 'orange';
+                ctx.fill();
+                ctx.stroke();
+                const midAngle = startAngle + angles[index] / 2;
+                const textX = centerX + Math.cos(midAngle) * (radius / 2);
+                const textY = centerY + Math.sin(midAngle) * (radius / 2);
+                ctx.fillStyle = 'black';
+                ctx.fillText(sectionNames[index], textX, textY);
+                startAngle += angles[index];
+            });
+        }
+    }
+    function spinWheel(duration) {
+        let start = null;
+        const totalDegree = Math.random() * 360 + 720;
+        const spinDuration = duration * 1000;
+        function animate(timestamp) {
+            if (!start)
+                start = timestamp;
+            if (timestamp && start) {
+                const elapsed = timestamp - start;
+                const progress = Math.min(elapsed / spinDuration, 1);
+                const easeOutQuad = progress * (2 - progress);
+                const angle = totalDegree * (totalDegree - 720) * easeOutQuad;
+                startAngle = angle * (Math.PI / 180);
+                drawWheel();
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    startButton.addEventListener('click', () => {
+        if (+timeField.value >= 5 && +timeField.value <= 30) {
+            spinWheel(+timeField.value);
+            homeButton.classList.add('disabled');
+            soundButton.classList.add('disabled');
+            timeField.classList.add('disabled');
+            startButton.classList.add('disabled');
+            window.setTimeout(() => {
+                homeButton.classList.remove('disabled');
+                soundButton.classList.remove('disabled');
+                timeField.classList.remove('disabled');
+                startButton.classList.remove('disabled');
+                (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudio)('win');
+                if (!isSound) {
+                    _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.muted;
+                }
+                else {
+                    _createAudio__WEBPACK_IMPORTED_MODULE_1__.audio.play();
+                }
+            }, +timeField.value * 1000);
+        }
+        else {
+            (0,_createAudio__WEBPACK_IMPORTED_MODULE_1__.createAudioWrong)('squeak');
+            if (!isSound) {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audioWrong.muted;
+            }
+            else {
+                _createAudio__WEBPACK_IMPORTED_MODULE_1__.audioWrong.play();
+            }
+            (0,_dialog__WEBPACK_IMPORTED_MODULE_2__.dialogWrongValue)(_mainBlock__WEBPACK_IMPORTED_MODULE_4__.containerForOptions);
+        }
+    });
+    drawWheel();
 }
 
 
@@ -4117,58 +4962,106 @@ function create(parentTag) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   objData: () => (/* binding */ objData)
+/* harmony export */   SOUNDOFF: () => (/* binding */ SOUNDOFF),
+/* harmony export */   SOUNDON: () => (/* binding */ SOUNDON),
+/* harmony export */   getFromLocalStorage: () => (/* binding */ getFromLocalStorage),
+/* harmony export */   isMusic: () => (/* binding */ isMusic),
+/* harmony export */   objData: () => (/* binding */ objData),
+/* harmony export */   title: () => (/* binding */ title)
 /* harmony export */ });
 /* harmony import */ var _public_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../public/styles.css */ "./public/styles.css");
 /* harmony import */ var _builders_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./builders/app */ "./src/builders/app.ts");
 /* harmony import */ var _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./builders/mainBlock */ "./src/builders/mainBlock.ts");
-/* harmony import */ var _builders_inputFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/inputFields */ "./src/builders/inputFields.ts");
+/* harmony import */ var _builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./builders/loadOptions */ "./src/builders/loadOptions.ts");
+/* harmony import */ var _builders_wheel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./builders/wheel */ "./src/builders/wheel.ts");
 
 
 
 
+
+let isMusic = Boolean(Number(localStorage.sound));
+const SOUNDON = 'Sound ON';
+const SOUNDOFF = 'Sound OFF';
+const retrievedObject = getFromLocalStorage('dataFromInputs');
+const countElem = getFromLocalStorage('count');
+const objData = retrievedObject || {};
+const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
+document.body.append(title);
+(0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
+_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
+title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
 function getFromLocalStorage(key) {
     const jsonString = localStorage.getItem(key);
     return jsonString ? JSON.parse(jsonString) : null;
 }
-const retrievedObject = getFromLocalStorage('dataFromInputs');
-const objData = retrievedObject || {};
 window.addEventListener('load', event => {
     if (!localStorage.page) {
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
         localStorage.page = '0';
         location.hash = 'main';
+        document.body.append(title);
+        (0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
+        title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
+        (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
+        console.log('page reload with no data');
     }
     if (localStorage.page === '0') {
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
         location.hash = 'main';
+        document.body.append(title);
+        (0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
+        title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
+        (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(objData);
+        console.log('page reload with main');
     }
     if (localStorage.page === '1') {
         location.hash = 'decision-maker';
+        (0,_builders_wheel__WEBPACK_IMPORTED_MODULE_4__.createChoosePage)();
+        console.log('page reload with decision');
     }
-    const count = +localStorage.count || 0;
-    let valOpt;
-    let valW;
-    for (let i = count; i > 0; i -= 1) {
-        valOpt = '';
-        valW = 0;
-        for (let key of Object.keys(objData)) {
-            if (i === +key.replace(/\D/g, '') && key[0] === 'o') {
-                valOpt = String(objData[key]);
-                console.log('this' + key);
-            }
-            else if (i === +key.replace(/\D/g, '') && key[0] === '#') {
-                valW = +objData[key];
-                console.log('there' + key[key.length - 1]);
-            }
-            else {
-                continue;
-            }
-        }
-        (0,_builders_inputFields__WEBPACK_IMPORTED_MODULE_3__.createInput)(title, i, valOpt, valW);
+    if (!localStorage.sound) {
+        isMusic = true;
+        localStorage.sound = '1';
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDON;
+        console.log('No sound');
+    }
+    if (localStorage.sound === '1') {
+        isMusic = true;
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDON;
+        console.log('Sound on');
+    }
+    if (localStorage.sound === '0') {
+        isMusic = false;
+        _builders_wheel__WEBPACK_IMPORTED_MODULE_4__.soundButton.textContent = SOUNDOFF;
+        console.log('Sound off');
     }
 });
-const title = (0,_builders_app__WEBPACK_IMPORTED_MODULE_1__["default"])();
-document.body.append(title);
-(0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
+function locationHashChanged() {
+    if (location.hash === '#main') {
+        const dataObj = getFromLocalStorage('dataFromInputs');
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.textContent = '';
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.container.textContent = '';
+        localStorage.page = '0';
+        document.body.append(title);
+        (0,_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.create)(title);
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions.classList.add('containerForOptions');
+        title.append(_builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.containerForOptions);
+        (0,_builders_loadOptions__WEBPACK_IMPORTED_MODULE_3__.loadOptions)(dataObj);
+        console.log('hash changed to main');
+    }
+    if (location.hash === '#decision-maker') {
+        _builders_mainBlock__WEBPACK_IMPORTED_MODULE_2__.startBut.click();
+        console.log('hash changed to decision');
+    }
+}
+window.onhashchange = locationHashChanged;
+window.addEventListener('keydown', event => {
+    console.log(event.target);
+});
 
 
 /***/ })
@@ -4252,7 +5145,7 @@ document.body.append(title);
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("6402056f77b9b9d01422")
+/******/ 		__webpack_require__.h = () => ("5d8fd2fbfc1bead3b68b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

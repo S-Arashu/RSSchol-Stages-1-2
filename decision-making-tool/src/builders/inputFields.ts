@@ -1,15 +1,15 @@
 import '../../public/styles.css';
-import { objData } from '..';
+import { getFromLocalStorage, objData } from '..';
 
 export function createInput(
-  parentTag: { prepend: (arg0: HTMLLIElement) => void },
+  parentTag: { append: (arg0: HTMLLIElement) => void },
   count: string | number,
   valuesOpt?: string,
   valuesWeight?: number,
 ) {
   const liElem = document.createElement('li');
   liElem.classList.add('item');
-  parentTag.prepend(liElem);
+  parentTag.append(liElem);
 
   const label = document.createElement('label');
   label.setAttribute('for', `option-#${count}`);
@@ -48,6 +48,29 @@ export function createInput(
       if (doublePrevious instanceof HTMLInputElement) {
         let nameOfOption: string = doublePrevious.value;
         let weightOfOption: string = previous.value;
+        console.dir(doublePrevious.parentNode?.parentNode);
+        const parent = doublePrevious.parentNode?.parentNode;
+        if (parent instanceof HTMLDivElement || parent instanceof HTMLElement) {
+          parent.remove();
+        }
+        delete objData[doublePrevious.id];
+        delete objData[`#${doublePrevious.id.replace(/\D/g, '')}`];
+
+        const countElem = getFromLocalStorage('count');
+        let deleteElem = countElem.indexOf(+doublePrevious.id.replace(/\D/g, ''));
+        console.log(deleteElem);
+        console.log(doublePrevious.id.replace(/\D/g, ''));
+        if (deleteElem != -1) {
+          countElem.splice(deleteElem, 1);
+        }
+
+        const jsonString = JSON.stringify(objData);
+        localStorage.setItem('dataFromInputs', jsonString);
+        localStorage.setItem('count', JSON.stringify(countElem));
+
+        if (countElem.length === 0) {
+          localStorage.removeItem('count');
+        }
       }
     }
   });
@@ -55,19 +78,20 @@ export function createInput(
   inputElem.oninput = saveData;
   inputSecondElem.oninput = saveData;
 
+  // let objData = getFromLocalStorage('dataFromInputs');
+
   function saveData(event: Event): void {
+    let objData = getFromLocalStorage('dataFromInputs');
     const current = event.target;
     if (current instanceof HTMLInputElement) {
       if (current.id) {
         objData[current.id] = current.value;
-        console.log(objData);
       } else if (
         !current.id &&
         current.previousSibling &&
         current.previousSibling.previousSibling?.nodeValue
       ) {
         objData[current.previousSibling.previousSibling?.nodeValue] = current.value;
-        console.log(objData);
       }
     }
 
