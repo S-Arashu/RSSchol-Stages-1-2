@@ -336,12 +336,25 @@ dialog[open]::backdrop {
   margin: 1%;
 }
 
-canvas {
+/* canvas {
   border: 1px solid #000;
   display: block;
   margin: 20px auto;
+} */
+
+canvas {
+  border: 1px solid black;
+  display: block;
+  margin: 20px auto;
 }
-#pointer {
+.selected-option {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+  transition: background-color 0.5s;
+}
+
+/* #pointer {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -351,6 +364,17 @@ canvas {
   width: 10px;
   background: red;
   z-index: 1;
+} */
+
+#pointer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid red; /* Цвет указателя */
+  top: 0; /* Позиция указателя */
+  left: calc(50% - 10px); /* Центрирование указателя */
 }
 
 #soundButton,
@@ -389,7 +413,7 @@ canvas {
     width: 100%;
   }
 }
-`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,oBAAoB;EACpB,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,aAAa;EACb,eAAe;EACf,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,UAAU;AACZ;;AAEA;EACE,sBAAsB;EACtB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,iBAAiB;EACjB,iBAAiB;EACjB,YAAY;EACZ,WAAW;EACX,eAAe;EACf,UAAU;AACZ;;AAEA;;;EAGE,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;;;EAGE,6BAA6B;AAC/B;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.disabled {\n  pointer-events: none;\n  filter: brightness(0.7);\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: column;\n  align-items: center;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\n.containerForDuration {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 9vh;\n}\n\n.containerForDuration p {\n  margin: 0;\n}\n\n#selected-option {\n  margin: 1%;\n}\n\ncanvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n}\n#pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n}\n\n#soundButton,\n#start,\n#homeButton {\n  width: 30%;\n  height: 5vh;\n  border-radius: 10px;\n  cursor: pointer;\n  transition: all 0.3s ease-in-out;\n}\n\n#soundButton:hover,\n#start:hover,\n#homeButton:hover {\n  background-color: lightsalmon;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./public/styles.css"],"names":[],"mappings":"AAAA;EACE,2CAA2C;AAC7C;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,oBAAoB;EACpB,uBAAuB;AACzB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,eAAe;EACf,aAAa;EACb,eAAe;EACf,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,UAAU;AACZ;;AAEA;;GAEG;;AAEH;EACE;;;;;GAKC;;EAED,0BAA0B;AAC5B;;AAEA;EACE,aAAa;EACb,eAAe;EACf,mBAAmB;EACnB,sBAAsB;EACtB,aAAa;EACb,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,eAAe;EACf,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,WAAW;EACX,kBAAkB;EAClB,UAAU;EACV,gCAAgC;EAChC,UAAU;AACZ;;AAEA;EACE,qBAAqB;AACvB;;AAEA;EACE,gBAAgB;EAChB,wBAAwB;EACxB,UAAU;EACV,eAAe;EACf,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,aAAa;EACb,WAAW;EACX,mBAAmB;EACnB,6BAA6B;AAC/B;;AAEA;;EAEE,WAAW;EACX,mBAAmB;AACrB;;AAEA;EACE,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,6BAA6B;AAC/B;;AAEA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,QAAQ;AACV;;AAEA;EACE,SAAS;AACX;;AAEA;EACE,UAAU;AACZ;;AAEA;;;;GAIG;;AAEH;EACE,uBAAuB;EACvB,cAAc;EACd,iBAAiB;AACnB;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,iCAAiC;AACnC;;AAEA;;;;;;;;;;GAUG;;AAEH;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,mCAAmC;EACnC,oCAAoC;EACpC,6BAA6B,EAAE,mBAAmB;EAClD,MAAM,EAAE,sBAAsB;EAC9B,sBAAsB,EAAE,4BAA4B;AACtD;;AAEA;;;EAGE,UAAU;EACV,WAAW;EACX,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;;;EAGE,6BAA6B;AAC/B;;AAEA;;;;;;;GAOG;;AAEH;EACE;IACE,eAAe;IACf,cAAc;IACd,aAAa;EACf;;EAEA;IACE,WAAW;EACb;AACF","sourcesContent":["body {\n  background-color: rgba(27, 122, 224, 0.619);\n}\n\nbody:has(dialog[open]) {\n  overflow: hidden;\n}\n\n.disabled {\n  pointer-events: none;\n  filter: brightness(0.7);\n}\n\n.title {\n  text-align: center;\n}\n\n.containerForOptions {\n  width: 80vw;\n  /* height: 10vh; */\n  margin: 2% auto;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: column;\n  align-items: center;\n}\n\n.dialog {\n  border: none;\n  padding: 0;\n}\n\n/* .dialog-wrapper {\n  padding: 1em;\n} */\n\ndialog[open]::backdrop {\n  background: linear-gradient(\n    45deg,\n    rgba(146, 228, 111, 0.6) 0%,\n    rgba(72, 108, 191, 0.6) 50%,\n    rgba(177, 48, 169, 0.6) 100%\n  );\n\n  backdrop-filter: blur(2px);\n}\n\n.popup-wrong {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  flex-direction: column;\n  /* gap: 1%; */\n  height: 30vh;\n  justify-content: space-around;\n}\n\n.dialog-button {\n  width: 100%;\n}\n\n.container {\n  width: 80vw;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n  margin: 1% auto;\n}\n\n.buttonList {\n  cursor: pointer;\n  padding: 1%;\n  border-radius: 7px;\n  margin: 1%;\n  transition: all 0.3s ease-in-out;\n  width: 80%;\n}\n\n.buttonList:hover {\n  transform: scale(0.9);\n}\n\n.item {\n  list-style: none;\n  border: 1px solid bisque;\n  width: 70%;\n  margin: 1% auto;\n  border-radius: 20px;\n}\n\n.label-item {\n  font-size: 1.2vw;\n  display: flex;\n  width: 100%;\n  align-items: center;\n  justify-content: space-around;\n}\n\n.input-item,\n.button-item {\n  margin: 2vw;\n  border-radius: 10px;\n}\n\n.button-item {\n  cursor: pointer;\n}\n\n.containerForButtons {\n  display: flex;\n  justify-content: space-around;\n}\n\n.containerForDuration {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 9vh;\n}\n\n.containerForDuration p {\n  margin: 0;\n}\n\n#selected-option {\n  margin: 1%;\n}\n\n/* canvas {\n  border: 1px solid #000;\n  display: block;\n  margin: 20px auto;\n} */\n\ncanvas {\n  border: 1px solid black;\n  display: block;\n  margin: 20px auto;\n}\n.selected-option {\n  text-align: center;\n  font-size: 24px;\n  margin-top: 20px;\n  transition: background-color 0.5s;\n}\n\n/* #pointer {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-left: -5px;\n  margin-top: -25px;\n  height: 50px;\n  width: 10px;\n  background: red;\n  z-index: 1;\n} */\n\n#pointer {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-bottom: 20px solid red; /* Цвет указателя */\n  top: 0; /* Позиция указателя */\n  left: calc(50% - 10px); /* Центрирование указателя */\n}\n\n#soundButton,\n#start,\n#homeButton {\n  width: 30%;\n  height: 5vh;\n  border-radius: 10px;\n  cursor: pointer;\n  transition: all 0.3s ease-in-out;\n}\n\n#soundButton:hover,\n#start:hover,\n#homeButton:hover {\n  background-color: lightsalmon;\n}\n\n/* .popup-wrong {\n  display: none;\n  width: 400px;\n  height: 50px;\n  margin: 10% auto;\n  position: absolute;\n  z-index: 5;\n} */\n\n@media (max-width: 900px) {\n  .label-item {\n    flex-wrap: wrap;\n    font-size: 2vw;\n    padding: 2% 0;\n  }\n\n  .input-item {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5121,7 +5145,7 @@ window.addEventListener('keydown', event => {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("2d91d4c1e7244a0ff005")
+/******/ 		__webpack_require__.h = () => ("5d8fd2fbfc1bead3b68b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

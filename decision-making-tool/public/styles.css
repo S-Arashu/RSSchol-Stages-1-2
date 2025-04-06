@@ -126,12 +126,25 @@ dialog[open]::backdrop {
   margin: 1%;
 }
 
-canvas {
+/* canvas {
   border: 1px solid #000;
   display: block;
   margin: 20px auto;
+} */
+
+canvas {
+  border: 1px solid black;
+  display: block;
+  margin: 20px auto;
 }
-#pointer {
+.selected-option {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 20px;
+  transition: background-color 0.5s;
+}
+
+/* #pointer {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -141,6 +154,17 @@ canvas {
   width: 10px;
   background: red;
   z-index: 1;
+} */
+
+#pointer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid red; /* Цвет указателя */
+  top: 0; /* Позиция указателя */
+  left: calc(50% - 10px); /* Центрирование указателя */
 }
 
 #soundButton,
