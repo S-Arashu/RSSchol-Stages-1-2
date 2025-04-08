@@ -5,17 +5,9 @@ import {
   SortOrder,
   Winner,
   WinnerWithCar,
-} from "./types.ts";
+} from "./types";
 
 const BASE_URL = "/api";
-
-// Helper function to handle API responses
-async function handleResponse<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
-  }
-  return response.json() as Promise<T>;
-}
 
 // Car API endpoints
 export async function fetchCars(
@@ -26,12 +18,12 @@ export async function fetchCars(
   const response = await fetch(
     `${BASE_URL}/garage?page=${page}&limit=${limit}`
   );
-  return handleResponse<PaginatedResponse<Car>>(response);
+  return <PaginatedResponse<Car>>(<unknown>response);
 }
 
 export async function fetchCar(id: number): Promise<Car> {
   const response = await fetch(`${BASE_URL}/garage/${id}`);
-  return handleResponse<Car>(response);
+  return <Car>(<unknown>response);
 }
 
 export async function createCar(car: {
@@ -45,7 +37,7 @@ export async function createCar(car: {
     },
     body: JSON.stringify(car),
   });
-  return handleResponse<Car>(response);
+  return <Car>(<unknown>response);
 }
 
 export async function updateCar(
@@ -59,14 +51,14 @@ export async function updateCar(
     },
     body: JSON.stringify(car),
   });
-  return handleResponse<Car>(response);
+  return <Car>(<unknown>response);
 }
 
 export async function deleteCar(id: number): Promise<void> {
   const response = await fetch(`${BASE_URL}/garage/${id}`, {
     method: "DELETE",
   });
-  return handleResponse<void>(response);
+  return <void>(<unknown>response);
 }
 
 export async function generateRandomCars(count: number = 100): Promise<void> {
@@ -77,7 +69,7 @@ export async function generateRandomCars(count: number = 100): Promise<void> {
     },
     body: JSON.stringify({ count }),
   });
-  return handleResponse<void>(response);
+  return <void>(<unknown>response);
 }
 
 // Engine API endpoints
@@ -89,7 +81,7 @@ export async function startEngine(id: number): Promise<EngineData> {
     },
     body: JSON.stringify({ id, status: "started" }),
   });
-  return handleResponse<EngineData>(response);
+  return <EngineData>(<unknown>response);
 }
 
 export async function driveEngine(id: number): Promise<{ success: boolean }> {
@@ -107,7 +99,7 @@ export async function driveEngine(id: number): Promise<{ success: boolean }> {
       return { success: false };
     }
 
-    return handleResponse<{ success: boolean }>(response);
+    return <{ success: boolean }>(<unknown>response);
   } catch (error) {
     console.error("Drive engine error:", error);
     return { success: false };
@@ -122,7 +114,7 @@ export async function stopEngine(id: number): Promise<void> {
     },
     body: JSON.stringify({ id, status: "stopped" }),
   });
-  return handleResponse<void>(response);
+  return <void>(<unknown>response);
 }
 
 // Winners API endpoints
@@ -138,12 +130,12 @@ export async function fetchWinners(
   const response = await fetch(
     `${BASE_URL}/winners?page=${page}&limit=${limit}&sort=${sort}&order=${order}`
   );
-  return handleResponse<PaginatedResponse<WinnerWithCar>>(response);
+  return <PaginatedResponse<WinnerWithCar>>(<unknown>response);
 }
 
 export async function fetchWinner(id: number): Promise<Winner> {
   const response = await fetch(`${BASE_URL}/winners/${id}`);
-  return handleResponse<Winner>(response);
+  return <Winner>(<unknown>response);
 }
 
 export async function createWinner(
@@ -174,7 +166,7 @@ export async function createWinner(
     },
     body: JSON.stringify({ carId, time }),
   });
-  return handleResponse<Winner>(response);
+  return <Winner>(<unknown>response);
 }
 
 export async function updateWinner(
@@ -188,21 +180,21 @@ export async function updateWinner(
     },
     body: JSON.stringify(data),
   });
-  return handleResponse<Winner>(response);
+  return <Winner>(<unknown>response);
 }
 
 export async function deleteWinner(id: number): Promise<void> {
   const response = await fetch(`${BASE_URL}/winners/${id}`, {
     method: "DELETE",
   });
-  return handleResponse<void>(response);
+  return <void>(<unknown>response);
 }
 
 export async function fetchWinnerByCarId(
   carId: number
 ): Promise<Winner | null> {
   const response = await fetch(`${BASE_URL}/winners?carId=${carId}`);
-  const winners = await handleResponse<Winner[]>(response);
+  const winners = <Winner[]>(<unknown>response);
   console.log(`Found ${winners.length} winners for carId ${carId}:`, winners);
   return winners.length > 0 ? winners[0] : null;
 }

@@ -1,8 +1,8 @@
-import { Garage } from "./garage.ts";
-import { State, View } from "./types.ts";
-import { createElement, getURLParams } from "./utils.ts";
-import { Winners } from "./winners.ts";
-import { Tutorial } from "./tutorial.ts";
+import { Garage } from "./garage";
+import { State, View } from "./types";
+import { createElement, getURLParams } from "./utils";
+import { Winners } from "./winners";
+import { Tutorial } from "./tutorial";
 
 // Initialize application state
 const state: State = {

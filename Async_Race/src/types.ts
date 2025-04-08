@@ -25,9 +25,9 @@ export interface EngineData {
   distance: number;
 }
 
-export type SortOrder = 'ASC' | 'DESC';
+export type SortOrder = "ASC" | "DESC";
 
-export type View = 'garage' | 'winners';
+export type View = "garage" | "winners";
 
 export interface ViewState {
   page: number;
@@ -55,7 +55,12 @@ export interface State {
 export interface GarageManager {
   renderGarage(state: State): void;
   handleCreateCar(state: State, name: string, color: string): Promise<void>;
-  handleUpdateCar(state: State, carId: number, name: string, color: string): Promise<void>;
+  handleUpdateCar(
+    state: State,
+    carId: number,
+    name: string,
+    color: string
+  ): Promise<void>;
   handleDeleteCar(state: State, carId: number): Promise<void>;
   handleStartEngine(state: State, carId: number): Promise<EngineData>;
   handleStopEngine(state: State, carId: number): Promise<void>;

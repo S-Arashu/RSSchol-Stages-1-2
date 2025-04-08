@@ -8,8 +8,8 @@ import {
   startEngine,
   stopEngine,
   updateCar,
-} from "./api.ts";
-import { Car, EngineData, GarageManager, State } from "./types.ts";
+} from "./api";
+import { Car, EngineData, GarageManager, State } from "./types";
 import {
   appendChildren,
   calculateTimeToFinish,
@@ -19,7 +19,7 @@ import {
   showModal,
   showNotification,
   updateURL,
-} from "./utils.ts";
+} from "./utils";
 
 export class Garage implements GarageManager {
   private container: HTMLElement;

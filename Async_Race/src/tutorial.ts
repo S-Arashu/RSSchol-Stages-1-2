@@ -1,4 +1,4 @@
-import { createElement } from "./utils.ts";
+import { createElement } from "./utils";
 
 // Tutorial steps definition
 const tutorialSteps = [

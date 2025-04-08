@@ -1,4 +1,4 @@
-import { createWinner, fetchWinners } from "./api.ts";
+import { createWinner, fetchWinners } from "./api";
 import { SortOrder, State, WinnersManager } from "./types";
 import {
   appendChildren,
@@ -115,66 +115,57 @@ export class Winners implements WinnersManager {
         // Table body
         const tbody = createElement<HTMLTableSectionElement>("tbody", "");
 
-        items.forEach(
-          (
-            winner: {
-              car: { color: any; name: string | undefined };
-              wins: { toString: () => string | undefined };
-              bestTime: string | number;
-            },
-            index: number
-          ) => {
-            const row = createElement<HTMLTableRowElement>("tr", "");
+        items.forEach((winner, index) => {
+          const row = createElement<HTMLTableRowElement>("tr", "");
 
-            const indexCell = createElement<HTMLTableCellElement>(
-              "td",
-              "",
-              `${(state.viewStates.winners.page - 1) * 10 + index + 1}`
-            );
+          const indexCell = createElement<HTMLTableCellElement>(
+            "td",
+            "",
+            `${(state.viewStates.winners.page - 1) * 10 + index + 1}`
+          );
 
-            const carCell = createElement<HTMLTableCellElement>("td", "");
-            const carPreview = createElement<HTMLDivElement>(
-              "div",
-              "car-preview"
-            );
-            carPreview.innerHTML = `
+          const carCell = createElement<HTMLTableCellElement>("td", "");
+          const carPreview = createElement<HTMLDivElement>(
+            "div",
+            "car-preview"
+          );
+          carPreview.innerHTML = `
             <div class="car-body" style="background-color: ${winner.car.color};"></div>
             <div class="car-window"></div>
           `;
-            carCell.appendChild(carPreview);
+          carCell.appendChild(carPreview);
 
-            const nameCell = createElement<HTMLTableCellElement>(
-              "td",
-              "",
-              winner.car.name
-            );
-            const winsCell = createElement<HTMLTableCellElement>(
-              "td",
-              "",
-              winner.wins.toString()
-            );
-            // Handle bestTime which can be string type from the server
-            const bestTimeStr =
-              typeof winner.bestTime === "string"
-                ? parseFloat(winner.bestTime).toFixed(2)
-                : (winner.bestTime as number).toFixed(2);
+          const nameCell = createElement<HTMLTableCellElement>(
+            "td",
+            "",
+            winner.car.name
+          );
+          const winsCell = createElement<HTMLTableCellElement>(
+            "td",
+            "",
+            winner.wins.toString()
+          );
+          // Handle bestTime which can be string type from the server
+          const bestTimeStr =
+            typeof winner.bestTime === "string"
+              ? parseFloat(winner.bestTime).toFixed(2)
+              : (winner.bestTime as number).toFixed(2);
 
-            const timeCell = createElement<HTMLTableCellElement>(
-              "td",
-              "",
-              bestTimeStr
-            );
+          const timeCell = createElement<HTMLTableCellElement>(
+            "td",
+            "",
+            bestTimeStr
+          );
 
-            appendChildren(row, [
-              indexCell,
-              carCell,
-              nameCell,
-              winsCell,
-              timeCell,
-            ]);
-            tbody.appendChild(row);
-          }
-        );
+          appendChildren(row, [
+            indexCell,
+            carCell,
+            nameCell,
+            winsCell,
+            timeCell,
+          ]);
+          tbody.appendChild(row);
+        });
 
         appendChildren(table, [thead, tbody]);
         tableContainer.appendChild(table);
