@@ -710,7 +710,7 @@ export class Garage implements GarageManager {
   }
 
   public async handleStartEngine(
-    state: State,
+    _state: State,
     carId: number
   ): Promise<EngineData> {
     try {
@@ -721,7 +721,7 @@ export class Garage implements GarageManager {
     }
   }
 
-  public async handleStopEngine(state: State, carId: number): Promise<void> {
+  public async handleStopEngine(_state: State, carId: number): Promise<void> {
     try {
       // Stop animation
       this.stopCarAnimation(carId);
