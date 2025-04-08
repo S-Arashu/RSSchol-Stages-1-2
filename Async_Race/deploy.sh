@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # если вы деплоите на https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:s-arashu-JSFE2024Q4/Async_Race.git master:gh-pages
+git push -f git@github.com:rolling-scopes-school.github.io/s-arashu-JSFE2024Q4/Async_Race.git master:gh-pages
 
 cd -
