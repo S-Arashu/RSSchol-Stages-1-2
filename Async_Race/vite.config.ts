@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/Async_Race",
+  base: "/s-arashu-JSFE2024Q4/",
 });
