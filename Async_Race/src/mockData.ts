@@ -74,14 +74,14 @@ class MockData {
   }
 
   // Engine methods
-  startEngine(id: number): EngineData {
+  startEngine(_id: number): EngineData {
     // Generate random velocity and distance
     const velocity = Math.floor(Math.random() * 150) + 50; // 50-200
     const distance = Math.floor(Math.random() * 1000) + 500; // 500-1500
     return { velocity, distance };
   }
 
-  driveEngine(id: number): { success: boolean } {
+  driveEngine(_id: number): { success: boolean } {
     // 20% chance of engine failure
     return { success: Math.random() > 0.2 };
   }

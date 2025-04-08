@@ -226,7 +226,7 @@ export class Winners implements WinnersManager {
 
   // Record a winner
   public async recordWinner(
-    state: State,
+    _state: State,
     carId: number,
     time: number
   ): Promise<void> {
