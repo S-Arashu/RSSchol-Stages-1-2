@@ -6,7 +6,7 @@ import {
   Winner,
   WinnerWithCar,
 } from "./types";
-import { mockData } from "./mockData.ts";
+import { mockData } from "./mockData";
 
 const BASE_URL = "/api";
 
@@ -29,7 +29,6 @@ async function handleResponse<T>(response: Response): Promise<T> {
     // Try to get the text first to debug
     const text = await response.text();
 
-    // Log for debugging
     console.log("API Response:", {
       url: response.url,
       status: response.status,
