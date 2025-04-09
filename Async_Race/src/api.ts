@@ -10,11 +10,14 @@ import { mockData } from "./mockData";
 
 const BASE_URL = "/api";
 
-// Determine if we're using mock data or real API
-// When running with Vite standalone, there's no backend server
-const USE_MOCK_DATA =
+// Check if we're running on GitHub Pages or locally without a backend
+const isGitHubPages = window.location.hostname.includes("github.io");
+const isLocalhost =
   window.location.hostname === "localhost" ||
   window.location.hostname === "127.0.0.1";
+
+// Use mock data when on GitHub Pages or in local development without a backend
+const USE_MOCK_DATA = isGitHubPages || isLocalhost;
 
 // Helper function to handle API responses
 async function handleResponse<T>(response: Response): Promise<T> {
